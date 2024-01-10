@@ -1,3 +1,4 @@
+import './assets/css/satoshi.css'
 import './assets/css/style.css'
 
 import { createApp } from 'vue'

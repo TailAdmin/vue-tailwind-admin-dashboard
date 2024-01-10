@@ -103,7 +103,7 @@
 
         <div class="mx-auto max-w-180">
           <h4 class="font-medium text-black dark:text-white">About Me</h4>
-          <p class="mt-4.5 text-sm font-medium">
+          <p class="mt-4.5 text-sm font-normal">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque posuere fermentum
             urna, eu condimentum mauris tempus ut. Donec fermentum blandit aliquet. Etiam dictum
             dapibus ultricies. Sed vel aliquet libero. Nunc a augue fermentum, pharetra ligula sed,
