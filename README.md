@@ -1,21 +1,11 @@
-# tailadmin-vue-pro
+# TailAdmin Vue - Free Vue.js Tailwind CSS Admin Dashboard Template
+TailAdmin Vue is a free, open-source admin dashboard template **built on Vue.js**, popular and progressive JavaScript framework, and **Tailwind CSS**. This **powerful combination** provides developers with an extensive library of essential components, elements, and pages to launch a comprehensive and data-centric back-end, dashboard, or admin panel solution for any Vue.js based web projects. 
 
-This template should help get you started developing with Vue 3 in Vite.
+With TailAdmin Vue, you can leverage Vue.js features such as declarative rendering, component-based architecture, Vue Router for routing, and Vuex for state management. It also harnesses the power of Tailwind CSS for rapid UI development with its low-level utility classes and responsive design capabilities.
 
-## Recommended IDE Setup
+The template offers a **diverse set of dashboard UI components**, elements, and pages, including forms, tables, charts, maps, and pre-built pages, which are critical for creating a high-quality and complete admin panel or dashboard. It also supports Server-Side Rendering (SSR) and Single-Page Applications (SPA) for improved performance and user experience. 
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
-
-## Type Support for `.vue` Imports in TS
-
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
-
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
-
-1. Disable the built-in TypeScript Extension
-    1) Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-    2) Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
+Whether you’re developing a complex web application or a simple website, TailAdmin Vue provides a robust and flexible foundation to streamline your workflow and enhance your project's functionality.
 
 ## Customize configuration
 
