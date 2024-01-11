@@ -56,3 +56,27 @@ npm run build
 ```sh
 npm run lint
 ```
+
+## 200+ Dashboard UI Components for Vue.js and Tailwind CSS
+
+**Vue.js** and **Tailwind** are two highly acclaimed technologies that have brought significant advancements to web development. 🚀
+
+**Vue.js** is a JavaScript framework specifically designed for creating user interfaces, while **Tailwind** is a CSS framework that focuses on utility-first styling approaches. 🛠️
+
+With **TailAdmin Vue**, you gain access to an extensive collection of **200+ essential UI components** built exclusively for Vue.js and styled using the powerful capabilities of Tailwind CSS. 🎨 
+
+This comprehensive library covers various elements such as:
+- Charts 📊
+- Graphs 📈
+- Navigation Bars 📑
+- Tabs 🗂️
+- Buttons 🔘
+- Cards 🃏
+- Tables 📏
+- Profiles 👥
+- Forms 📝
+- Modals 💬
+- App Pages 📖
+- Calendar 📅 functionalities. 
+
+Additionally, it also provides example templates tailored for web applications. 💻 This makes it a one-stop solution for all your Vue.js dashboard development needs! 🎯
