@@ -11,7 +11,7 @@ The template offers a **diverse set of dashboard UI components**, elements, and 
 ## TailAdmin Vue Features
 
 **💎 High-quality, Premium Modern Design:**
-A thoughtfully designed element with a deep focus on UX/UI, already trusted and utilized by over 10K+ web apps worldwide.
+A thoughtfully designed dashboard template with a deep focus on UX/UI, already trusted and utilized by over 10K+ web apps worldwide.
 
 **✨ Vue 3:**
 Get enhanced performance with the latest Vue version.
