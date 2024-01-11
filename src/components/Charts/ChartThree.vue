@@ -90,7 +90,7 @@ const apexOptions = {
       <div id="chartThree" class="mx-auto flex justify-center">
         <VueApexCharts
           type="donut"
-          height="340"
+          width="340"
           :options="apexOptions"
           :series="chartData.series"
           ref="chart"
