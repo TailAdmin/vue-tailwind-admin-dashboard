@@ -42,9 +42,6 @@ Write safer, maintainable code with TailAdmin Vue's TypeScript Support.
 **✅ Linting and Formatting:**
 Maintain a clean codebase with built-in linting and formatting.
 
-**✔️ TypeScript:**
-Improve code navigation and tooling support with TypeScript.
-
 **🗃️ State Management with Pinia:**
 Handle your app's state with Pinia for clean, organized code.
 
