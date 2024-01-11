@@ -60,7 +60,7 @@ ___
 
 ### [⚡ Get PRO Version](https://tailadmin.com/pricing)
 
-### [📄 Documentatio](https://tailadmin.com/docs)
+### [📄 Documentation](https://tailadmin.com/docs)
 
 ### [🖌️ TailAdmin Figma Free Sample](https://www.figma.com/community/file/1214477970819985778)
 
