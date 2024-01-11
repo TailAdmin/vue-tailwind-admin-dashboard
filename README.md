@@ -10,40 +10,40 @@ The template offers a **diverse set of dashboard UI components**, elements, and 
 
 ## TailAdmin Vue Features
 
-**💎 High-quality, Premium Modern Design**
+**💎 High-quality, Premium Modern Design:**
 A thoughtfully designed element with a deep focus on UX/UI, already trusted and utilized by over 10K+ web apps worldwide.
 
-**✨ Vue 3**
+**✨ Vue 3:**
 Get enhanced performance with the latest Vue version.
 
-**⚡ Vite Build System ⚙️**
+**⚡ Vite Build System:**
 Enjoy quick development with Vite, ensuring fast code compilation.
 
-**🔀 Vue Router**
+**🔀 Vue Router:**
 Manage app navigation with ease using Vue Router for seamless transitions.
 
-**💡 Reactive Utilities: @vueuse/core**
+**💡 Reactive Utilities:**
 Enhance component reactivity with @vueuse/core utilities.
 
-**📊 Charting with ApexCharts**
+**📊 Charting with ApexCharts:**
 Visualize data with ApexCharts for beautiful analytics.
 
-**🗺️ Vector Maps with JSVectorMap**
+**🗺️ Vector Maps with JSVectorMap:**
 Easily integrate interactive vector maps with JSVectorMap.
 
-**🌐 UI with Tailwind CSS 💻↔️📱**
+**🖌️ UI with Tailwind CSS:**
 Frontend UI built on the powerful and versatile Tailwind CSS framework.
 
-**💫 TypeScript Support ✍️**
+**💫 TypeScript Support:**
 Write safer, maintainable code with TailAdmin Vue's TypeScript Support.
 
-**✅ Linting and Formatting 🔍✏️**
+**✅ Linting and Formatting:**
 Maintain a clean codebase with built-in linting and formatting.
 
-**✔️ TypeScript ✔️**
+**✔️ TypeScript:**
 Improve code navigation and tooling support with TypeScript.
 
-**🗃️ State Management with Pinia 🔒**
+**🗃️ State Management with Pinia:**
 Handle your app's state with Pinia for clean, organized code.
 
 #### [TailAdmin Vue FREE](https://free-vue-demo.tailadmin.com/)
