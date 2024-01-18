@@ -1,34 +1,23 @@
 <script setup lang="ts">
 import { useSidebarStore } from '@/stores/sidebar'
-import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 import SidebarDropdown from './SidebarDropdown.vue'
 
 const sidebarStore = useSidebarStore()
 
 const props = defineProps(['item', 'index'])
-const isSelected = computed(() => sidebarStore.selected === props.item.label)
 const currentPage = useRoute().name
 
 interface SidebarItem {
   label: string
 }
 
-const isAnyChildSelected = computed(() => {
+const handleItemClick = () => {
+  const pageName = sidebarStore.page === props.item.label ? '' : props.item.label
+  sidebarStore.page = pageName
+
   if (props.item.children) {
     return props.item.children.some((child: SidebarItem) => sidebarStore.selected === child.label)
-  }
-  return false
-})
-
-const handleItemClick = () => {
-  if (props.item.children) {
-    sidebarStore.navigateToDashboard(props.item.label, sidebarStore.page)
-  } else {
-    if (!isSelected.value) {
-      sidebarStore.navigateToDashboard(props.item.label, props.item.label)
-    }
-    sidebarStore.toggleSidebar()
   }
 }
 </script>
@@ -40,8 +29,7 @@ const handleItemClick = () => {
       class="group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4"
       @click.prevent="handleItemClick"
       :class="{
-        'bg-graydark dark:bg-meta-4':
-          (isSelected || isAnyChildSelected) && item.page === currentPage
+        'bg-graydark dark:bg-meta-4': sidebarStore.page === item.label
       }"
     >
       <span v-html="item.icon"></span>
@@ -51,7 +39,7 @@ const handleItemClick = () => {
       <svg
         v-if="item.children"
         class="absolute right-4 top-1/2 -translate-y-1/2 fill-current"
-        :class="{ 'rotate-180': sidebarStore.selected === item.label }"
+        :class="{ 'rotate-180': sidebarStore.page === item.label }"
         width="20"
         height="20"
         viewBox="0 0 20 20"
@@ -68,12 +56,14 @@ const handleItemClick = () => {
     </router-link>
 
     <!-- Dropdown Menu Start -->
-    <SidebarDropdown
-      v-if="item.children"
-      :items="item.children"
-      :currentPage="currentPage"
-      :page="item.label"
-    />
-    <!-- Dropdown Menu End -->
+    <div class="translate transform overflow-hidden" v-show="sidebarStore.page === item.label">
+      <SidebarDropdown
+        v-if="item.children"
+        :items="item.children"
+        :currentPage="currentPage"
+        :page="item.label"
+      />
+      <!-- Dropdown Menu End -->
+    </div>
   </li>
 </template>

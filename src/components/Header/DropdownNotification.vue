@@ -12,26 +12,26 @@ onClickOutside(target, () => {
 
 const notificationItems = ref([
   {
-    route: '/#',
+    route: '#',
     title: 'Edit your information in a swipe',
     details:
       'Sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim.',
     time: '12 May, 2025'
   },
   {
-    route: '/#',
+    route: '#',
     title: 'It is a long established fact',
     details: 'that a reader will be distracted by the readable.',
     time: '24 Feb, 2025'
   },
   {
-    route: '/#',
+    route: '#',
     title: 'There are many variations',
     details: 'of passages of Lorem Ipsum available, but the majority have suffered',
     time: '04 Jan, 2025'
   },
   {
-    route: '/#',
+    route: '#',
     title: 'There are many variations',
     details: 'of passages of Lorem Ipsum available, but the majority have suffered',
     time: '01 Dec, 2024'
@@ -43,7 +43,7 @@ const notificationItems = ref([
   <li class="relative" ref="target">
     <router-link
       class="relative flex h-8.5 w-8.5 items-center justify-center rounded-full border-[0.5px] border-stroke bg-gray hover:text-primary dark:border-strokedark dark:bg-meta-4 dark:text-white"
-      to="/#"
+      to="#"
       @click.prevent="(dropdownOpen = !dropdownOpen), (notifying = false)"
     >
       <span

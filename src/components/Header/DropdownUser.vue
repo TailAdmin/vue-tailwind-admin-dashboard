@@ -12,7 +12,11 @@ onClickOutside(target, () => {
 
 <template>
   <div class="relative" ref="target">
-    <router-link class="flex items-center gap-4" to="/#" @click.prevent="dropdownOpen = !dropdownOpen">
+    <router-link
+      class="flex items-center gap-4"
+      to="#"
+      @click.prevent="dropdownOpen = !dropdownOpen"
+    >
       <span class="hidden text-right lg:block">
         <span class="block text-sm font-medium text-black dark:text-white">Thomas Anree</span>
         <span class="block text-xs font-medium">UX Designer</span>
@@ -73,7 +77,7 @@ onClickOutside(target, () => {
         </li>
         <li>
           <router-link
-            to="/#"
+            to="#"
             class="flex items-center gap-3.5 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base"
           >
             <svg

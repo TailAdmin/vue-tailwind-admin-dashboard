@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
-import ProductOne from '@/assets/images/product/product-01.png';
-import ProductTwo from '@/assets/images/product/product-02.png';
-import ProductThree from '@/assets/images/product/product-03.png';
-import ProductFour from '@/assets/images/product/product-04.png';
+import ProductOne from '@/assets/images/product/product-01.png'
+import ProductTwo from '@/assets/images/product/product-02.png'
+import ProductThree from '@/assets/images/product/product-03.png'
+import ProductFour from '@/assets/images/product/product-04.png'
 
 const products = ref([
   {

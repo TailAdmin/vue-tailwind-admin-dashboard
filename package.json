@@ -1,6 +1,6 @@
 {
   "name": "tailadmin-vue-free",
-  "version": "0.0.0",
+  "version": "1.0.1",
   "private": true,
   "type": "module",
   "scripts": {
@@ -15,6 +15,7 @@
   "dependencies": {
     "@vueuse/core": "^10.7.1",
     "apexcharts": "^3.45.1",
+    "flatpickr": "^4.6.13",
     "jsvectormap": "^1.5.3",
     "pinia": "^2.1.7",
     "vue": "^3.3.11",

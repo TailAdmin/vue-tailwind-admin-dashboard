@@ -15,7 +15,7 @@ const chatData = ref([
     text: 'How are you?',
     time: 12,
     textCount: 3,
-    dot: 3
+    color: '#10B981'
   },
   {
     avatar: UserTwo,
@@ -23,7 +23,7 @@ const chatData = ref([
     text: 'Waiting for you!',
     time: 12,
     textCount: 0,
-    dot: 1
+    color: '#DC3545'
   },
   {
     avatar: UserFour,
@@ -31,7 +31,7 @@ const chatData = ref([
     text: "What's up?",
     time: 32,
     textCount: 0,
-    dot: 3
+    color: '#10B981'
   },
   {
     avatar: UserFive,
@@ -39,7 +39,7 @@ const chatData = ref([
     text: 'Great',
     time: 32,
     textCount: 2,
-    dot: 6
+    color: '#FFBA00'
   },
   {
     avatar: UserOne,
@@ -47,7 +47,7 @@ const chatData = ref([
     text: 'How are you?',
     time: 32,
     textCount: 0,
-    dot: 3
+    color: '#10B981'
   },
   {
     avatar: UserThree,
@@ -55,7 +55,7 @@ const chatData = ref([
     text: 'How are you?',
     time: 32,
     textCount: 3,
-    dot: 6
+    color: '#FFBA00'
   }
 ])
 </script>
@@ -75,10 +75,11 @@ const chatData = ref([
           <div class="relative h-14 w-14 rounded-full">
             <img :src="chat.avatar" alt="User" />
             <span
-              :class="`absolute right-0 bottom-0 h-3.5 w-3.5 rounded-full border-2 border-white bg-meta-${chat.dot}`"
+              class="absolute right-0 bottom-0 h-3.5 w-3.5 rounded-full border-2 border-white"
+              :style="{ backgroundColor: chat.color }"
             ></span>
           </div>
-  
+
           <div class="flex flex-1 items-center justify-between">
             <div>
               <h5 class="font-medium text-black dark:text-white">{{ chat.name }}</h5>
@@ -95,7 +96,6 @@ const chatData = ref([
             </div>
           </div>
         </RouterLink>
-
       </template>
     </div>
   </div>

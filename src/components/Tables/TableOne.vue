@@ -1,20 +1,20 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref } from 'vue'
 
-import BrandOne from '@/assets/images/brand/brand-01.svg';
-import BrandTwo from '@/assets/images/brand/brand-02.svg';
-import BrandThree from '@/assets/images/brand/brand-03.svg';
-import BrandFour from '@/assets/images/brand/brand-04.svg';
-import BrandFive from '@/assets/images/brand/brand-05.svg';
+import BrandOne from '@/assets/images/brand/brand-01.svg'
+import BrandTwo from '@/assets/images/brand/brand-02.svg'
+import BrandThree from '@/assets/images/brand/brand-03.svg'
+import BrandFour from '@/assets/images/brand/brand-04.svg'
+import BrandFive from '@/assets/images/brand/brand-05.svg'
 
 const brandData = ref([
-{
+  {
     logo: BrandOne,
     name: 'Google',
     visitors: 3.5,
     revenues: '5,768',
     sales: 590,
-    conversion: 4.8,
+    conversion: 4.8
   },
   {
     logo: BrandTwo,
@@ -22,7 +22,7 @@ const brandData = ref([
     visitors: 2.2,
     revenues: '4,635',
     sales: 467,
-    conversion: 4.3,
+    conversion: 4.3
   },
   {
     logo: BrandThree,
@@ -30,7 +30,7 @@ const brandData = ref([
     visitors: 2.1,
     revenues: '4,290',
     sales: 420,
-    conversion: 3.7,
+    conversion: 3.7
   },
   {
     logo: BrandFour,
@@ -38,7 +38,7 @@ const brandData = ref([
     visitors: 1.5,
     revenues: '3,580',
     sales: 389,
-    conversion: 2.5,
+    conversion: 2.5
   },
   {
     logo: BrandFive,
@@ -46,16 +46,16 @@ const brandData = ref([
     visitors: 3.5,
     revenues: '6,768',
     sales: 390,
-    conversion: 4.2,
-  },
-]);
+    conversion: 4.2
+  }
+])
 </script>
 
 <template>
-  <div class="rounded-sm border border-stroke bg-white px-5 pt-6 pb-2.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1">
-    <h4 class="mb-6 text-xl font-semibold text-black dark:text-white">
-      Top Channels
-    </h4>
+  <div
+    class="rounded-sm border border-stroke bg-white px-5 pt-6 pb-2.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1"
+  >
+    <h4 class="mb-6 text-xl font-semibold text-black dark:text-white">Top Channels</h4>
 
     <div class="flex flex-col">
       <div class="grid grid-cols-3 rounded-sm bg-gray-2 dark:bg-meta-4 sm:grid-cols-5">
@@ -76,7 +76,13 @@ const brandData = ref([
         </div>
       </div>
 
-      <div v-for="(brand, key) in brandData" :key="key" :class="`grid grid-cols-3 sm:grid-cols-5 ${key === brandData.length - 1 ? '' : 'border-b border-stroke dark:border-strokedark'}`">
+      <div
+        v-for="(brand, key) in brandData"
+        :key="key"
+        :class="`grid grid-cols-3 sm:grid-cols-5 ${
+          key === brandData.length - 1 ? '' : 'border-b border-stroke dark:border-strokedark'
+        }`"
+      >
         <div class="flex items-center gap-3 p-2.5 xl:p-5">
           <div class="flex-shrink-0">
             <img :src="brand.logo" alt="Brand" />

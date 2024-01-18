@@ -46,8 +46,9 @@ const calendarDays = computed(() => {
       isToday: isToday(day)
     }))
 
-  return [...prevMonthDays, ...currentMonthDays, ...nextMonthDays]
-    .filter(day => !day.prevMonth && !day.nextMonth);
+  return [...prevMonthDays, ...currentMonthDays, ...nextMonthDays].filter(
+    (day) => !day.prevMonth && !day.nextMonth
+  )
 })
 
 const isToday = (date: Date): boolean => {
@@ -56,8 +57,8 @@ const isToday = (date: Date): boolean => {
 }
 
 const isDateSelected = (day: any): boolean => {
-   return day.date === 1 && !day.prevMonth && !day.nextMonth;
-};
+  return day.date === 1 && !day.prevMonth && !day.nextMonth
+}
 </script>
 
 <template>
@@ -87,7 +88,10 @@ const isDateSelected = (day: any): boolean => {
         >
           <span class="font-medium text-black dark:text-white">{{ day.date }}</span>
 
-          <div v-if="isDateSelected(day)" class="group h-16 w-full flex-grow cursor-pointer py-1 md:h-30">
+          <div
+            v-if="isDateSelected(day)"
+            class="group h-16 w-full flex-grow cursor-pointer py-1 md:h-30"
+          >
             <span class="group-hover:text-primary md:hidden"> More </span>
             <div
               class="event invisible absolute left-2 z-99 mb-1 flex w-[200%] flex-col rounded-sm border-l-[3px] border-primary bg-gray px-3 py-1 text-left opacity-0 group-hover:visible group-hover:opacity-100 dark:bg-meta-4 md:visible md:w-[190%] md:opacity-100"
