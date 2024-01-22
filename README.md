@@ -45,6 +45,16 @@ Maintain a clean codebase with built-in linting and formatting.
 **🗃️ State Management with Pinia:**
 Handle your app's state with Pinia for clean, organized code.
 
+### TailAdmin PRO vs TailAdmin FREE Comparison 📊
+
+#### [TailAdmin PRO](https://vue-demo.tailadmin.com/)
+- 4 Unique Dashboards: Analytics, Ecommerce, Marketing, and CRM (More will be added)
+- 120+ Dashboard UI Components
+- 200+ Total UI Elements
+- 45+ HTML Files
+- All Essential Elements and Files
+- Full Figma Design Source - As Shown on Demo
+
 #### [TailAdmin Vue FREE](https://free-vue-demo.tailadmin.com/)
 - 1 Unique Dashboard
 - 30+ Dashboard UI Components
