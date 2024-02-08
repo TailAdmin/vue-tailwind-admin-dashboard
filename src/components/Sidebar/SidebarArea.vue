@@ -353,7 +353,7 @@ const menuGroups = ref([
           href="https://tailadmin.com/pricing"
           target="_blank"
           rel="nofollow"
-          class="flex items-center justify-center rounded-md bg-primary p-2 text-white hover:bg-opacity-90"
+          class="flex items-center justify-center rounded-md bg-primary p-2 font-medium text-white hover:bg-opacity-90"
         >
           Purchase Now
         </a>

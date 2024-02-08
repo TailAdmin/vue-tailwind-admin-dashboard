@@ -2,9 +2,8 @@
 import BreadcrumbDefault from '@/components/Breadcrumbs/BreadcrumbDefault.vue'
 import DefaultCard from '@/components/Forms/DefaultCard.vue'
 import InputGroup from '@/components/Forms/InputGroup.vue'
-import SelectGroup from '@/components/Forms/SelectGroup.vue'
+import SelectGroupTwo from '@/components/Forms/SelectGroup/SelectGroupTwo.vue'
 import DefaultLayout from '@/layouts/DefaultLayout.vue'
-
 import { ref } from 'vue'
 
 const pageTitle = ref('Form Layout')
@@ -54,7 +53,7 @@ const pageTitle = ref('Form Layout')
                 customClasses="mb-4.5"
               />
 
-              <SelectGroup />
+              <SelectGroupTwo />
 
               <div class="mb-6">
                 <label class="mb-2.5 block text-black dark:text-white"> Message </label>
@@ -120,8 +119,8 @@ const pageTitle = ref('Form Layout')
                 </label>
 
                 <router-link to="/#" class="text-sm text-primary hover:underline"
-                  >Forget password?</router-link
-                >
+                  >Forget password?
+                </router-link>
               </div>
 
               <button
