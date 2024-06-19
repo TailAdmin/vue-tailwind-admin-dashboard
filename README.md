@@ -148,7 +148,13 @@ all your Vue.js dashboard development needs! 🎯
 
 ## Update Logs
 
-### Version 0.1.1 - [Feb 08, 2024]
+### Version 1.0.2 - [June 19, 2024]
+
+#### Issues
+
+- **Issue 01:** Fix Mobile Menu Hamburger Icon issue.
+
+### Version 1.0.1 - [Feb 08, 2024]
 
 #### Enhancements
 
@@ -157,6 +163,6 @@ all your Vue.js dashboard development needs! 🎯
   folder SelectGroupOne.vue SelectGroupTwo.vue [Select Group/Form Elements & Layout].
 - **Enhancement 03:** Update style.css file.
 
-### Version 0.1.0 - Initial Release - [Jan 22, 2024]
+### Version 1.0.0 - Initial Release - [Jan 22, 2024]
 
 - Initial release of TailAdmin Vue.
