@@ -1,128 +1,151 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
-import SigninView from '@/views/Authentication/SigninView.vue'
-import SignupView from '@/views/Authentication/SignupView.vue'
-import CalendarView from '@/views/CalendarView.vue'
-import BasicChartView from '@/views/Charts/BasicChartView.vue'
-import ECommerceView from '@/views/Dashboard/ECommerceView.vue'
-import FormElementsView from '@/views/Forms/FormElementsView.vue'
-import FormLayoutView from '@/views/Forms/FormLayoutView.vue'
-import SettingsView from '@/views/Pages/SettingsView.vue'
-import ProfileView from '@/views/ProfileView.vue'
-import TablesView from '@/views/TablesView.vue'
-import AlertsView from '@/views/UiElements/AlertsView.vue'
-import ButtonsView from '@/views/UiElements/ButtonsView.vue'
-
-const routes = [
-  {
-    path: '/',
-    name: 'eCommerce',
-    component: ECommerceView,
-    meta: {
-      title: 'eCommerce Dashboard'
-    }
-  },
-  {
-    path: '/calendar',
-    name: 'calendar',
-    component: CalendarView,
-    meta: {
-      title: 'Calendar'
-    }
-  },
-  {
-    path: '/profile',
-    name: 'profile',
-    component: ProfileView,
-    meta: {
-      title: 'Profile'
-    }
-  },
-  {
-    path: '/forms/form-elements',
-    name: 'formElements',
-    component: FormElementsView,
-    meta: {
-      title: 'Form Elements'
-    }
-  },
-  {
-    path: '/forms/form-layout',
-    name: 'formLayout',
-    component: FormLayoutView,
-    meta: {
-      title: 'Form Layout'
-    }
-  },
-  {
-    path: '/tables',
-    name: 'tables',
-    component: TablesView,
-    meta: {
-      title: 'Tables'
-    }
-  },
-  {
-    path: '/pages/settings',
-    name: 'settings',
-    component: SettingsView,
-    meta: {
-      title: 'Settings'
-    }
-  },
-  {
-    path: '/charts/basic-chart',
-    name: 'basicChart',
-    component: BasicChartView,
-    meta: {
-      title: 'Basic Chart'
-    }
-  },
-  {
-    path: '/ui-elements/alerts',
-    name: 'alerts',
-    component: AlertsView,
-    meta: {
-      title: 'Alerts'
-    }
-  },
-  {
-    path: '/ui-elements/buttons',
-    name: 'buttons',
-    component: ButtonsView,
-    meta: {
-      title: 'Buttons'
-    }
-  },
-  {
-    path: '/auth/signin',
-    name: 'signin',
-    component: SigninView,
-    meta: {
-      title: 'Signin'
-    }
-  },
-  {
-    path: '/auth/signup',
-    name: 'signup',
-    component: SignupView,
-    meta: {
-      title: 'Signup'
-    }
-  }
-]
-
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
-  routes,
   scrollBehavior(to, from, savedPosition) {
     return savedPosition || { left: 0, top: 0 }
-  }
+  },
+  routes: [
+    {
+      path: '/',
+      name: 'Ecommerce',
+      component: () => import('../views/Ecommerce.vue'),
+      meta: {
+        title: 'eCommerce Dashboard',
+      },
+    },
+    {
+      path: '/calendar',
+      name: 'Calendar',
+      component: () => import('../views/Others/Calendar.vue'),
+      meta: {
+        title: 'Calendar',
+      },
+    },
+    {
+      path: '/profile',
+      name: 'Profile',
+      component: () => import('../views/Others/UserProfile.vue'),
+      meta: {
+        title: 'Profile',
+      },
+    },
+    {
+      path: '/form-elements',
+      name: 'Form Elements',
+      component: () => import('../views/Forms/FormElements.vue'),
+      meta: {
+        title: 'Form Elements',
+      },
+    },
+    {
+      path: '/basic-tables',
+      name: 'Basic Tables',
+      component: () => import('../views/Tables/BasicTables.vue'),
+      meta: {
+        title: 'Basic Tables',
+      },
+    },
+    {
+      path: '/line-chart',
+      name: 'Line Chart',
+      component: () => import('../views/Chart/LineChart/LineChart.vue'),
+    },
+    {
+      path: '/bar-chart',
+      name: 'Bar Chart',
+      component: () => import('../views/Chart/BarChart/BarChart.vue'),
+    },
+    {
+      path: '/alerts',
+      name: 'Alerts',
+      component: () => import('../views/UiElements/Alerts.vue'),
+      meta: {
+        title: 'Alerts',
+      },
+    },
+    {
+      path: '/avatars',
+      name: 'Avatars',
+      component: () => import('../views/UiElements/Avatars.vue'),
+      meta: {
+        title: 'Avatars',
+      },
+    },
+    {
+      path: '/badge',
+      name: 'Badge',
+      component: () => import('../views/UiElements/Badges.vue'),
+      meta: {
+        title: 'Badge',
+      },
+    },
+
+    {
+      path: '/buttons',
+      name: 'Buttons',
+      component: () => import('../views/UiElements/Buttons.vue'),
+      meta: {
+        title: 'Buttons',
+      },
+    },
+
+    {
+      path: '/images',
+      name: 'Images',
+      component: () => import('../views/UiElements/Images.vue'),
+      meta: {
+        title: 'Images',
+      },
+    },
+    {
+      path: '/videos',
+      name: 'Videos',
+      component: () => import('../views/UiElements/Videos.vue'),
+      meta: {
+        title: 'Videos',
+      },
+    },
+    {
+      path: '/blank',
+      name: 'Blank',
+      component: () => import('../views/Pages/BlankPage.vue'),
+      meta: {
+        title: 'Blank',
+      },
+    },
+
+    {
+      path: '/error-404',
+      name: '404 Error',
+      component: () => import('../views/Errors/FourZeroFour.vue'),
+      meta: {
+        title: '404 Error',
+      },
+    },
+
+    {
+      path: '/signin',
+      name: 'Signin',
+      component: () => import('../views/Auth/Signin.vue'),
+      meta: {
+        title: 'Signin',
+      },
+    },
+    {
+      path: '/signup',
+      name: 'Signup',
+      component: () => import('../views/Auth/Signup.vue'),
+      meta: {
+        title: 'Signup',
+      },
+    },
+  ],
 })
+
+export default router
 
 router.beforeEach((to, from, next) => {
   document.title = `Vue.js ${to.meta.title} | TailAdmin - Vue.js Tailwind CSS Dashboard Template`
   next()
 })
-
-export default router
