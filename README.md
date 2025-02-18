@@ -1,30 +1,106 @@
-# TailAdmin Vue - Free Vue.js Tailwind CSS Admin Dashboard Template
+# TailAdmin - Vue.js
 
-TailAdmin Vue is a free, open-source admin dashboard template **built on Vue.js**, popular and progressive JavaScript
-framework, and **Tailwind CSS**. This **powerful combination** provides developers with an extensive library of
-essential components, elements, and pages to launch a comprehensive and data-centric back-end, dashboard, or admin panel
-solution for any Vue.js based web projects.
+A free, open-source admin dashboard template built with Vue.js and Tailwind CSS.
 
-[![TailAdmin Vue - Free Vue.js Tailwind CSS Admin Dashboard Template](https://ucarecdn.com/3e01b731-d63b-47f0-ba92-7686ecd49f9b/tailadminvue.png)](https://free-vue-demo.tailadmin.com/)
+![TailAdmin Vue.js Dashboard Preview](./banner.png)
 
-With TailAdmin Vue, you can leverage **Vue.js 3** features such as declarative rendering, component-based architecture,
-Vue Router for routing, and Pinia for state management. It also harnesses the power of Tailwind CSS for rapid UI
-development with its low-level utility classes and responsive design capabilities.
+## Overview
 
-### [✨ Visit Website](https://tailadmin.com/)
+TailAdmin provides essential UI components and layouts for building feature-rich, data-driven admin dashboards and control panels. It's built on:
 
-### [🚀 Live Demo](https://free-vue-demo.tailadmin.com/)
+- Vue 3 (Vite)
+- TypeScript
+- Tailwind CSS
 
-The VueJS admin dashbaord template offers a **diverse set of dashboard UI components**, elements, and pages, including
-forms, tables, charts, maps, and **pre-built pages**, which are critical for creating a high-quality and complete admin
-panel or dashboard. Whether you’re developing a complex web application or a simple website, TailAdmin Vue provides a
-robust and flexible foundation to streamline your workflow and enhance your project's functionality.
+### Quick Links
+- [✨ Visit Website](https://tailadmin.com)
+- [📄 Documentation](https://tailadmin.com/docs)
+- [⬇️ Download](https://tailadmin.com/download)
+- [🖌️ Figma Design File (Community Edition)](https://www.figma.com/community/file/1214477970819985778)
+- [⚡ Get PRO Version](https://tailadmin.com/pricing)
 
-## TailAdmin Vue Features
+### Demos
+- [Free Version](https://free-vue-demo.tailadmin.com/)
+- [Pro Version](https://vue-demo.tailadmin.com)
+
+### Other Versions
+- [HTML Version](https://github.com/TailAdmin/tailadmin-free-tailwind-dashboard-template)
+- [Next.js Version](https://github.com/TailAdmin/free-nextjs-admin-dashboard)
+- [React Version](https://github.com/TailAdmin/free-react-tailwind-admin-dashboard)
+
+## Installation
+
+### Prerequisites
+To get started with TailAdmin, ensure you have the following prerequisites installed and set up:
+
+- Node.js 18.x or later (recommended to use Node.js 20.x or later)
+
+### Cloning the Repository
+Clone the repository using the following command:
+
+```bash
+git clone https://github.com/TailAdmin/vue-tailwind-admin-dashboard.git
+```
+
+> Windows Users: place the repository near the root of your drive if you face issues while cloning.
+
+1. Install dependencies:
+    ```bash
+    npm install
+    # or
+    yarn install
+    ```
+
+2. Start the development server:
+    ```bash
+    npm run dev
+    # or
+    yarn dev
+    ```
+
+3. Production build:
+   ```bash
+   npm run build
+   # or
+   yarn build
+   ```
+
+## Feature Comparison
+
+### Free Version
+- 1 Unique Dashboard
+- 30+ dashboard components
+- 50+ UI elements
+- Basic Figma design files
+- Community support
+
+### Pro Version
+- 5 Unique Dashboards: Analytics, Ecommerce, Marketing, CRM, Stocks (more coming soon)
+- 200+ dashboard components and UI elements
+- Complete Figma design file
+- Email support
+
+To learn more about pro version features and pricing, visit our [pricing page](https://tailadmin.com/pricing).
+
+
+## Components
+
+TailAdmin is a pre-designed starting point for building a web-based dashboard using Vue.js and Tailwind CSS. The template includes:
+
+- Sophisticated and accessible sidebar
+- Data visualization components
+- Prebuilt profile management and 404 page
+- Tables and Charts(Line and Bar)
+- Authentication forms and input elements
+- Alerts, Dropdowns, Modals, Buttons and more
+- Can't forget Dark Mode 🕶️
+
+All components are built with Vue and styled using Tailwind CSS for easy customization.
+
+## Features
 
 **💎 High-quality, Premium Modern Design:**
-A thoughtfully designed dashboard template with a deep focus on UX/UI, already trusted and utilized by over 10K+ web
-apps worldwide.
+A thoughtfully designed dashboard template with a deep focus on UX/UI, already trusted and utilized by over 10K+ web apps worldwide.
 
 **✨ Vue 3:**
 Get enhanced performance with the latest Vue version.
@@ -56,112 +132,49 @@ Maintain a clean codebase with built-in linting and formatting.
 **🗃️ State Management with Pinia:**
 Handle your app's state with Pinia for clean, organized code.
 
-### TailAdmin PRO vs TailAdmin FREE Comparison 📊
-
-#### [TailAdmin PRO](https://vue-demo.tailadmin.com/)
-
-- 4 Unique Dashboards: Analytics, Ecommerce, Marketing, and CRM (More will be added)
-- 120+ Dashboard UI Components
-- 200+ Total UI Elements
-- 45+ HTML Files
-- All Essential Elements and Files
-- Full Figma Design Source - As Shown on Demo
-
-#### [TailAdmin Vue FREE](https://free-vue-demo.tailadmin.com/)
-
-- 1 Unique Dashboard
-- 30+ Dashboard UI Components
-- 50+ Total UI Elements
-- 10+ HTML Files
-- TypeScript Support
-- Basic UI Kit Elements and Files
-- Figma Design Source - Free Sample
-
-___
-
-### [⬇️ Download Now](https://tailadmin.com/download)
-
-### [⚡ Get PRO Version](https://tailadmin.com/pricing)
-
-### [📄 Documentation](https://tailadmin.com/docs)
-
-### [🖌️ TailAdmin Figma Free Sample](https://www.figma.com/community/file/1214477970819985778)
-
-### [👉 TailAdmin HTML Version](https://github.com/TailAdmin/tailadmin-free-tailwind-dashboard-template)
-
-### [👉 TailAdmin React Version](https://github.com/TailAdmin/free-react-tailwind-admin-dashboard)
-
-### [👉 TailAdmin Next.js Version](https://github.com/TailAdmin/free-nextjs-admin-dashboard)
-
-## Installation
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Type-Check, Compile and Minify for Production
-
-```sh
-npm run build
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
-
-## 200+ Dashboard UI Components for Vue.js and Tailwind CSS
-
-**Vue.js** and **Tailwind** are two highly acclaimed technologies that have brought significant advancements to web
-development. 🚀
-
-**Vue.js** is a JavaScript framework specifically designed for creating user interfaces, while **Tailwind** is a CSS
-framework that focuses on utility-first styling approaches. 🛠️
-
-With **TailAdmin Vue**, you gain access to an extensive collection of **200+ essential UI components** built exclusively
-for Vue.js and styled using the powerful capabilities of Tailwind CSS. 🎨
-
-This comprehensive library covers various elements such as:
-
-- Charts 📊
-- Graphs 📈
-- Navigation Bars 📑
-- Tabs 🗂️
-- Buttons 🔘
-- Cards 🃏
-- Tables 📏
-- Profiles 👥
-- Forms 📝
-- Modals 💬
-- App Pages 📖
-- Calendar 📅 functionalities.
-
-Additionally, it also provides example templates tailored for web applications. 💻 This makes it a one-stop solution for
-all your Vue.js dashboard development needs! 🎯
-
 ## Update Logs
+
+### Version 2.0.0 - [February 2025]
+Major update with Vue 3 migration and comprehensive redesign.
+
+#### Major Improvements
+- Complete migration to Vue 3 Composition API
+- Updated to Vue Router 4
+- Enhanced user interface with new Vue 3 components
+- Improved performance with Vue 3's virtual DOM
+- Better accessibility and responsive design
+
+#### New Features
+- Redesigned dashboards (Ecommerce, Analytics, Marketing, CRM)
+- Collapsible sidebar with Vue 3 integration
+- Enhanced navigation with Vue Router 4
+- Real-time chat functionality
+- Full-featured calendar with drag-and-drop
+- Advanced table components
+- Updated data visualization with ApexCharts
+
+#### Breaking Changes
+- Requires Vue 3 and Vue Router 4
+- Chart components migrated to ApexCharts for Vue 3
+- Modified routing implementation
+- Updated component APIs for Vue 3 compatibility
+
+[Read more](https://tailadmin.com/docs/update-logs/vue) on this release.
 
 ### Version 1.0.2 - [June 19, 2024]
 
 #### Issues
 
-- **Issue 01:** Fix Mobile Menu Hamburger Icon issue.
+- Fix Mobile Menu Hamburger Icon issue.
 
 ### Version 1.0.1 - [Feb 08, 2024]
 
 #### Enhancements
 
-- **Enhancement 01:** Make it functional [Multiselect Dropdown/Form Elements].
-- **Enhancement 02:** Delete SelectGroup Components then create a SelectGroup folder and create two files under this
+- Make it functional [Multiselect Dropdown/Form Elements].
+- Delete SelectGroup Components then create a SelectGroup folder and create two files under this
   folder SelectGroupOne.vue SelectGroupTwo.vue [Select Group/Form Elements & Layout].
-- **Enhancement 03:** Update style.css file.
+- Update style.css file.
 
 ### Version 1.0.0 - Initial Release - [Jan 22, 2024]
 
