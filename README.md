@@ -81,7 +81,7 @@ git clone https://github.com/TailAdmin/vue-tailwind-admin-dashboard.git
 
 ### Pro Version
 - 5 Unique Dashboards: Analytics, Ecommerce, Marketing, CRM, Stocks (more coming soon)
-- 200+ dashboard components and UI elements
+- 400+ dashboard components and UI elements
 - Complete Figma design file
 - Email support
 
