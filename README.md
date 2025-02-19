@@ -1,8 +1,15 @@
-# TailAdmin - Vue.js
+# TailAdmin Vue - Free Vue.js Tailwind CSS Admin Dashboard Template
 
-A free, open-source admin dashboard template built with Vue.js and Tailwind CSS.
+TailAdmin Vue is a free, open-source admin dashboard template **built on Vue.js**, popular and progressive JavaScript
+framework, and **Tailwind CSS**. This **powerful combination** provides developers with an extensive library of
+essential components, elements, and pages to launch a comprehensive and data-centric back-end, dashboard, or admin panel
+solution for any Vue.js based web projects.
 
 ![TailAdmin Vue.js Dashboard Preview](./banner.png)
+
+With TailAdmin Vue, you can leverage **Vue.js 3** features such as declarative rendering, component-based architecture,
+Vue Router for routing, and Pinia for state management. It also utilizes the power of Tailwind CSS for rapid UI
+development with its low-level utility classes and responsive design capabilities.
 
 ## Overview
 
@@ -16,7 +23,7 @@ TailAdmin provides essential UI components and layouts for building feature-rich
 - [✨ Visit Website](https://tailadmin.com)
 - [📄 Documentation](https://tailadmin.com/docs)
 - [⬇️ Download](https://tailadmin.com/download)
-- [🖌️ Figma Design File (Community Edition)](https://www.figma.com/community/file/1214477970819985778)
+- [🖌️ Figma Design File (Community Edition)](https://www.figma.com/community/file/1463141366275764364)
 - [⚡ Get PRO Version](https://tailadmin.com/pricing)
 
 ### Demos
