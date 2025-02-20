@@ -6,24 +6,29 @@
           <div
             class="w-20 h-20 overflow-hidden border border-gray-200 rounded-full dark:border-gray-800"
           >
-            <img src="/images/user/user-01.jpg" alt="user" />
+            <img src="/images/user/owner.jpg" alt="user" />
           </div>
           <div class="order-3 xl:order-2">
             <h4
               class="mb-2 text-lg font-semibold text-center text-gray-800 dark:text-white/90 xl:text-left"
             >
-              Emirhan Boruch
+              Musharof Chowdhury
             </h4>
             <div
               class="flex flex-col items-center gap-1 text-center xl:flex-row xl:gap-3 xl:text-left"
             >
               <p class="text-sm text-gray-500 dark:text-gray-400">Team Manager</p>
               <div class="hidden h-3.5 w-px bg-gray-300 dark:bg-gray-700 xl:block"></div>
-              <p class="text-sm text-gray-500 dark:text-gray-400">Leeds, United Kingdom</p>
+              <p class="text-sm text-gray-500 dark:text-gray-400">Arizona, United States</p>
             </div>
           </div>
           <div class="flex items-center order-2 gap-2 grow xl:order-3 xl:justify-end">
-            <a href="#" class="social-button">
+            <a
+              href="https://www.facebook.com/PimjoHQ"
+              target="_blank"
+              rel="noopener"
+              class="social-button"
+            >
               <svg
                 class="fill-current"
                 width="20"
@@ -38,7 +43,7 @@
                 />
               </svg>
             </a>
-            <a href="#" class="social-button">
+            <a href="https://x.com/PimjoHQ" target="_blank" rel="noopener" class="social-button">
               <svg
                 class="fill-current"
                 width="20"
@@ -53,7 +58,12 @@
                 />
               </svg>
             </a>
-            <a href="#" class="social-button">
+            <a
+              href="https://www.linkedin.com/company/pimjo/"
+              target="_blank"
+              rel="noopener"
+              class="social-button"
+            >
               <svg
                 class="fill-current"
                 width="20"
@@ -68,7 +78,12 @@
                 />
               </svg>
             </a>
-            <a href="#" class="social-button">
+            <a
+              href="https://www.instagram.com/PimjoHQ"
+              target="_blank"
+              rel="noopener"
+              class="social-button"
+            >
               <svg
                 class="fill-current"
                 width="20"
@@ -194,7 +209,7 @@
                     </label>
                     <input
                       type="text"
-                      value="https://instagram.com/emirhan55"
+                      value="https://instagram.com/PimjoHQ"
                       class="dark:bg-dark-900 h-11 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-4 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 focus:border-brand-300 focus:outline-none focus:ring focus:ring-brand-500/10 dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30 dark:focus:border-brand-800"
                     />
                   </div>
@@ -214,7 +229,7 @@
                     </label>
                     <input
                       type="text"
-                      value="Emirhan"
+                      value="Musharof"
                       class="dark:bg-dark-900 h-11 w-full rounded-lg border border-gray-300 bg-transparent bg-none px-4 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 focus:border-brand-300 focus:outline-none focus:ring focus:ring-brand-500/10 dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30 dark:focus:border-brand-800"
                     />
                   </div>
@@ -227,7 +242,7 @@
                     </label>
                     <input
                       type="text"
-                      value="Boruch"
+                      value="Chowdhury"
                       class="dark:bg-dark-900 h-11 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-4 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 focus:border-brand-300 focus:outline-none focus:ring focus:ring-brand-500/10 dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30 dark:focus:border-brand-800"
                     />
                   </div>
@@ -240,7 +255,7 @@
                     </label>
                     <input
                       type="text"
-                      value="emirhanboruch55@gmail.com"
+                      value="randomuser@pimjo.com"
                       class="dark:bg-dark-900 h-11 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-4 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 focus:border-brand-300 focus:outline-none focus:ring focus:ring-brand-500/10 dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30 dark:focus:border-brand-800"
                     />
                   </div>

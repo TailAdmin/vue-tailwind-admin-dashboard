@@ -8,12 +8,14 @@
           <div class="grid grid-cols-1 gap-4 lg:grid-cols-2 lg:gap-7 2xl:gap-x-32">
             <div>
               <p class="mb-2 text-xs leading-normal text-gray-500 dark:text-gray-400">Country</p>
-              <p class="text-sm font-medium text-gray-800 dark:text-white/90">United Kingdom</p>
+              <p class="text-sm font-medium text-gray-800 dark:text-white/90">United States</p>
             </div>
 
             <div>
               <p class="mb-2 text-xs leading-normal text-gray-500 dark:text-gray-400">City/State</p>
-              <p class="text-sm font-medium text-gray-800 dark:text-white/90">Leeds, East London</p>
+              <p class="text-sm font-medium text-gray-800 dark:text-white/90">
+                Phoenix, United States
+              </p>
             </div>
 
             <div>
@@ -96,7 +98,7 @@
                   </label>
                   <input
                     type="text"
-                    value="United Kingdom"
+                    value="United States"
                     class="dark:bg-dark-900 h-11 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-4 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 focus:border-brand-300 focus:outline-none focus:ring focus:ring-brand-500/10 dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30 dark:focus:border-brand-800"
                   />
                 </div>
@@ -107,7 +109,7 @@
                   </label>
                   <input
                     type="text"
-                    value="Leeds, East London"
+                    value="Poenix, Arizona, United States"
                     class="dark:bg-dark-900 h-11 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-4 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 focus:border-brand-300 focus:outline-none focus:ring focus:ring-brand-500/10 dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30 dark:focus:border-brand-800"
                   />
                 </div>

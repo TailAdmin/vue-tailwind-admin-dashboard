@@ -101,7 +101,7 @@ const initMap = () => {
           coords: [26.8206, 30.8025],
         },
         {
-          name: 'United Kingdom',
+          name: 'United States',
           coords: [55.3781, 3.436],
         },
         {
