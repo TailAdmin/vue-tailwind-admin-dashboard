@@ -32,8 +32,8 @@ const props = withDefaults(defineProps<Props>(), {
 const aspectRatioClass = computed(() => {
   const aspectRatioClasses = {
     '16:9': 'aspect-video',
-    '4:3': 'aspect-[4/3]',
-    '21:9': 'aspect-[21/9]',
+    '4:3': 'aspect-4/3',
+    '21:9': 'aspect-21/9',
     '1:1': 'aspect-square',
   }
   return aspectRatioClasses[props.aspectRatio]

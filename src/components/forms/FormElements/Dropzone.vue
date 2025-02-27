@@ -6,7 +6,7 @@
       :action="uploadUrl"
       class="border-gray-300 border-dashed dropzone rounded-xl bg-gray-50 p-7 hover:border-brand-500 dark:border-gray-700 dark:bg-gray-900 dark:hover:border-brand-500 lg:p-10"
     >
-      <div class="dz-message !m-0">
+      <div class="dz-message m-0!">
         <div class="mb-[22px] flex justify-center">
           <div
             class="flex h-[68px] w-[68px] items-center justify-center rounded-full bg-gray-200 text-gray-700 dark:bg-gray-800 dark:text-gray-400"
