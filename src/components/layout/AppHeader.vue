@@ -96,7 +96,7 @@ import UserMenu from './header/UserMenu.vue'
 const { toggleSidebar, toggleMobileSidebar, isMobileOpen } = useSidebar()
 
 const handleToggle = () => {
-  if (window.innerWidth >= 991) {
+  if (window.innerWidth >= 1024) {
     toggleSidebar()
   } else {
     toggleMobileSidebar()
