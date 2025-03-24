@@ -19,7 +19,9 @@
         !isExpanded && !isHovered ? 'lg:justify-center' : 'justify-start',
       ]"
     >
-        <img v-if="isExpanded || isHovered || isMobileOpen"
+      <router-link to="/">
+        <img
+          v-if="isExpanded || isHovered || isMobileOpen"
           class="dark:hidden"
           src="/images/logo/logo.svg"
           alt="Logo"
@@ -27,22 +29,14 @@
           height="40"
         />
         <img
-          v-else-if="isExpanded || isHovered || isMobileOpen"
+          v-else
           class="hidden dark:block"
           src="/images/logo/logo-dark.svg"
           alt="Logo"
           width="150"
           height="40"
         />
-          <img v-else
-          src="/images/logo/logo-icon.svg"
-          alt="Logo"
-          class=""
-          width="32"
-          height="32"
-          width="32"
-          height="32"
-        />
+        <img v-else src="/images/logo/logo-icon.svg" alt="Logo" class="" width="32" height="32" />
       </router-link>
     </div>
     <div
