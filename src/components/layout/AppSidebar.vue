@@ -19,9 +19,7 @@
         !isExpanded && !isHovered ? 'lg:justify-center' : 'justify-start',
       ]"
     >
-      <router-link to="/">
-        <img
-          v-if="isExpanded || isHovered || isMobileOpen"
+        <img v-if="isExpanded || isHovered || isMobileOpen"
           class="dark:hidden"
           src="/images/logo/logo.svg"
           alt="Logo"
@@ -29,17 +27,19 @@
           height="40"
         />
         <img
-          v-if="isExpanded || isHovered || isMobileOpen"
+          v-else-if="isExpanded || isHovered || isMobileOpen"
           class="hidden dark:block"
           src="/images/logo/logo-dark.svg"
           alt="Logo"
           width="150"
           height="40"
         />
-        <img
-          v-else
+          <img v-else
           src="/images/logo/logo-icon.svg"
           alt="Logo"
+          class=""
+          width="32"
+          height="32"
           width="32"
           height="32"
         />
@@ -57,11 +57,10 @@
                 !isExpanded && !isHovered
                   ? 'lg:justify-center'
                   : 'justify-start',
-              ]"
-            >
+              ]">
               <template v-if="isExpanded || isHovered || isMobileOpen">
                 {{ menuGroup.title }}
-              </template>
+              </template> 
               <HorizontalDots v-else />
             </h2>
             <ul class="flex flex-col gap-4">
@@ -78,34 +77,27 @@
                     !isExpanded && !isHovered
                       ? 'lg:justify-center'
                       : 'lg:justify-start',
-                  ]"
+                  ]
                 >
-                  <span
-                    :class="[
+                  <span :class="[
                       isSubmenuOpen(groupIndex, index)
                         ? 'menu-item-icon-active'
                         : 'menu-item-icon-inactive',
-                    ]"
-                  >
+                    ]">
                     <component :is="item.icon" />
                   </span>
-                  <span
-                    v-if="isExpanded || isHovered || isMobileOpen"
-                    class="menu-item-text"
-                    >{{ item.name }}</span
-                  >
+                  <span v-if="isExpanded || isHovered || isMobileOpen" class="menu-item-text">{{ item.name }}</span>
                   <ChevronDownIcon
-                    v-if="isExpanded || isHovered || isMobileOpen"
-                    :class="[
-                      'ml-auto w-5 h-5 transition-transform duration-200',
-                      {
-                        'rotate-180 text-brand-500': isSubmenuOpen(
-                          groupIndex,
-                          index
-                        ),
-                      },
-                    ]"
-                  />
+                  v-if="isExpanded || isHovered || isMobileOpen"
+                  :class="[
+                    'ml-auto w-5 h-5 transition-transform duration-200',
+                    {
+                      'rotate-180 text-brand-500': isSubmenuOpen(
+                        groupIndex,
+                        index
+                      ),
+                    },
+                  ]" />
                 </button>
                 <router-link
                   v-else-if="item.path"
@@ -116,22 +108,16 @@
                       'menu-item-active': isActive(item.path),
                       'menu-item-inactive': !isActive(item.path),
                     },
-                  ]"
+                  ]
                 >
-                  <span
-                    :class="[
+                  <span :class="[
                       isActive(item.path)
                         ? 'menu-item-icon-active'
                         : 'menu-item-icon-inactive',
-                    ]"
-                  >
+                    ]">
                     <component :is="item.icon" />
                   </span>
-                  <span
-                    v-if="isExpanded || isHovered || isMobileOpen"
-                    class="menu-item-text"
-                    >{{ item.name }}</span
-                  >
+                  <span v-if="isExpanded || isHovered || isMobileOpen" class="menu-item-text">{{ item.name }}</span>
                 </router-link>
                 <transition
                   @enter="startTransition"
@@ -156,46 +142,26 @@
                                 subItem.path
                               ),
                               'menu-dropdown-item-inactive': !isActive(
-                                subItem.path
+                                subItem.path,
                               ),
                             },
                           ]"
                         >
-                          {{ subItem.name }}
+                          {{subItem.name}}
                           <span class="flex items-center gap-1 ml-auto">
-                            <span
-                              v-if="subItem.new"
-                              :class="[
-                                'menu-dropdown-badge',
-                                {
-                                  'menu-dropdown-badge-active': isActive(
-                                    subItem.path
-                                  ),
-                                  'menu-dropdown-badge-inactive': !isActive(
-                                    subItem.path
-                                  ),
-                                },
-                              ]"
-                            >
-                              new
+                            <span v-if="subItem.new" class="menu-dropdown-badge">
+                            new
                             </span>
-                            <span
-                              v-if="subItem.pro"
-                              :class="[
-                                'menu-dropdown-badge',
-                                {
-                                  'menu-dropdown-badge-active': isActive(
-                                    subItem.path
-                                  ),
-                                  'menu-dropdown-badge-inactive': !isActive(
-                                    subItem.path
-                                  ),
-                                },
-                              ]"
-                            >
+                            <span v-if="subItem.pro"
+                            :class="[
+                              'menu-dropdown-badge',
+                              {
+                                'menu-dropdown-badge-active': isActive(subItem.path),
+                                'menu-dropdown-badge-inactive': !isActive(subItem.path),
+                              },
+                            ]">
                               pro
-                            </span>
-                          </span>
+                            </span> 
                         </router-link>
                       </li>
                     </ul>
@@ -214,30 +180,22 @@
 <script setup>
 import { ref, computed } from "vue";
 import { useRoute } from "vue-router";
-
 import {
   GridIcon,
-  CalenderIcon,
-  UserCircleIcon,
-  ChatIcon,
-  MailIcon,
-  DocsIcon,
+  PlusIcon,
+  FolderIcon,
+  BarChartIcon,
+  SettingsIcon,
   PieChartIcon,
   ChevronDownIcon,
   HorizontalDots,
-  PageIcon,
-  TableIcon,
-  ListIcon,
   PlugInIcon,
 } from "../../icons";
 import SidebarWidget from "./SidebarWidget.vue";
 import BoxCubeIcon from "@/icons/BoxCubeIcon.vue";
 import { useSidebar } from "@/composables/useSidebar";
-
 const route = useRoute();
-
 const { isExpanded, isMobileOpen, isHovered, openSubmenu } = useSidebar();
-
 const menuGroups = [
   {
     title: "Menu",
@@ -245,43 +203,27 @@ const menuGroups = [
       {
         icon: GridIcon,
         name: "Dashboard",
-        subItems: [{ name: "Ecommerce", path: "/", pro: false }],
+        path: "/",
       },
       {
-        icon: CalenderIcon,
-        name: "Calendar",
-        path: "/calendar",
+        icon: PlusIcon,
+        name: "New Case",
+        path: "/new-case",
       },
       {
-        icon: UserCircleIcon,
-        name: "User Profile",
-        path: "/profile",
-      },
-
-      {
-        name: "Forms",
-        icon: ListIcon,
-        subItems: [
-          { name: "Form Elements", path: "/form-elements", pro: false },
-        ],
+        icon: FolderIcon,
+        name: "Cases",
+        path: "/cases",
       },
       {
-        name: "Tables",
-        icon: TableIcon,
-        subItems: [{ name: "Basic Tables", path: "/basic-tables", pro: false }],
-      },
-      {
-        name: "Pages",
-        icon: PageIcon,
-        subItems: [
-          { name: "Black Page", path: "/blank", pro: false },
-          { name: "404 Page", path: "/error-404", pro: false },
-        ],
+        icon: BarChartIcon,
+        name: "Reports",
+        path: "/reports",
       },
     ],
   },
   {
-    title: "Others",
+    title: "Other",
     items: [
       {
         icon: PieChartIcon,
