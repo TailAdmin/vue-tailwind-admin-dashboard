@@ -280,7 +280,7 @@
                 >
                   Already have an account?
                   <router-link
-                    to="/signin"
+                    to="/login"
                     class="text-brand-500 hover:text-brand-600 dark:text-brand-400"
                     >Sign In</router-link
                   >
@@ -310,6 +310,7 @@
 </template>
 
 <script setup lang="ts">
+defineOptions({ name: 'AuthSignup' })
 import FullScreenLayout from '@/components/layout/FullScreenLayout.vue'
 import CommonGridShape from '@/components/common/CommonGridShape.vue'
 import { ref } from 'vue'

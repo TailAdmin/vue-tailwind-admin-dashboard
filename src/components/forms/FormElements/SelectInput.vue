@@ -53,7 +53,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref/*, computed*/ } from 'vue'
 import MultipleSelect from './MultipleSelect.vue'
 
 const optionss = [
@@ -69,12 +69,12 @@ const selectedItems = ref([])
 
 const singleSelect = ref('')
 
-const options = ref([
+/* const options = */ ref([
   { text: 'Option 1', selected: false },
   { text: 'Option 2', selected: false },
   { text: 'Option 3', selected: false },
   { text: 'Option 4', selected: false },
 ])
 
-const selected = computed(() => options.value.filter((option) => option.selected))
+//const selected = computed(() => options.value.filter((option) => option.selected))
 </script>

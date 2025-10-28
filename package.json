@@ -5,12 +5,13 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "run-p type-check \"build-only {@}\" --",
+    "build": "vue-tsc --noEmit && vite build",
     "preview": "vite preview",
-    "build-only": "vite build",
-    "type-check": "vue-tsc --build",
-    "lint": "eslint . --fix",
-    "format": "prettier --write src/"
+    "type-check": "vue-tsc --noEmit"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
   },
   "dependencies": {
     "@fullcalendar/core": "^6.1.15",
@@ -22,10 +23,13 @@
     "@tailwindcss/forms": "^0.5.10",
     "@tailwindcss/typography": "^0.5.16",
     "apexcharts": "^4.4.0",
+    "ashir-http-client": "^1.0.2",
+    "axios": "^1.12.2",
     "dropzone": "^6.0.0-beta.2",
     "flatpickr": "^4.6.13",
     "jsvectormap": "^1.6.0",
     "lucide-vue-next": "^0.474.0",
+    "pinia": "^3.0.3",
     "swiper": "^11.2.1",
     "vue": "^3.5.13",
     "vue-flatpickr-component": "^11.0.5",
@@ -38,6 +42,7 @@
   "devDependencies": {
     "@tailwindcss/postcss": "^4.0.0",
     "@tsconfig/node22": "^22.0.0",
+    "@types/google.maps": "^3.58.1",
     "@types/node": "^22.10.7",
     "@vitejs/plugin-vue": "^5.2.1",
     "@vitejs/plugin-vue-jsx": "^4.1.1",
@@ -53,8 +58,8 @@
     "sass-embedded": "^1.83.4",
     "tailwindcss": "^4.0.0",
     "typescript": "~5.7.3",
-    "vite": "^6.0.11",
+    "vite": "^6.0.0",
     "vite-plugin-vue-devtools": "^7.7.0",
-    "vue-tsc": "^2.2.0"
+    "vue-tsc": "^2.2.12"
   }
 }

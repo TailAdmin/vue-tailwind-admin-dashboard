@@ -103,13 +103,13 @@ const handleToggle = () => {
   }
 }
 
-const dropdownOpen = ref(false)
-const notifying = ref(false)
+//const dropdownOpen = ref(false)
+//const notifying = ref(false)
 
-const toggleDropdown = () => {
-  dropdownOpen.value = !dropdownOpen.value
-  notifying.value = false
-}
+// const toggleDropdown = () => {
+//   dropdownOpen.value = !dropdownOpen.value
+//   notifying.value = false
+// }
 
 const isApplicationMenuOpen = ref(false)
 

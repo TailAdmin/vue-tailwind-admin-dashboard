@@ -1,0 +1,5 @@
+name = "ashare-admin-dashboard"
+compatibility_date = "2025-10-27"
+
+[site]
+bucket = "./dist"

@@ -103,31 +103,30 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref, onMounted, onBeforeUnmount } from 'vue'
 
-const props = defineProps({
-  options: {
-    type: Array,
-    required: true,
-  },
-  modelValue: {
-    type: Array,
-    default: () => [],
-  },
-})
+interface SelectItem {
+  label: string
+  value: string
+}
+
+const props = defineProps<{
+  options: SelectItem[]
+  modelValue: SelectItem[]
+}>()
 
 const emit = defineEmits(['update:modelValue'])
 
 const isOpen = ref(false)
 const selectedItems = ref(props.modelValue)
-const multiSelectRef = ref(null)
+const multiSelectRef = ref<HTMLElement | null>(null)
 
 const toggleDropdown = () => {
   isOpen.value = !isOpen.value
 }
 
-const toggleItem = (item) => {
+const toggleItem = (item: SelectItem) => {
   const index = selectedItems.value.findIndex((selected) => selected.value === item.value)
   if (index === -1) {
     selectedItems.value.push(item)
@@ -137,7 +136,7 @@ const toggleItem = (item) => {
   emit('update:modelValue', selectedItems.value)
 }
 
-const removeItem = (item) => {
+const removeItem = (item: SelectItem) => {
   const index = selectedItems.value.findIndex((selected) => selected.value === item.value)
   if (index !== -1) {
     selectedItems.value.splice(index, 1)
@@ -145,12 +144,13 @@ const removeItem = (item) => {
   }
 }
 
-const isSelected = (item) => {
+const isSelected = (item: SelectItem) => {
   return selectedItems.value.some((selected) => selected.value === item.value)
 }
 
-const handleClickOutside = (event) => {
-  if (multiSelectRef.value && !multiSelectRef.value.contains(event.target)) {
+const handleClickOutside = (event: MouseEvent) => {
+  if (multiSelectRef.value &&
+  !multiSelectRef.value.contains(event.target as Node)) {
     isOpen.value = false
   }
 }

@@ -4,42 +4,53 @@
       <div class="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
         <div>
           <h4 class="text-lg font-semibold text-gray-800 dark:text-white/90 lg:mb-6">
-            Personal Information
+            المعلومات الشخصية
           </h4>
 
           <div class="grid grid-cols-1 gap-4 lg:grid-cols-2 lg:gap-7 2xl:gap-x-32">
             <div>
-              <p class="mb-2 text-xs leading-normal text-gray-500 dark:text-gray-400">First Name</p>
-              <p class="text-sm font-medium text-gray-800 dark:text-white/90">Musharof</p>
+              <p class="mb-2 text-xs leading-normal text-gray-500 dark:text-gray-400">الاسم الأول</p>
+              <p class="text-sm font-medium text-gray-800 dark:text-white/90">
+                {{ firstName }}
+              </p>
             </div>
 
             <div>
-              <p class="mb-2 text-xs leading-normal text-gray-500 dark:text-gray-400">Last Name</p>
-              <p class="text-sm font-medium text-gray-800 dark:text-white/90">Chowdhury</p>
+              <p class="mb-2 text-xs leading-normal text-gray-500 dark:text-gray-400">الاسم الأخير</p>
+              <p class="text-sm font-medium text-gray-800 dark:text-white/90">
+                {{ lastName }}
+              </p>
             </div>
 
             <div>
               <p class="mb-2 text-xs leading-normal text-gray-500 dark:text-gray-400">
-                Email address
+                البريد الإلكتروني
               </p>
               <p class="text-sm font-medium text-gray-800 dark:text-white/90">
-                randomuser@pimjo.com
+                {{ user.email }}
               </p>
             </div>
 
-            <div>
-              <p class="mb-2 text-xs leading-normal text-gray-500 dark:text-gray-400">Phone</p>
-              <p class="text-sm font-medium text-gray-800 dark:text-white/90">+09 363 398 46</p>
-            </div>
+            <!-- <div>
+              <p class="mb-2 text-xs leading-normal text-gray-500 dark:text-gray-400">الهاتف</p>
+              <p class="text-sm font-medium text-gray-800 dark:text-white/90">
+                {{ user.phoneNumber || 'غير محدد' }}
+              </p>
+            </div> -->
 
             <div>
-              <p class="mb-2 text-xs leading-normal text-gray-500 dark:text-gray-400">Bio</p>
-              <p class="text-sm font-medium text-gray-800 dark:text-white/90">Team Manager</p>
+              <p class="mb-2 text-xs leading-normal text-gray-500 dark:text-gray-400">الدور</p>
+              <p class="text-sm font-medium text-gray-800 dark:text-white/90">
+                {{ user.role }}
+              </p>
             </div>
           </div>
         </div>
 
-        <button class="edit-button" @click="isProfileInfoModal = true">
+        <button 
+          class="flex w-full items-center justify-center gap-2 rounded-full border border-gray-300 bg-white px-4 py-3 text-sm font-medium text-gray-700 shadow-theme-xs hover:bg-gray-50 hover:text-gray-800 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-white/[0.03] dark:hover:text-gray-200 lg:inline-flex lg:w-auto"
+          @click="isProfileInfoModal = true"
+        >
           <svg
             class="fill-current"
             width="18"
@@ -55,10 +66,11 @@
               fill=""
             />
           </svg>
-          Edit
+          تعديل
         </button>
       </div>
     </div>
+
     <Modal v-if="isProfileInfoModal" @close="isProfileInfoModal = false">
       <template #body>
         <div
@@ -85,162 +97,86 @@
               />
             </svg>
           </button>
+
           <div class="px-2 pr-14">
             <h4 class="mb-2 text-2xl font-semibold text-gray-800 dark:text-white/90">
-              Edit Personal Information
+              تعديل المعلومات الشخصية
             </h4>
             <p class="mb-6 text-sm text-gray-500 dark:text-gray-400 lg:mb-7">
-              Update your details to keep your profile up-to-date.
+              قم بتحديث بياناتك للحفاظ على ملفك الشخصي محدثاً
             </p>
           </div>
-          <form class="flex flex-col">
+
+          <form class="flex flex-col" @submit.prevent="saveProfile">
             <div class="custom-scrollbar h-[458px] overflow-y-auto p-2">
-              <div>
-                <h5 class="mb-5 text-lg font-medium text-gray-800 dark:text-white/90 lg:mb-6">
-                  Social Links
-                </h5>
-
-                <div class="grid grid-cols-1 gap-x-6 gap-y-5 lg:grid-cols-2">
-                  <div>
-                    <label
-                      class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400"
-                    >
-                      Facebook
-                    </label>
-                    <input
-                      type="text"
-                      value="https://www.facebook.com/PimjoHQ"
-                      class="dark:bg-dark-900 h-11 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-4 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 focus:border-brand-300 focus:outline-hidden focus:ring-3 focus:ring-brand-500/10 dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30 dark:focus:border-brand-800"
-                    />
-                  </div>
-
-                  <div>
-                    <label
-                      class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400"
-                    >
-                      X.com
-                    </label>
-                    <input
-                      type="text"
-                      value="https://x.com/PimjoHQ"
-                      class="dark:bg-dark-900 h-11 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-4 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 focus:border-brand-300 focus:outline-hidden focus:ring-3 focus:ring-brand-500/10 dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30 dark:focus:border-brand-800"
-                    />
-                  </div>
-
-                  <div>
-                    <label
-                      class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400"
-                    >
-                      Linkedin
-                    </label>
-                    <input
-                      type="text"
-                      value="https://www.linkedin.com/company/pimjo/posts/?feedView=all"
-                      class="dark:bg-dark-900 h-11 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-4 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 focus:border-brand-300 focus:outline-hidden focus:ring-3 focus:ring-brand-500/10 dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30 dark:focus:border-brand-800"
-                    />
-                  </div>
-
-                  <div>
-                    <label
-                      class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400"
-                    >
-                      Instagram
-                    </label>
-                    <input
-                      type="text"
-                      value="https://instagram.com/PimjoHQ"
-                      class="dark:bg-dark-900 h-11 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-4 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 focus:border-brand-300 focus:outline-hidden focus:ring-3 focus:ring-brand-500/10 dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30 dark:focus:border-brand-800"
-                    />
-                  </div>
-                </div>
-              </div>
               <div class="mt-7">
                 <h5 class="mb-5 text-lg font-medium text-gray-800 dark:text-white/90 lg:mb-6">
-                  Personal Information
+                  المعلومات الشخصية
                 </h5>
 
                 <div class="grid grid-cols-1 gap-x-6 gap-y-5 lg:grid-cols-2">
                   <div class="col-span-2 lg:col-span-1">
-                    <label
-                      class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400"
-                    >
-                      First Name
+                    <label class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400">
+                      الاسم الأول
                     </label>
                     <input
                       type="text"
-                      value="Musharof"
+                      v-model="formData.firstName"
                       class="dark:bg-dark-900 h-11 w-full rounded-lg border border-gray-300 bg-transparent bg-none px-4 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 focus:border-brand-300 focus:outline-hidden focus:ring-3 focus:ring-brand-500/10 dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30 dark:focus:border-brand-800"
                     />
                   </div>
 
                   <div class="col-span-2 lg:col-span-1">
-                    <label
-                      class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400"
-                    >
-                      Last Name
+                    <label class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400">
+                      الاسم الأخير
                     </label>
                     <input
                       type="text"
-                      value="Chowdhury"
+                      v-model="formData.lastName"
                       class="dark:bg-dark-900 h-11 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-4 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 focus:border-brand-300 focus:outline-hidden focus:ring-3 focus:ring-brand-500/10 dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30 dark:focus:border-brand-800"
                     />
                   </div>
 
                   <div class="col-span-2 lg:col-span-1">
-                    <label
-                      class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400"
-                    >
-                      Email Address
+                    <label class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400">
+                      البريد الإلكتروني
                     </label>
                     <input
-                      type="text"
-                      value="emirhanboruch55@gmail.com"
-                      class="dark:bg-dark-900 h-11 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-4 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 focus:border-brand-300 focus:outline-hidden focus:ring-3 focus:ring-brand-500/10 dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30 dark:focus:border-brand-800"
+                      type="email"
+                      v-model="formData.email"
+                      disabled
+                      class="dark:bg-dark-900 h-11 w-full appearance-none rounded-lg border border-gray-300 bg-gray-50 px-4 py-2.5 text-sm text-gray-500 shadow-theme-xs dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400"
                     />
                   </div>
 
-                  <div class="col-span-2 lg:col-span-1">
-                    <label
-                      class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400"
-                    >
-                      Phone
+                  <!-- <div class="col-span-2 lg:col-span-1">
+                    <label class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400">
+                      الهاتف
                     </label>
                     <input
                       type="text"
-                      value="+09 363 398 46"
+                      v-model="formData.phoneNumber"
                       class="dark:bg-dark-900 h-11 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-4 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 focus:border-brand-300 focus:outline-hidden focus:ring-3 focus:ring-brand-500/10 dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30 dark:focus:border-brand-800"
                     />
-                  </div>
-
-                  <div class="col-span-2">
-                    <label
-                      class="mb-1.5 block text-sm font-medium text-gray-700 dark:text-gray-400"
-                    >
-                      Bio
-                    </label>
-                    <input
-                      type="text"
-                      value="Team Manager"
-                      class="dark:bg-dark-900 h-11 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-4 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 focus:border-brand-300 focus:outline-hidden focus:ring-3 focus:ring-brand-500/10 dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30 dark:focus:border-brand-800"
-                    />
-                  </div>
+                  </div> -->
                 </div>
               </div>
             </div>
+
             <div class="flex items-center gap-3 px-2 mt-6 lg:justify-end">
               <button
                 @click="isProfileInfoModal = false"
                 type="button"
                 class="flex w-full justify-center rounded-lg border border-gray-300 bg-white px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-white/[0.03] sm:w-auto"
               >
-                Close
+                إلغاء
               </button>
               <button
-                @click="saveProfile"
-                type="button"
-                class="flex w-full justify-center rounded-lg bg-brand-500 px-4 py-2.5 text-sm font-medium text-white hover:bg-brand-600 sm:w-auto"
+                type="submit"
+                :disabled="isSaving"
+                class="flex w-full justify-center rounded-lg bg-brand-500 px-4 py-2.5 text-sm font-medium text-white hover:bg-brand-600 disabled:opacity-50 disabled:cursor-not-allowed sm:w-auto"
               >
-                Save Changes
+                {{ isSaving ? 'جاري الحفظ...' : 'حفظ التغييرات' }}
               </button>
             </div>
           </form>
@@ -250,15 +186,68 @@
   </div>
 </template>
 
-<script setup>
-import { ref } from 'vue'
+<script setup lang="ts">
+import { ref, computed, watch } from 'vue'
+import type { UserInfo } from '@/types/identity.types'
+//import { useAuthStore } from '@/stores/auth.store'
 import Modal from './Modal.vue'
 
-const isProfileInfoModal = ref(false)
+const props = defineProps<{
+  user: UserInfo
+}>()
 
-const saveProfile = () => {
-  // Implement save profile logic here
-  console.log('Profile saved')
-  isProfileInfoModal.value = false
+//const authStore = useAuthStore()
+const isProfileInfoModal = ref(false)
+const isSaving = ref(false)
+
+const formData = ref({
+  firstName: '',
+  lastName: '',
+  email: '',
+  //phoneNumber: ''
+})
+
+// تقسيم الاسم الكامل
+const firstName = computed(() => {
+  return props.user.fullName.split(' ')[0] || ''
+})
+
+const lastName = computed(() => {
+  const parts = props.user.fullName.split(' ')
+  return parts.slice(1).join(' ') || ''
+})
+
+// تحديث formData عند فتح Modal
+watch(isProfileInfoModal, (isOpen) => {
+  if (isOpen) {
+    formData.value = {
+      firstName: firstName.value,
+      lastName: lastName.value,
+      email: props.user.email,
+      //phoneNumber: props.user.phoneNumber || ''
+    }
+  }
+})
+
+const saveProfile = async () => {
+  try {
+    isSaving.value = true
+    
+    // TODO: استدعاء API لتحديث البيانات
+    const fullName = `${formData.value.firstName} ${formData.value.lastName}`.trim()
+    
+    // مثال: await authStore.updateProfile({ fullName, phoneNumber: formData.value.phoneNumber })
+    
+    console.log('Profile updated:', {
+      fullName,
+      //phoneNumber: formData.value.phoneNumber
+    })
+    
+    isProfileInfoModal.value = false
+  } catch (error) {
+    console.error('Failed to update profile:', error)
+  } finally {
+    isSaving.value = false
+  }
 }
 </script>

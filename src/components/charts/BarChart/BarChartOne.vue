@@ -6,8 +6,8 @@
   </div>
 </template>
 
-<script setup>
-import { ref, onMounted } from 'vue'
+<script setup lang="ts">
+import { ref } from 'vue'
 import VueApexCharts from 'vue3-apexcharts'
 
 const series = ref([
@@ -21,7 +21,7 @@ const chartOptions = ref({
   colors: ['#465fff'],
   chart: {
     fontFamily: 'Outfit, sans-serif',
-    type: 'bar',
+    type: 'bar' as const,
     toolbar: {
       show: false,
     },
@@ -31,7 +31,7 @@ const chartOptions = ref({
       horizontal: false,
       columnWidth: '39%',
       borderRadius: 5,
-      borderRadiusApplication: 'end',
+      borderRadiusApplication: 'end' as const,
     },
   },
   dataLabels: {
@@ -66,15 +66,17 @@ const chartOptions = ref({
   },
   legend: {
     show: true,
-    position: 'top',
-    horizontalAlign: 'left',
+    position: 'top' as const,
+    horizontalAlign: 'left' as const,
     fontFamily: 'Outfit',
     markers: {
-      radius: 99,
+      size: 6,
     },
   },
   yaxis: {
-    title: false,
+    title: {
+      text: undefined,
+    },
   },
   grid: {
     yaxis: {
@@ -91,7 +93,7 @@ const chartOptions = ref({
       show: false,
     },
     y: {
-      formatter: function (val) {
+      formatter: function (val: number) {
         return val.toString()
       },
     },

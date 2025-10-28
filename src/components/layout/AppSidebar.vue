@@ -13,47 +13,37 @@
     @mouseenter="!isExpanded && (isHovered = true)"
     @mouseleave="isHovered = false"
   >
+    <!-- Header with Logo -->
     <div
       :class="[
-        'py-8 flex',
+        'py-8 flex items-center gap-3',
         !isExpanded && !isHovered ? 'lg:justify-center' : 'justify-start',
       ]"
     >
-      <router-link to="/">
-        <img
-          v-if="isExpanded || isHovered || isMobileOpen"
-          class="dark:hidden"
-          src="/images/logo/logo.svg"
-          alt="Logo"
-          width="150"
-          height="40"
-        />
-        <img
-          v-if="isExpanded || isHovered || isMobileOpen"
-          class="hidden dark:block"
-          src="/images/logo/logo-dark.svg"
-          alt="Logo"
-          width="150"
-          height="40"
-        />
-        <img
-          v-else
-          src="/images/logo/logo-icon.svg"
-          alt="Logo"
-          width="32"
-          height="32"
-        />
+      <router-link to="/" class="flex items-center gap-3">
+        <!-- Logo Icon -->
+        <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-brand-500 to-brand-600 shadow-lg">
+          <svg class="h-7 w-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+          </svg>
+        </div>
+        
+        <!-- Company Name -->
+        <div v-if="isExpanded || isHovered || isMobileOpen" class="flex flex-col">
+          <span class="text-xl font-bold text-gray-800 dark:text-white">عشير</span>
+          <span class="text-xs text-gray-500 dark:text-gray-400">لوحة التحكم</span>
+        </div>
       </router-link>
     </div>
-    <div
-      class="flex flex-col overflow-y-auto duration-300 ease-linear no-scrollbar"
-    >
-      <nav class="mb-6">
+
+    <!-- Navigation -->
+    <div class="flex flex-1 flex-col overflow-y-auto duration-300 ease-linear no-scrollbar">
+      <nav class="mb-6 flex-1">
         <div class="flex flex-col gap-4">
           <div v-for="(menuGroup, groupIndex) in menuGroups" :key="groupIndex">
             <h2
               :class="[
-                'mb-4 text-xs uppercase flex leading-[20px] text-gray-400',
+                'mb-4 text-xs uppercase flex leading-[20px] text-gray-400 font-semibold',
                 !isExpanded && !isHovered
                   ? 'lg:justify-center'
                   : 'justify-start',
@@ -64,8 +54,9 @@
               </template>
               <HorizontalDots v-else />
             </h2>
-            <ul class="flex flex-col gap-4">
+            <ul class="flex flex-col gap-2">
               <li v-for="(item, index) in menuGroup.items" :key="item.name">
+                <!-- Menu Item with Submenu -->
                 <button
                   v-if="item.subItems"
                   @click="toggleSubmenu(groupIndex, index)"
@@ -107,6 +98,8 @@
                     ]"
                   />
                 </button>
+
+                <!-- Menu Item without Submenu -->
                 <router-link
                   v-else-if="item.path"
                   :to="item.path"
@@ -133,6 +126,8 @@
                     >{{ item.name }}</span
                   >
                 </router-link>
+
+                <!-- Submenu Items -->
                 <transition
                   @enter="startTransition"
                   @after-enter="endTransition"
@@ -177,23 +172,7 @@
                                 },
                               ]"
                             >
-                              new
-                            </span>
-                            <span
-                              v-if="subItem.pro"
-                              :class="[
-                                'menu-dropdown-badge',
-                                {
-                                  'menu-dropdown-badge-active': isActive(
-                                    subItem.path
-                                  ),
-                                  'menu-dropdown-badge-inactive': !isActive(
-                                    subItem.path
-                                  ),
-                                },
-                              ]"
-                            >
-                              pro
+                              جديد
                             </span>
                           </span>
                         </router-link>
@@ -206,119 +185,111 @@
           </div>
         </div>
       </nav>
-      <SidebarWidget v-if="isExpanded || isHovered || isMobileOpen" />
+
+      <!-- Logout Button -->
+      <div class="mt-auto border-t border-gray-200 pt-4 pb-6 dark:border-gray-800">
+        <button
+          @click="handleLogout"
+          :class="[
+            'menu-item group w-full hover:bg-red-50 dark:hover:bg-red-900/10',
+            !isExpanded && !isHovered ? 'lg:justify-center' : 'lg:justify-start',
+          ]"
+        >
+          <span class="menu-item-icon-inactive text-red-600 dark:text-red-400">
+            <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+            </svg>
+          </span>
+          <span
+            v-if="isExpanded || isHovered || isMobileOpen"
+            class="menu-item-text text-red-600 dark:text-red-400"
+          >
+            تسجيل الخروج
+          </span>
+        </button>
+      </div>
     </div>
   </aside>
 </template>
 
-<script setup>
-import { ref, computed } from "vue";
-import { useRoute } from "vue-router";
-
+<script setup lang="ts">
+import { computed } from "vue";
+import { useRoute, useRouter } from "vue-router";
 import {
   GridIcon,
   CalenderIcon,
   UserCircleIcon,
-  ChatIcon,
-  MailIcon,
-  DocsIcon,
-  PieChartIcon,
   ChevronDownIcon,
   HorizontalDots,
-  PageIcon,
   TableIcon,
-  ListIcon,
   PlugInIcon,
 } from "../../icons";
-import SidebarWidget from "./SidebarWidget.vue";
 import BoxCubeIcon from "@/icons/BoxCubeIcon.vue";
 import { useSidebar } from "@/composables/useSidebar";
+import { useAuthStore } from "@/stores/auth.store";
 
 const route = useRoute();
+const router = useRouter();
+const authStore = useAuthStore();
 
 const { isExpanded, isMobileOpen, isHovered, openSubmenu } = useSidebar();
 
+// Menu Configuration
 const menuGroups = [
   {
-    title: "Menu",
+    title: "القائمة الرئيسية",
     items: [
       {
         icon: GridIcon,
-        name: "Dashboard",
-        subItems: [{ name: "Ecommerce", path: "/", pro: false }],
+        name: "لوحة التحكم",
+        path: "/",
       },
       {
         icon: CalenderIcon,
-        name: "Calendar",
+        name: "التقويم",
         path: "/calendar",
       },
       {
-        icon: UserCircleIcon,
-        name: "User Profile",
-        path: "/profile",
-      },
-
-      {
-        name: "Forms",
-        icon: ListIcon,
+        icon: BoxCubeIcon,
+        name: "العروض",
         subItems: [
-          { name: "Form Elements", path: "/form-elements", pro: false },
+          { name: "جميع العروض", path: "/offers" },
+          { name: "إنشاء عرض", path: "/offers/create", new: true },
+          { name: "إعدادات البيانات", path: "/lookup-data" },
         ],
       },
       {
-        name: "Tables",
-        icon: TableIcon,
-        subItems: [{ name: "Basic Tables", path: "/basic-tables", pro: false }],
-      },
-      {
-        name: "Pages",
-        icon: PageIcon,
+        icon: UserCircleIcon,
+        name: "المستخدمين",
         subItems: [
-          { name: "Black Page", path: "/blank", pro: false },
-          { name: "404 Page", path: "/error-404", pro: false },
+          { name: "جميع المستخدمين", path: "/users" },
+          { name: "مستخدمي التطبيق", path: "/AppUsers" },
         ],
       },
     ],
   },
   {
-    title: "Others",
+    title: "الإعدادات",
     items: [
       {
-        icon: PieChartIcon,
-        name: "Charts",
+        icon: TableIcon,
+        name: "الجداول",
         subItems: [
-          { name: "Line Chart", path: "/line-chart", pro: false },
-          { name: "Bar Chart", path: "/bar-chart", pro: false },
-        ],
-      },
-      {
-        icon: BoxCubeIcon,
-        name: "Ui Elements",
-        subItems: [
-          { name: "Alerts", path: "/alerts", pro: false },
-          { name: "Avatars", path: "/avatars", pro: false },
-          { name: "Badge", path: "/badge", pro: false },
-          { name: "Buttons", path: "/buttons", pro: false },
-          { name: "Images", path: "/images", pro: false },
-          { name: "Videos", path: "/videos", pro: false },
+          { name: "الجداول الأساسية", path: "/basic-tables" }
         ],
       },
       {
         icon: PlugInIcon,
-        name: "Authentication",
-        subItems: [
-          { name: "Signin", path: "/signin", pro: false },
-          { name: "Signup", path: "/signup", pro: false },
-        ],
+        name: "الملف الشخصي",
+        path: "/profile",
       },
-      // ... Add other menu items here
     ],
   },
 ];
 
-const isActive = (path) => route.path === path;
+const isActive = (path: string) => route.path === path;
 
-const toggleSubmenu = (groupIndex, itemIndex) => {
+const toggleSubmenu = (groupIndex: number, itemIndex: number) => {
   const key = `${groupIndex}-${itemIndex}`;
   openSubmenu.value = openSubmenu.value === key ? null : key;
 };
@@ -332,7 +303,7 @@ const isAnySubmenuRouteActive = computed(() => {
   );
 });
 
-const isSubmenuOpen = (groupIndex, itemIndex) => {
+const isSubmenuOpen = (groupIndex: number, itemIndex: number) => {
   const key = `${groupIndex}-${itemIndex}`;
   return (
     openSubmenu.value === key ||
@@ -343,15 +314,37 @@ const isSubmenuOpen = (groupIndex, itemIndex) => {
   );
 };
 
-const startTransition = (el) => {
-  el.style.height = "auto";
-  const height = el.scrollHeight;
-  el.style.height = "0px";
-  el.offsetHeight; // force reflow
-  el.style.height = height + "px";
+const startTransition = (el: Element) => {
+  const element = el as HTMLElement;
+  element.style.height = "auto";
+  const height = element.scrollHeight;
+  element.style.height = "0px";
+  void element.offsetHeight; // force reflow
+  element.style.height = `${height}px`;
 };
 
-const endTransition = (el) => {
-  el.style.height = "";
+const endTransition = (el: Element) => {
+  const element = el as HTMLElement;
+  element.style.height = "";
+};
+
+const handleLogout = async () => {
+  if (confirm("هل أنت متأكد من تسجيل الخروج؟")) {
+    try {
+      await authStore.logout();
+      router.push("/login");
+    } catch (error) {
+      console.error("Logout error:", error);
+    }
+  }
 };
 </script>
+
+<style scoped>
+/* Custom transitions for submenu */
+.v-enter-active,
+.v-leave-active {
+  transition: height 0.3s ease;
+  overflow: hidden;
+}
+</style>

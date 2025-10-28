@@ -4,9 +4,9 @@
   >
     <div class="flex flex-col gap-5 mb-6 sm:flex-row sm:justify-between">
       <div class="w-full">
-        <h3 class="text-lg font-semibold text-gray-800 dark:text-white/90">Statistics</h3>
+        <h3 class="text-lg font-semibold text-gray-800 dark:text-white/90">الإحصائيات</h3>
         <p class="mt-1 text-gray-500 text-theme-sm dark:text-gray-400">
-          Target you’ve set for each month
+          مقارنة العروض والمستخدمين شهرياً
         </p>
       </div>
 
@@ -28,50 +28,71 @@
         </div>
       </div>
     </div>
+    
     <div class="max-w-full overflow-x-auto custom-scrollbar">
       <div id="chartThree" class="-ml-4 min-w-[1000px] xl:min-w-full pl-2">
-        <VueApexCharts type="area" height="310" :options="chartOptions" :series="series" />
+        <VueApexCharts 
+          type="area" 
+          height="310" 
+          :options="chartOptions" 
+          :series="series" 
+        />
       </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, computed } from 'vue';
+import VueApexCharts from 'vue3-apexcharts';
+import { useDashboardStore } from '@/stores/dashboard.store';
+
+const dashboardStore = useDashboardStore();
 
 const options = [
-  { value: 'optionOne', label: 'Monthly' },
-  { value: 'optionTwo', label: 'Quarterly' },
-  { value: 'optionThree', label: 'Annually' },
-]
+  { value: 'optionOne', label: 'شهري' },
+  { value: 'optionTwo', label: 'ربع سنوي' },
+  { value: 'optionThree', label: 'سنوي' },
+];
 
-const selected = ref('optionOne')
-import VueApexCharts from 'vue3-apexcharts'
+const selected = ref('optionOne');
 
-const series = ref([
+const series = computed(() => [
   {
-    name: 'Sales',
-    data: [180, 190, 170, 160, 175, 165, 170, 205, 230, 210, 240, 235],
+    name: 'العروض',
+    data: dashboardStore.statistics?.monthlyData.map(m => m.offers) || []
   },
   {
-    name: 'Revenue',
-    data: [40, 30, 50, 40, 55, 40, 70, 100, 110, 120, 150, 140],
+    name: 'المستخدمين',
+    data: dashboardStore.statistics?.monthlyData.map(m => m.users) || []
   },
-])
+]);
 
-const chartOptions = ref({
+const chartOptions = computed(() => ({
   legend: {
-    show: false,
-    position: 'top',
-    horizontalAlign: 'left',
+    show: true,
+    position: 'top' as const,
+    horizontalAlign: 'right' as const,
+    fontFamily: 'Cairo',
+    labels: {
+      colors: '#6B7280'
+    }
   },
   colors: ['#465FFF', '#9CB9FF'],
   chart: {
-    fontFamily: 'Outfit, sans-serif',
-    type: 'area',
+    fontFamily: 'Cairo, sans-serif',
+    type: 'area' as const,
     toolbar: {
       show: false,
     },
+    locales: [{
+      name: 'ar',
+      options: {
+        months: ['يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو', 'يوليو', 'أغسطس', 'سبتمبر', 'أكتوبر', 'نوفمبر', 'ديسمبر'],
+        shortMonths: ['ين', 'فبر', 'مار', 'أبر', 'ماي', 'يون', 'يول', 'أغس', 'سبت', 'أكت', 'نوف', 'ديس'],
+      }
+    }],
+    defaultLocale: 'ar'
   },
   fill: {
     gradient: {
@@ -81,15 +102,12 @@ const chartOptions = ref({
     },
   },
   stroke: {
-    curve: 'straight',
+    curve: 'smooth' as const,
     width: [2, 2],
+    lineCap: 'round' as const,
   },
   markers: {
     size: 0,
-  },
-  labels: {
-    show: false,
-    position: 'top',
   },
   grid: {
     xaxis: {
@@ -108,34 +126,30 @@ const chartOptions = ref({
   },
   tooltip: {
     x: {
-      format: 'dd MMM yyyy',
+      format: 'MMM yyyy',
     },
+    y: {
+      formatter: function (val: number, opts: any) {
+        const seriesName = opts.w.config.series[opts.seriesIndex].name;
+        return val.toString() + (seriesName === 'العروض' ? ' عرض' : ' مستخدم');
+      }
+    }
   },
   xaxis: {
-    type: 'category',
-    categories: [
-      'Jan',
-      'Feb',
-      'Mar',
-      'Apr',
-      'May',
-      'Jun',
-      'Jul',
-      'Aug',
-      'Sep',
-      'Oct',
-      'Nov',
-      'Dec',
-    ],
+    type: 'category' as const,
+    categories: dashboardStore.statistics?.monthlyData.map(m => m.month) || [],
     axisBorder: {
       show: false,
     },
     axisTicks: {
       show: false,
     },
-    tooltip: {
-      enabled: false,
-    },
+    labels: {
+      style: {
+        colors: '#6B7280',
+        fontFamily: 'Cairo'
+      }
+    }
   },
   yaxis: {
     title: {
@@ -143,8 +157,14 @@ const chartOptions = ref({
         fontSize: '0px',
       },
     },
+    labels: {
+      style: {
+        colors: '#6B7280',
+        fontFamily: 'Cairo'
+      }
+    }
   },
-})
+}));
 </script>
 
 <style scoped>
