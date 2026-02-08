@@ -1,7 +1,6 @@
 <template>
   <div class="file-uploader">
     <form
-      ref="dropzoneForm"
       :id="dropzoneId"
       :action="uploadUrl"
       class="border-gray-300 border-dashed dropzone rounded-xl bg-gray-50 p-7 hover:border-brand-500 dark:border-gray-700 dark:bg-gray-900 dark:hover:border-brand-500 lg:p-10"
@@ -46,8 +45,8 @@
   </div>
 </template>
 
-<script setup>
-import { ref, onMounted, onBeforeUnmount } from 'vue'
+<script lang="ts" setup>
+import { onMounted, onBeforeUnmount } from 'vue'
 import Dropzone from 'dropzone'
 import 'dropzone/dist/dropzone.css'
 
@@ -58,9 +57,8 @@ const props = defineProps({
   },
 })
 
-const dropzoneForm = ref(null)
 const dropzoneId = `dropzone-${Math.random().toString(36).substr(2, 9)}`
-let dropzoneInstance = null
+let dropzoneInstance: Dropzone | null = null
 
 onMounted(() => {
   Dropzone.autoDiscover = false
@@ -73,13 +71,13 @@ onMounted(() => {
     headers: { 'My-Awesome-Header': 'header value' },
     dictDefaultMessage: '',
     init: function () {
-      this.on('addedfile', (file) => {
+      this.on('addedfile', (file: Dropzone.DropzoneFile) => {
         console.log('A file has been added', file)
       })
-      this.on('success', (file, response) => {
+      this.on('success', (file: Dropzone.DropzoneFile, response: any) => {
         console.log('File successfully uploaded', file, response)
       })
-      this.on('error', (file, error) => {
+      this.on('error', (file: Dropzone.DropzoneFile, error: string | Error) => {
         console.error('An error occurred during upload', file, error)
       })
     },

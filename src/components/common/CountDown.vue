@@ -51,18 +51,24 @@
   </div>
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import { ref, onMounted, onUnmounted } from 'vue'
 
-const daysArray = ref([])
-const hoursArray = ref([])
-const minutesArray = ref([])
-const secondsArray = ref([])
+interface TimeDigit {
+  value: string
+  visible: boolean
+  remainingPercentage?: number
+}
+
+const daysArray = ref<TimeDigit[]>([])
+const hoursArray = ref<TimeDigit[]>([])
+const minutesArray = ref<TimeDigit[]>([])
+const secondsArray = ref<TimeDigit[]>([])
 const endTime = new Date('December 20, 2025 23:59:59 GMT+0530').getTime()
 const now = ref(new Date().getTime())
 const timeLeft = ref(0)
 
-let counter
+let counter: ReturnType<typeof setInterval> | undefined
 
 const countdown = () => {
   counter = setInterval(() => {
@@ -78,10 +84,10 @@ const countdown = () => {
   }, 1000)
 }
 
-const format = (value) => {
+const format = (value: number): string => {
   if (value < 10) {
     return '0' + Math.floor(value)
-  } else return Math.floor(value)
+  } else return Math.floor(value).toString()
 }
 
 const updateTimeArrays = () => {
@@ -91,7 +97,7 @@ const updateTimeArrays = () => {
   secondsArray.value = getTimeArray(timeLeft.value % 60, 'seconds')
 }
 
-const getMaxValueForUnit = (unit) => {
+const getMaxValueForUnit = (unit: string): number => {
   switch (unit) {
     case 'days':
       return 365
@@ -106,9 +112,9 @@ const getMaxValueForUnit = (unit) => {
   }
 }
 
-const getTimeArray = (value, unit) => {
-  let stringValue = format(value).toString()
-  let percentage = (value / getMaxValueForUnit(unit)) * 100
+const getTimeArray = (value: number, unit: string): TimeDigit[] => {
+  const stringValue = format(value)
+  const percentage = (value / getMaxValueForUnit(unit)) * 100
   return stringValue.split('').map((digit) => ({
     value: digit,
     visible: true,
@@ -116,13 +122,13 @@ const getTimeArray = (value, unit) => {
   }))
 }
 
-const calcOverlayHeight = () => {
-  if (daysArray.value.length > 0) {
-    let remainingDaysPercentage = daysArray.value[0].remainingPercentage
-    return `${remainingDaysPercentage}%`
-  }
-  return '0%'
-}
+// const calcOverlayHeight = () => {
+//   if (daysArray.value.length > 0) {
+//     const remainingDaysPercentage = daysArray.value[0].remainingPercentage
+//     return `${remainingDaysPercentage}%`
+//   }
+//   return '0%'
+// }
 
 const resetTimeArrays = () => {
   daysArray.value = [{ value: '0', visible: true }]

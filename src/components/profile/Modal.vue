@@ -9,6 +9,6 @@
   </div>
 </template>
 
-<script setup>
+<script lang="ts" setup>
 // No additional setup needed
 </script>

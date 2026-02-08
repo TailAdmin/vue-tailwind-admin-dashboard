@@ -10,7 +10,7 @@
   </div>
 </template>
 
-<script setup>
+<script lang="ts" setup>
 const images = [
   { src: '/images/grid-image/image-04.png', alt: 'Grid image 1' },
   { src: '/images/grid-image/image-05.png', alt: 'Grid image 2' },

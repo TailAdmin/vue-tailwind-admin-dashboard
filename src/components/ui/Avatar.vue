@@ -20,7 +20,7 @@ interface AvatarProps {
   status?: 'online' | 'offline' | 'busy' | 'none'
 }
 
-const props = withDefaults(defineProps<AvatarProps>(), {
+withDefaults(defineProps<AvatarProps>(), {
   alt: 'User Avatar',
   size: 'medium',
   status: 'none',

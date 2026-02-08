@@ -133,7 +133,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { computed } from 'vue'
 import DropdownMenu from '../common/DropdownMenu.vue'
 const menuItems = [
   { label: 'View More', onClick: () => console.log('View More clicked') },
@@ -191,7 +191,7 @@ const chartOptions = {
     colors: ['#465FFF'],
   },
   stroke: {
-    lineCap: 'round',
+    lineCap: 'round' as const,
   },
   labels: ['Progress'],
 }

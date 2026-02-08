@@ -1,6 +1,8 @@
 <template>
   <div>
-    <div class="p-5 mb-6 border border-gray-200 rounded-2xl dark:border-gray-800 lg:p-6">
+    <div
+      class="p-5 mb-6 border border-gray-200 rounded-2xl dark:border-gray-800 dark:bg-white/[0.03] lg:p-6"
+    >
       <div class="flex flex-col gap-5 xl:flex-row xl:items-center xl:justify-between">
         <div class="flex flex-col items-center w-full gap-6 xl:flex-row">
           <div
@@ -311,7 +313,7 @@
   </div>
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import { ref } from 'vue'
 import Modal from './Modal.vue'
 
