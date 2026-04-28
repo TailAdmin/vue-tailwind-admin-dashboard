@@ -154,6 +154,13 @@ Handle your app's state with Pinia for clean, organized code.
 
 ## Update Logs
 
+### Version 2.3.0 - [April 28, 2026]
+- Added **AI Dashboard** with token usage and revenue tracking.
+- Added **Sales Dashboard** with retention and multi-channel analytics.
+- Added **Finance Dashboard** with cashflow and balance management.
+- Introduced **6 New Layout variations** for improved UI flexibility.
+- Integrated **Advanced Data Visualization** with 7+ new chart types.
+
 ### Version 2.0.2 - [December 30, 2025]
 
 #### Enhancements
