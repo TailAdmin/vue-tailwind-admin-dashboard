@@ -758,3 +758,345 @@ span.flatpickr-weekday,
 .edit-button {
   @apply flex w-full items-center justify-center gap-2 rounded-full border border-gray-300 bg-white px-4 py-3 text-sm font-medium text-gray-700 shadow-theme-xs hover:bg-gray-50 hover:text-gray-800 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-white/[0.03] dark:hover:text-gray-200 lg:inline-flex lg:w-auto;
 }
+
+/* FullCalendar Dark Mode & Theming */
+html.dark .fc .fc-daygrid-day,
+html.dark .fc .fc-daygrid-day-frame,
+html.dark .fc td {
+  background-color: transparent !important;
+}
+
+html.dark [role="dialog"],
+html.dark .fc-popover,
+html.dark .fc-more-popover {
+  background-color: var(--color-gray-900, #111827) !important;
+}
+
+html.dark .fc table,
+html.dark .fc td,
+html.dark .fc th,
+html.dark .fc .fc-scrollgrid {
+  border-color: var(--color-gray-800, #1f2937) !important;
+}
+
+.dark .event-fc-color .fc-event-title,
+.dark .event-fc-color .fc-event-time,
+.dark .fc-event-title {
+  color: #ffffff !important;
+}
+
+:root[data-color-scheme="dark"],
+:root.dark,
+html.dark,
+.dark {
+  --fc-classic-background: transparent !important;
+  --fc-classic-border: var(--color-gray-800, #1f2937) !important;
+  --fc-classic-strong-border: var(--color-gray-700, #374151) !important;
+  --fc-classic-foreground: #ffffff !important;
+  --fc-classic-faint: rgba(255, 255, 255, 0.04) !important;
+  --fc-classic-muted: rgba(255, 255, 255, 0.08) !important;
+  --fc-classic-strong: rgba(255, 255, 255, 0.14) !important;
+  --fc-classic-faint-foreground: #9ca3af !important;
+  --fc-classic-muted-foreground: #9ca3af !important;
+  --fc-classic-today: rgba(255, 255, 255, 0.05) !important;
+}
+
+.dark .fc,
+.dark .fc-theme-classic,
+.dark .fc-theme-standard {
+  --fc-classic-background: transparent !important;
+  --fc-classic-border: var(--color-gray-800, #1f2937) !important;
+}
+
+/* FullCalendar Popover */
+.fc .fc-popover,
+.fc-theme-standard .fc-popover {
+  @apply z-99999! rounded-xl border border-gray-200 bg-white shadow-xl dark:border-gray-700 dark:bg-gray-900;
+}
+
+.fc .fc-popover-header,
+.fc-theme-standard .fc-popover-header {
+  @apply flex items-center justify-between border-b border-gray-200 bg-transparent px-3.5 py-2.5 dark:border-gray-800 dark:bg-transparent;
+}
+
+.fc .fc-popover-title {
+  @apply text-sm font-semibold text-gray-800 dark:text-white/90;
+}
+
+.fc .fc-popover-close {
+  @apply flex h-6 w-6 cursor-pointer items-center justify-center rounded-lg text-gray-400 opacity-100 transition-colors hover:bg-gray-100 hover:text-gray-600 dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-white;
+}
+
+.fc .fc-popover-body {
+  @apply space-y-1.5 p-2.5;
+}
+
+.fc.fc-media-screen {
+  @apply min-h-screen;
+}
+
+/* yearly calendar css start */
+.fc-multiMonth-view,
+.fc-multiMonthYear-view,
+.fc-multimonth {
+  background: transparent;
+  height: auto !important;
+  overflow: visible !important;
+}
+
+.fc-multiMonth-view div[style*="aspect-ratio"],
+.fc-multiMonthYear-view div[style*="aspect-ratio"],
+.fc-multimonth div[style*="aspect-ratio"] {
+  aspect-ratio: auto !important;
+  height: auto !important;
+  min-height: auto !important;
+}
+
+.fc-multiMonth-view .fc-TJ,
+.fc-multiMonthYear-view .fc-TJ,
+.fc-multimonth .fc-TJ {
+  position: static !important;
+  height: auto !important;
+}
+
+.fc-multiMonth-view [role="grid"],
+.fc-multiMonth-view [role="listitem"],
+.fc-multiMonth-view [role="list"],
+.fc-multiMonth-view .overflow-hidden,
+.fc-multiMonthYear-view [role="grid"],
+.fc-multiMonthYear-view [role="listitem"],
+.fc-multiMonthYear-view [role="list"],
+.fc-multiMonthYear-view .overflow-hidden,
+.fc-multimonth [role="grid"],
+.fc-multimonth [role="listitem"],
+.fc-multimonth [role="list"],
+.fc-multimonth .overflow-hidden {
+  overflow: visible !important;
+  height: auto !important;
+  min-height: auto !important;
+}
+
+/* Responsive month columns: sm = 1, md = 2, xl = 3 */
+.fc-multiMonth-view [role="list"],
+.fc-multiMonthYear-view [role="list"],
+.fc-multimonth {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 1.5rem !important;
+  padding: 1.5rem !important;
+  padding-bottom: 3rem !important;
+  background: transparent;
+  height: auto !important;
+  border-left: 0 !important;
+  border-right: 0 !important;
+}
+
+.fc-multiMonth-view [role="listitem"],
+.fc-multiMonthYear-view [role="listitem"],
+.fc-multimonth .fc-multimonth-month {
+  width: 100% !important;
+  height: auto !important;
+  min-height: auto !important;
+  overflow: visible !important;
+}
+
+@media (min-width: 768px) {
+  .fc-multiMonth-view [role="listitem"],
+  .fc-multiMonthYear-view [role="listitem"],
+  .fc-multimonth .fc-multimonth-month {
+    width: calc(50% - 0.75rem) !important;
+  }
+}
+
+@media (min-width: 1280px) {
+  .fc-multiMonth-view [role="listitem"],
+  .fc-multiMonthYear-view [role="listitem"],
+  .fc-multimonth .fc-multimonth-month {
+    width: calc(33.333% - 1rem) !important;
+  }
+}
+
+.fc-view-harness:has(.fc-multimonth),
+.fc-view-harness:has(.fc-multiMonth-view),
+.fc-view-harness:has(.fc-multiMonthYear-view),
+.fc-scroller:has(.fc-multimonth),
+.fc-scroller:has(.fc-multiMonth-view),
+.fc-scroller:has(.fc-multiMonthYear-view) {
+  overflow: visible !important;
+  height: auto !important;
+}
+
+.fc-multimonth-month {
+  @apply w-full! rounded-xl border border-gray-200 bg-white p-3 dark:border-gray-800 dark:bg-gray-900/50;
+}
+
+.fc-multimonth-title {
+  @apply py-2! text-center! text-base! font-semibold! text-gray-800 dark:text-white/90;
+}
+
+.fc-multimonth-header {
+  @apply border-gray-200! dark:border-gray-800!;
+}
+
+.fc-multimonth-header th {
+  @apply border-0! bg-transparent! py-2! text-center!;
+}
+
+.fc-multimonth-header .fc-col-header-cell-cushion {
+  @apply p-0! text-xs! font-medium text-gray-400 dark:text-gray-500;
+}
+
+.fc-multimonth-daygrid,
+.fc-multimonth-daygrid-table,
+.fc-multimonth-daygrid-table tbody,
+.fc-multimonth-daygrid-table tr {
+  height: auto !important;
+  overflow: visible !important;
+}
+
+.fc-multimonth-daygrid-table {
+  @apply border-none! w-full!;
+}
+
+.fc-multimonth-daygrid-table td {
+  @apply border-none!;
+}
+
+.fc-multiMonth-view .fc-multimonth-day,
+.fc-multimonth-day {
+  @apply p-0.5!;
+}
+
+.fc-multiMonth-view .fc-daygrid-day-frame,
+.fc-multimonth .fc-daygrid-day-frame {
+  @apply min-h-6 sm:min-h-7 rounded-md p-0.5 transition-colors hover:bg-gray-50 dark:hover:bg-white/5 flex flex-col justify-start items-center;
+}
+
+.fc-multiMonth-view .fc-daygrid-day-number,
+.fc-multimonth .fc-daygrid-day-number {
+  @apply p-0.5! text-xs font-medium text-gray-700 dark:text-gray-400;
+}
+
+.fc-multiMonth-view .fc-daygrid-day.fc-day-today .fc-daygrid-day-frame,
+.fc-multimonth .fc-daygrid-day.fc-day-today .fc-daygrid-day-frame {
+  @apply rounded-md bg-brand-50/60 font-semibold text-brand-500 dark:bg-brand-500/10 dark:text-brand-400;
+}
+
+.fc-multiMonth-view .fc-daygrid-day.fc-day-today .fc-daygrid-day-number,
+.fc-multimonth .fc-daygrid-day.fc-day-today .fc-daygrid-day-number {
+  @apply font-semibold text-brand-500 dark:text-brand-400;
+}
+
+.fc .fc-cell-shaded,
+.fc .fc-day-disabled,
+.fc .fc-day-other,
+.fc-multimonth .fc-day-other .fc-daygrid-day-frame,
+.fc-multimonth .fc-day-disabled .fc-daygrid-day-frame {
+  @apply bg-transparent! hover:bg-transparent!;
+}
+
+.fc-daygrid-more-link {
+  @apply border-0! bg-transparent! p-0!;
+}
+
+.fc-o2,
+[inert].fc-more-link,
+[aria-hidden="true"].fc-more-link {
+  display: none !important;
+  visibility: hidden !important;
+  left: -99999px !important;
+  inset-inline-start: -99999px !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+.fc-more-link-badge {
+  @apply inline-flex items-center rounded-sm bg-brand-50 px-1.5 py-0.5 text-xs font-medium text-brand-600 transition-colors hover:bg-brand-100 dark:bg-brand-500/15 dark:text-brand-400 dark:hover:bg-brand-500/25;
+}
+
+.fc-multimonth .event-fc-color {
+  @apply my-0.5 rounded py-0.5 ps-1.5 pe-1 text-xs;
+}
+
+.fc-multimonth .event-fc-color .fc-daygrid-event-dot {
+  @apply me-1 h-2 w-2 rounded-full;
+}
+
+.fc-multimonth .event-fc-color .fc-event-title {
+  @apply truncate text-xs;
+}
+/* yearly calendar css end */
+
+.flatpickr-calendar.static {
+  @apply left-0 right-auto rtl:left-auto rtl:right-0;
+}
+.flatpickr-calendar.static.flatpickr-right {
+  @apply right-0 left-auto rtl:right-auto rtl:left-0;
+}
+.flatpickr-calendar.static.flatpickr-left {
+  @apply left-0 right-auto rtl:left-auto rtl:right-0;
+}
+
+/* ==========================================================================
+   RTL Overrides & Localization Utilities
+   ========================================================================== */
+
+[dir='rtl'] .custom-datepicker .flatpickr-calendar.static.open {
+  left: 0 !important;
+  right: auto !important;
+}
+
+[dir='rtl'] .flatpickr-calendar.arrowTop:before,
+[dir='rtl'] .flatpickr-calendar.arrowTop:after {
+  left: 22px;
+  right: auto;
+}
+
+[dir='rtl'] .apexcharts-tooltip {
+  direction: rtl;
+  text-align: right;
+}
+
+[dir='rtl'] div[id*='chartdiv'],
+[dir='rtl'] .am5-layer-30,
+[dir='rtl'] .am5-tooltip-container,
+[dir='rtl'] .mapOne,
+[dir='rtl'] .mapTwo,
+[dir='rtl'] .jvm-container {
+  direction: ltr !important;
+  text-align: left !important;
+}
+
+[dir='rtl'] div[class*='am5-'] svg text,
+[dir='rtl'] div[class*='am5-'] text {
+  direction: ltr !important;
+  unicode-bidi: embed;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.15s ease-out forwards;
+}
+
+/* Force code blocks and syntax highlighting to always remain LTR */
+pre,
+code,
+pre code,
+.line-numbers,
+[class*="language-"],
+.prism-code {
+  direction: ltr !important;
+  text-align: left !important;
+  unicode-bidi: isolate;
+}
+

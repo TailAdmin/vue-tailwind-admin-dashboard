@@ -17,10 +17,20 @@
         </ComponentCard>
       </div>
       <div class="space-y-6">
-        <ComponentCard title="Inputs Group"> <InputGroup /> </ComponentCard>
-        <ComponentCard title="File Input"> <FileInput /> </ComponentCard>
+        <ComponentCard title="Inputs Group">
+          <InputGroup />
+        </ComponentCard>
+        <ComponentCard title="File Input">
+          <FileInput />
+        </ComponentCard>
         <ComponentCard title="Checkboxes">
           <CheckboxInput />
+        </ComponentCard>
+        <ComponentCard title="Radio Inputs">
+          <RadioInputs />
+        </ComponentCard>
+        <ComponentCard title="Toggle Switch">
+          <ToggleSwitch />
         </ComponentCard>
         <ComponentCard title="Dropzone">
           <Dropzone />
@@ -30,7 +40,7 @@
   </AdminLayout>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref } from 'vue'
 import PageBreadcrumb from '@/components/common/PageBreadcrumb.vue'
 import AdminLayout from '@/components/layout/AdminLayout.vue'
@@ -43,6 +53,8 @@ import InputGroup from '@/components/forms/FormElements/InputGroup.vue'
 import Dropzone from '@/components/forms/FormElements/Dropzone.vue'
 import FileInput from '@/components/forms/FormElements/FileInput.vue'
 import CheckboxInput from '@/components/forms/FormElements/CheckboxInput.vue'
+import RadioInputs from '@/components/forms/FormElements/RadioInputs.vue'
+import ToggleSwitch from '@/components/forms/FormElements/ToggleSwitch.vue'
 
 const currentPageTitle = ref('Form Elements')
 </script>

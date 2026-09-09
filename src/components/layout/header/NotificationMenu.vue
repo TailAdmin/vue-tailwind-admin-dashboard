@@ -32,7 +32,7 @@
     <!-- Dropdown Start -->
     <div
       v-if="dropdownOpen"
-      class="absolute -right-[240px] mt-[17px] flex h-[480px] w-[350px] flex-col rounded-2xl border border-gray-200 bg-white p-3 shadow-theme-lg dark:border-gray-800 dark:bg-gray-dark sm:w-[361px] lg:right-0"
+      class="absolute ltr:-left-15 ltr:md:-left-13 rtl:-right-15 rtl:md:-right-13 mt-4.25 flex h-120 w-87.5 flex-col rounded-2xl border border-gray-200 bg-white p-3 shadow-theme-lg dark:border-gray-800 dark:bg-gray-dark sm:w-90.25 ltr:xl:left-auto ltr:xl:right-0 rtl:xl:right-auto rtl:xl:left-0 z-50 animate-fadeIn"
     >
       <div
         class="flex items-center justify-between pb-3 mb-3 border-b border-gray-100 dark:border-gray-800"
@@ -95,23 +95,23 @@
 
       <router-link
         to="#"
-        class="mt-3 flex justify-center rounded-lg border border-gray-300 bg-white p-3 text-theme-sm font-medium text-gray-700 shadow-theme-xs hover:bg-gray-50 hover:text-gray-800 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-white/[0.03] dark:hover:text-gray-200"
+        class="mt-3 flex justify-center rounded-lg border border-gray-300 bg-white p-3 text-theme-sm font-medium text-gray-700 shadow-theme-xs hover:bg-gray-50 hover:text-gray-800 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-white/3 dark:hover:text-gray-200"
         @click="handleViewAllClick"
       >
-        View All Notification
+        View All Notifications
       </router-link>
     </div>
     <!-- Dropdown End -->
   </div>
 </template>
 
-<script setup>
-import { ref, onMounted, onUnmounted } from 'vue'
+<script setup lang="ts">
+import { onMounted, onUnmounted, ref } from 'vue'
 import { RouterLink } from 'vue-router'
 
 const dropdownOpen = ref(false)
 const notifying = ref(true)
-const dropdownRef = ref(null)
+const dropdownRef = ref<HTMLElement | null>(null)
 
 const notifications = ref([
   {
@@ -194,7 +194,6 @@ const notifications = ref([
     time: '5 min ago',
     status: 'online',
   },
-  // Add more notifications here...
 ])
 
 const toggleDropdown = () => {
@@ -206,22 +205,20 @@ const closeDropdown = () => {
   dropdownOpen.value = false
 }
 
-const handleClickOutside = (event) => {
-  if (dropdownRef.value && !dropdownRef.value.contains(event.target)) {
+const handleClickOutside = (event: MouseEvent) => {
+  if (dropdownRef.value && !dropdownRef.value.contains(event.target as Node)) {
     closeDropdown()
   }
 }
 
-const handleItemClick = (event) => {
+const handleItemClick = (event: Event) => {
   event.preventDefault()
-  // Handle the item click action here
   console.log('Notification item clicked')
   closeDropdown()
 }
 
-const handleViewAllClick = (event) => {
+const handleViewAllClick = (event: Event) => {
   event.preventDefault()
-  // Handle the "View All Notification" action here
   console.log('View All Notifications clicked')
   closeDropdown()
 }

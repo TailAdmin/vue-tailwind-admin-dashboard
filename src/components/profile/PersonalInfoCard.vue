@@ -67,7 +67,7 @@
           <!-- close btn -->
           <button
             @click="isProfileInfoModal = false"
-            class="transition-color absolute right-5 top-5 z-999 flex h-11 w-11 items-center justify-center rounded-full bg-gray-100 text-gray-400 hover:bg-gray-200 hover:text-gray-600 dark:bg-gray-700 dark:bg-white/[0.05] dark:text-gray-400 dark:hover:bg-white/[0.07] dark:hover:text-gray-300"
+            class="transition-color absolute ltr:right-5 rtl:left-5 top-5 z-999 flex h-11 w-11 items-center justify-center rounded-full bg-gray-100 text-gray-400 hover:bg-gray-200 hover:text-gray-600 dark:bg-gray-700 dark:bg-white/[0.05] dark:text-gray-400 dark:hover:bg-white/[0.07] dark:hover:text-gray-300 cursor-pointer"
           >
             <svg
               class="fill-current"
@@ -85,7 +85,7 @@
               />
             </svg>
           </button>
-          <div class="px-2 pr-14">
+          <div class="px-2 ltr:pr-14 rtl:pl-14">
             <h4 class="mb-2 text-2xl font-semibold text-gray-800 dark:text-white/90">
               Edit Personal Information
             </h4>
@@ -148,7 +148,7 @@
                     </label>
                     <input
                       type="text"
-                      value="https://instagram.com/PimjoHQ"
+                      value="https://instagram.com/emirhan55"
                       class="dark:bg-dark-900 h-11 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-4 py-2.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 focus:border-brand-300 focus:outline-hidden focus:ring-3 focus:ring-brand-500/10 dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30 dark:focus:border-brand-800"
                     />
                   </div>
@@ -250,14 +250,13 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref } from 'vue'
 import Modal from './Modal.vue'
 
 const isProfileInfoModal = ref(false)
 
 const saveProfile = () => {
-  // Implement save profile logic here
   console.log('Profile saved')
   isProfileInfoModal.value = false
 }

@@ -46,21 +46,25 @@
   </div>
 </template>
 
-<script setup>
-import { ref, onMounted, onBeforeUnmount } from 'vue'
+<script setup lang="ts">
 import Dropzone from 'dropzone'
 import 'dropzone/dist/dropzone.css'
+import { onBeforeUnmount, onMounted, ref } from 'vue'
 
 const props = defineProps({
   uploadUrl: {
     type: String,
     default: '/upload',
   },
+  maxFilesize: {
+    type: Number,
+    default: 5,
+  },
 })
 
 const dropzoneForm = ref(null)
 const dropzoneId = `dropzone-${Math.random().toString(36).substr(2, 9)}`
-let dropzoneInstance = null
+let dropzoneInstance: Dropzone | null = null
 
 onMounted(() => {
   Dropzone.autoDiscover = false
@@ -68,19 +72,68 @@ onMounted(() => {
   dropzoneInstance = new Dropzone(`#${dropzoneId}`, {
     url: props.uploadUrl,
     thumbnailWidth: 150,
-    maxFilesize: 0.5,
+    maxFilesize: props.maxFilesize,
     acceptedFiles: 'image/jpeg,image/png,image/gif,image/webp,image/svg+xml',
     headers: { 'My-Awesome-Header': 'header value' },
     dictDefaultMessage: '',
+    addRemoveLinks: true,
     init: function () {
-      this.on('addedfile', (file) => {
+      const setupRemoveHandlers = (file: any) => {
+        if (!file?.previewElement) return
+
+        // Make the error mark (the big X close icon in the center) clickable to reset/remove
+        const errorMark = file.previewElement.querySelector('.dz-error-mark')
+        if (errorMark && !errorMark.hasAttribute('data-remove-attached')) {
+          errorMark.setAttribute('data-remove-attached', 'true')
+          errorMark.setAttribute('title', 'Remove file')
+          errorMark.addEventListener('click', (e: Event) => {
+            e.preventDefault()
+            e.stopPropagation()
+            this.removeFile(file)
+          })
+        }
+
+        // Make error message clickable to remove
+        const errorMsg = file.previewElement.querySelector('.dz-error-message')
+        if (errorMsg && !errorMsg.hasAttribute('data-remove-attached')) {
+          errorMsg.setAttribute('data-remove-attached', 'true')
+          errorMsg.addEventListener('click', (e: Event) => {
+            e.preventDefault()
+            e.stopPropagation()
+            this.removeFile(file)
+          })
+        }
+
+        // Add a corner close icon (X) to the preview card so user can also remove any uploaded file
+        if (!file.previewElement.querySelector('.dz-custom-remove')) {
+          const closeBtn = document.createElement('button')
+          closeBtn.type = 'button'
+          closeBtn.className = 'dz-custom-remove'
+          closeBtn.title = 'Remove file'
+          closeBtn.innerHTML = `
+            <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M8 2L2 8M2 2L8 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          `
+          closeBtn.addEventListener('click', (e: Event) => {
+            e.preventDefault()
+            e.stopPropagation()
+            this.removeFile(file)
+          })
+          file.previewElement.appendChild(closeBtn)
+        }
+      }
+
+      this.on('addedfile', (file: any) => {
         console.log('A file has been added', file)
+        setupRemoveHandlers(file)
       })
-      this.on('success', (file, response) => {
-        console.log('File successfully uploaded', file, response)
-      })
-      this.on('error', (file, error) => {
+      this.on('error', (file: any, error: any) => {
         console.error('An error occurred during upload', file, error)
+        setupRemoveHandlers(file)
+      })
+      this.on('success', (file: any, response: any) => {
+        console.log('File successfully uploaded', file, response)
       })
     },
   })
@@ -104,6 +157,7 @@ onBeforeUnmount(() => {
 }
 
 .dropzone .dz-preview {
+  position: relative;
   margin: 10px;
 }
 
@@ -121,6 +175,67 @@ onBeforeUnmount(() => {
 
 .dropzone .dz-preview .dz-progress .dz-upload {
   background: #4f46e5;
+}
+
+/* Make error mark (close X icon) interactive */
+.dropzone .dz-preview .dz-error-mark {
+  pointer-events: auto !important;
+  cursor: pointer;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.dropzone .dz-preview .dz-error-mark:hover {
+  transform: scale(1.1);
+}
+
+.dropzone .dz-preview.dz-error .dz-error-message {
+  cursor: pointer;
+}
+
+/* Custom corner remove button */
+.dropzone .dz-preview .dz-custom-remove {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  width: 22px;
+  height: 22px;
+  border-radius: 9999px;
+  background-color: #ef4444;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 600;
+  cursor: pointer;
+  border: 2px solid #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: all 0.2s ease;
+  padding: 0;
+}
+
+.dark .dropzone .dz-preview .dz-custom-remove {
+  border-color: #111827;
+}
+
+.dropzone .dz-preview .dz-custom-remove:hover {
+  background-color: #dc2626;
+  transform: scale(1.1);
+}
+
+/* Dropzone default remove link */
+.dropzone .dz-preview .dz-remove {
+  margin-top: 8px;
+  font-size: 13px;
+  color: #ef4444;
+  text-align: center;
+  display: block;
+  cursor: pointer;
+  text-decoration: underline;
+  transition: color 0.2s ease;
+}
+
+.dropzone .dz-preview .dz-remove:hover {
+  color: #dc2626;
 }
 
 .dark .dropzone {

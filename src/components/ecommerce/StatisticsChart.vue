@@ -1,6 +1,6 @@
 <template>
   <div
-    class="rounded-2xl border border-gray-200 bg-white px-5 pb-5 pt-5 dark:border-gray-800 dark:bg-white/[0.03] sm:px-6 sm:pt-6"
+    class="rounded-2xl border border-gray-200 bg-white px-5 pb-5 pt-5 dark:border-gray-800 dark:bg-white/3 sm:px-6 sm:pt-6"
   >
     <div class="flex flex-col gap-5 mb-6 sm:flex-row sm:justify-between">
       <div class="w-full">
@@ -10,10 +10,10 @@
         </p>
       </div>
 
-      <div class="flex items-center gap-3">
+      <div class="flex items-center gap-3 sm:justify-end">
         <div class="relative">
           <div
-            class="inline-flex items-center gap-0.5 rounded-lg bg-gray-100 p-0.5 dark:bg-gray-900"
+            class="flex max-h-10 items-center gap-0.5 rounded-lg bg-gray-100 p-0.5 dark:bg-gray-900"
           >
             <button
               v-for="option in options"
@@ -23,7 +23,8 @@
                 selected === option.value
                   ? 'shadow-theme-xs text-gray-900 dark:text-white bg-white dark:bg-gray-800'
                   : 'text-gray-500 dark:text-gray-400',
-                'px-3 py-2 font-medium rounded-md text-theme-sm hover:text-gray-900 hover:shadow-theme-xs dark:hover:bg-gray-800 dark:hover:text-white',
+                'w-full rounded-md px-3 py-2 text-theme-sm font-medium hover:text-gray-900 dark:hover:text-white whitespace-nowrap',
+                option.value === 'optionTwo' ? 'rtl:min-w-20' : '',
               ]"
             >
               {{ option.label }}
@@ -31,18 +32,17 @@
           </div>
         </div>
 
-        <div class="relative">
+        <div class="relative inline-flex items-center">
           <flat-pickr
             v-model="date"
             :config="flatpickrConfig"
-            class="pl-3 sm:pl-9 dark:bg-dark-900 h-10 w-10 sm:w-40 rounded-lg border border-gray-200 bg-white text-transparent sm:text-theme-sm sm:text-gray-800 shadow-theme-xs placeholder:text-transparent sm:placeholder:text-gray-400 focus:border-brand-300 focus:outline-hidden focus:ring-3 focus:ring-brand-500/10 dark:border-gray-800 dark:bg-white/[0.03] dark:text-transparent sm:dark:text-gray-400 dark:placeholder:text-transparent sm:dark:placeholder:text-gray-400 dark:focus:border-brand-800"
-            placeholder="Select Date"
+            class="h-10 w-full min-w-[165px] rounded-lg border border-gray-200 bg-white py-2.5 ps-11 pe-4 text-theme-sm font-medium text-gray-700 shadow-theme-xs focus:outline-hidden focus:ring-0 focus-visible:outline-hidden dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400"
+            placeholder="Select date"
+            data-class="flatpickr-right"
           />
-          <span
-            class="absolute text-gray-500 -translate-y-1/2 pointer-events-none left-1/2 -translate-x-1/2 sm:left-3 sm:translate-x-0 top-1/2 dark:text-gray-400"
-          >
+          <div class="absolute inset-y-0 start-4 flex items-center pointer-events-none">
             <svg
-              class="fill-current"
+              class="fill-gray-700 dark:fill-gray-400"
               width="20"
               height="20"
               viewBox="0 0 20 20"
@@ -52,23 +52,23 @@
               <path
                 fill-rule="evenodd"
                 clip-rule="evenodd"
-                d="M6.66659 1.5415C7.0808 1.5415 7.41658 1.87729 7.41658 2.2915V2.99984H12.5833V2.2915C12.5833 1.87729 12.919 1.5415 13.3333 1.5415C13.7475 1.5415 14.0833 1.87729 14.0833 2.2915V2.99984L15.4166 2.99984C16.5212 2.99984 17.4166 3.89527 17.4166 4.99984V7.49984V15.8332C17.4166 16.9377 16.5212 17.8332 15.4166 17.8332H4.58325C3.47868 17.8332 2.58325 16.9377 2.58325 15.8332V7.49984V4.99984C2.58325 3.89527 3.47868 2.99984 4.58325 2.99984L5.91659 2.99984V2.2915C5.91659 1.87729 6.25237 1.5415 6.66659 1.5415ZM6.66659 4.49984H4.58325C4.30711 4.49984 4.08325 4.7237 4.08325 4.99984V6.74984H15.9166V4.99984C15.9166 4.7237 15.6927 4.49984 15.4166 4.49984H13.3333H6.66659ZM15.9166 8.24984H4.08325V15.8332C4.08325 16.1093 4.30711 16.3332 4.58325 16.3332H15.4166C15.6927 16.3332 15.9166 16.1093 15.9166 15.8332V8.24984Z"
+                d="M6.66683 1.54199C7.08104 1.54199 7.41683 1.87778 7.41683 2.29199V3.00033H12.5835V2.29199C12.5835 1.87778 12.9193 1.54199 13.3335 1.54199C13.7477 1.54199 14.0835 1.87778 14.0835 2.29199V3.00033L15.4168 3.00033C16.5214 3.00033 17.4168 3.89576 17.4168 5.00033V7.50033V15.8337C17.4168 16.9382 16.5214 17.8337 15.4168 17.8337H4.5835C3.47893 17.8337 2.5835 16.9382 2.5835 15.8337V7.50033V5.00033C2.5835 3.89576 3.47893 3.00033 4.5835 3.00033L5.91683 3.00033V2.29199C5.91683 1.87778 6.25262 1.54199 6.66683 1.54199ZM6.66683 4.50033H4.5835C4.30735 4.50033 4.0835 4.72418 4.0835 5.00033V6.75033H15.9168V5.00033C15.9168 4.72418 15.693 4.50033 15.4168 4.50033H13.3335H6.66683ZM15.9168 8.25033H4.0835V15.8337C4.0835 16.1098 4.30735 16.3337 4.5835 16.3337H15.4168C15.693 16.3337 15.9168 16.1098 15.9168 15.8337V8.25033Z"
                 fill=""
               />
             </svg>
-          </span>
+          </div>
         </div>
       </div>
     </div>
     <div class="max-w-full overflow-x-auto custom-scrollbar">
-      <div id="chartThree" class="-ml-4 min-w-[1000px] xl:min-w-full pl-2">
+      <div id="chartThree" class="-ms-4 min-w-[1000px] xl:min-w-full ps-2">
         <VueApexCharts type="area" height="310" :options="chartOptions" :series="series" />
       </div>
     </div>
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref } from 'vue'
 import flatPickr from 'vue-flatpickr-component'
 
@@ -82,11 +82,28 @@ const selected = ref('optionOne')
 const date = ref('')
 
 const flatpickrConfig = {
-  mode: 'range',
+  mode: 'range' as const,
+  static: true,
+  monthSelectorType: 'static' as const,
   dateFormat: 'M j',
-  defaultDate: [new Date(Date.now() - 7 * 24 * 60 * 60 * 1000), new Date()],
+  defaultDate: [new Date(Date.now() - 6 * 24 * 60 * 60 * 1000), new Date()],
+  onReady: (_selectedDates: Date[], dateStr: string, instance: any) => {
+    if (instance.element) {
+      instance.element.value = dateStr.replace('to', '-')
+      const customClass = instance.element.getAttribute('data-class')
+      if (customClass && instance.calendarContainer) {
+        instance.calendarContainer.classList.add(customClass)
+      }
+    }
+  },
+  onChange: (_selectedDates: Date[], dateStr: string, instance: any) => {
+    if (instance.element) {
+      instance.element.value = dateStr.replace('to', '-')
+    }
+  },
 }
 import VueApexCharts from 'vue3-apexcharts'
+import type { ApexOptions } from 'apexcharts'
 
 const series = ref([
   {
@@ -99,7 +116,7 @@ const series = ref([
   },
 ])
 
-const chartOptions = ref({
+const chartOptions = ref<ApexOptions>({
   legend: {
     show: false,
     position: 'top',
@@ -114,8 +131,8 @@ const chartOptions = ref({
     },
   },
   fill: {
+    type: 'gradient',
     gradient: {
-      enabled: true,
       opacityFrom: 0.55,
       opacityTo: 0,
     },
@@ -126,10 +143,6 @@ const chartOptions = ref({
   },
   markers: {
     size: 0,
-  },
-  labels: {
-    show: false,
-    position: 'top',
   },
   grid: {
     xaxis: {
