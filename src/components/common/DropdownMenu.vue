@@ -178,10 +178,3 @@ const handleMenuItemClick = (callback: any) => {
 }
 </script>
 
-<script lang="ts">
-export default {
-  directives: {
-    clickOutside: vClickOutside,
-  },
-}
-</script>

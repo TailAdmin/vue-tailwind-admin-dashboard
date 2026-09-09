@@ -154,6 +154,23 @@ Handle your app's state with Pinia for clean, organized code.
 
 ## Update Logs
 
+### Version 2.4.0 - [September 09, 2026]
+
+#### Major Updates & Enhancements
+
+- **RTL Support**: Added comprehensive Right-to-Left (RTL) support with dynamic direction toggling and mirrored layouts across all components, navigation, tables, and forms.
+- **Multi-Language Support**: Added language selection dropdown with locale switching and flag previews.
+- **Dependencies Upgrades**: Upgraded all project dependencies and peer packages to their latest stable releases.
+- **Major ApexCharts & FullCalendar Upgrade**:
+  - Upgraded **ApexCharts** and `vue3-apexcharts` with optimized rendering and responsive RTL chart options.
+  - Upgraded to **FullCalendar v7** LTS (`@fullcalendar/vue3`, `@fullcalendar/core`, `@fullcalendar/daygrid`, `@fullcalendar/timegrid`, `@fullcalendar/interaction`) with modern event scheduling.
+- **Composition API & TypeScript Modernization**:
+  - Removed remaining Options API boilerplate across all components in favor of clean `<script setup lang="ts">` Composition API.
+  - Resolved ESLint and TypeScript strict type checking errors across components, slots, and layout structures.
+- **Bug & Warning Fixes**:
+  - Fixed console warnings and template slot type definitions.
+  - Fixed DOM reflow warnings and animation transitions.
+
 ### Version 2.3.0 - [April 28, 2026]
 - Added **AI Dashboard** with token usage and revenue tracking.
 - Added **Sales Dashboard** with retention and multi-channel analytics.
