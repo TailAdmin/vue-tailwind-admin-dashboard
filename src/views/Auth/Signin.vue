@@ -2,16 +2,16 @@
   <FullScreenLayout>
     <div class="relative p-6 bg-white z-1 dark:bg-gray-900 sm:p-0">
       <div
-        class="relative flex flex-col justify-center w-full h-screen lg:flex-row dark:bg-gray-900"
+        class="relative flex lg:flex-row w-full h-screen justify-center flex-col dark:bg-gray-900"
       >
-        <div class="flex flex-col flex-1 w-full lg:w-1/2">
+        <div class="flex flex-col flex-1 lg:w-1/2 w-full">
           <div class="w-full max-w-md pt-10 mx-auto">
             <router-link
               to="/"
-              class="inline-flex items-center text-sm text-gray-500 transition-colors hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300"
+              class="inline-flex items-center gap-2 text-sm text-gray-500 transition-colors hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300"
             >
               <svg
-                class="stroke-current"
+                class="stroke-current rtl:rotate-180"
                 xmlns="http://www.w3.org/2000/svg"
                 width="20"
                 height="20"
@@ -44,7 +44,7 @@
               <div>
                 <div class="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-5">
                   <button
-                    class="inline-flex items-center justify-center gap-3 py-3 text-sm font-normal text-gray-700 transition-colors bg-gray-100 rounded-lg px-7 hover:bg-gray-200 hover:text-gray-800 dark:bg-white/5 dark:text-white/90 dark:hover:bg-white/10"
+                    class="inline-flex items-center justify-center gap-2 sm:gap-3 py-3 text-xs sm:text-sm font-normal text-gray-700 transition-colors bg-gray-100 rounded-lg px-3 sm:px-4 hover:bg-gray-200 hover:text-gray-800 dark:bg-white/5 dark:text-white/90 dark:hover:bg-white/10 whitespace-nowrap"
                   >
                     <svg
                       width="20"
@@ -73,7 +73,7 @@
                     Sign in with Google
                   </button>
                   <button
-                    class="inline-flex items-center justify-center gap-3 py-3 text-sm font-normal text-gray-700 transition-colors bg-gray-100 rounded-lg px-7 hover:bg-gray-200 hover:text-gray-800 dark:bg-white/5 dark:text-white/90 dark:hover:bg-white/10"
+                    class="inline-flex items-center justify-center gap-2 sm:gap-3 py-3 text-xs sm:text-sm font-normal text-gray-700 transition-colors bg-gray-100 rounded-lg px-3 sm:px-4 hover:bg-gray-200 hover:text-gray-800 dark:bg-white/5 dark:text-white/90 dark:hover:bg-white/10 whitespace-nowrap"
                   >
                     <svg
                       width="21"
@@ -134,11 +134,11 @@
                           :type="showPassword ? 'text' : 'password'"
                           id="password"
                           placeholder="Enter your password"
-                          class="dark:bg-dark-900 h-11 w-full rounded-lg border border-gray-300 bg-transparent py-2.5 pl-4 pr-11 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 focus:border-brand-300 focus:outline-hidden focus:ring-3 focus:ring-brand-500/10 dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30 dark:focus:border-brand-800"
+                          class="dark:bg-dark-900 h-11 w-full rounded-lg border border-gray-300 bg-transparent py-2.5 px-4 ltr:pr-11 rtl:pl-11 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 focus:border-brand-300 focus:outline-hidden focus:ring-3 focus:ring-brand-500/10 dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30 dark:focus:border-brand-800"
                         />
                         <span
                           @click="togglePasswordVisibility"
-                          class="absolute z-30 text-gray-500 -translate-y-1/2 cursor-pointer right-4 top-1/2 dark:text-gray-400"
+                          class="absolute z-30 text-gray-500 -translate-y-1/2 cursor-pointer ltr:right-4 rtl:left-4 top-1/2 dark:text-gray-400"
                         >
                           <svg
                             v-if="!showPassword"
@@ -195,7 +195,7 @@
                                   ? 'border-brand-500 bg-brand-500'
                                   : 'bg-transparent border-gray-300 dark:border-gray-700'
                               "
-                              class="mr-3 flex h-5 w-5 items-center justify-center rounded-md border-[1.25px]"
+                              class="me-3 flex h-5 w-5 items-center justify-center rounded-md border-[1.25px]"
                             >
                               <span :class="keepLoggedIn ? '' : 'opacity-0'">
                                 <svg
@@ -253,9 +253,9 @@
           </div>
         </div>
         <div
-          class="relative items-center hidden w-full h-full lg:w-1/2 bg-brand-950 dark:bg-white/5 lg:grid"
+          class="lg:w-1/2 w-full h-full bg-brand-950 dark:bg-white/5 lg:grid items-center hidden relative"
         >
-          <div class="flex items-center justify-center z-1">
+          <div class="items-center justify-center flex z-1">
             <common-grid-shape />
             <div class="flex flex-col items-center max-w-xs">
               <router-link to="/" class="block mb-4">
@@ -273,9 +273,9 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
 import CommonGridShape from '@/components/common/CommonGridShape.vue'
 import FullScreenLayout from '@/components/layout/FullScreenLayout.vue'
+import { ref } from 'vue'
 const email = ref('')
 const password = ref('')
 const showPassword = ref(false)
@@ -286,7 +286,6 @@ const togglePasswordVisibility = () => {
 }
 
 const handleSubmit = () => {
-  // Handle form submission
   console.log('Form submitted', {
     email: email.value,
     password: password.value,

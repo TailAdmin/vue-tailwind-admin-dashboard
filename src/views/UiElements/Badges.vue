@@ -16,14 +16,14 @@
           </Badge>
         </div>
       </ComponentCard>
-      <ComponentCard title="Light Background with Left Icon">
+      <ComponentCard title="Light Background with Trailing Icon">
         <div class="flex flex-wrap gap-4 sm:items-center sm:justify-center">
           <Badge v-for="color in colors" :key="color" :color="color" :endIcon="PlusIcon">
             {{ color }}
           </Badge>
         </div>
       </ComponentCard>
-      <ComponentCard title="Solid Background with Left Icon">
+      <ComponentCard title="Solid Background with Leading Icon">
         <div class="flex flex-wrap gap-4 sm:items-center sm:justify-center">
           <Badge
             v-for="color in colors"
@@ -36,14 +36,14 @@
           </Badge>
         </div>
       </ComponentCard>
-      <ComponentCard title="Light Background with Right Icon">
+      <ComponentCard title="Light Background with Trailing Icon">
         <div class="flex flex-wrap gap-4 sm:items-center sm:justify-center">
           <Badge v-for="color in colors" :key="color" :color="color" :endIcon="PlusIcon">
             {{ color }}
           </Badge>
         </div>
       </ComponentCard>
-      <ComponentCard title="Solid Background with Right Icon">
+      <ComponentCard title="Solid Background with Trailing Icon">
         <div class="flex flex-wrap gap-4 sm:items-center sm:justify-center">
           <Badge
             v-for="color in colors"
@@ -61,12 +61,12 @@
 </template>
 
 <script setup lang="ts">
+import { PlusIcon } from '@/icons'
 import { ref } from 'vue'
-import Badge from '../../components/ui/Badge.vue'
+import ComponentCard from '../../components/common/ComponentCard.vue'
 import PageBreadcrumb from '../../components/common/PageBreadcrumb.vue'
 import AdminLayout from '../../components/layout/AdminLayout.vue'
-import ComponentCard from '../../components/common/ComponentCard.vue'
-import { PlusIcon } from '@/icons'
+import Badge from '../../components/ui/Badge.vue'
 const currentPageTitle = ref('Badge')
 
 const colors = ['primary', 'success', 'error', 'warning', 'info', 'light', 'dark'] as const
