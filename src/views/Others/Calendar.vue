@@ -188,11 +188,11 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, watch, onMounted, onUnmounted } from 'vue'
-import AdminLayout from '@/components/layout/AdminLayout.vue'
 import PageBreadcrumb from '@/components/common/PageBreadcrumb.vue'
+import AdminLayout from '@/components/layout/AdminLayout.vue'
 import Modal from '@/components/profile/Modal.vue'
 import { useRTL } from '@/composables/useRTL'
+import { onMounted, onUnmounted, reactive, ref, watch } from 'vue'
 
 import FullCalendar from '@fullcalendar/vue3'
 import dayGridPlugin from '@fullcalendar/vue3/daygrid'
@@ -414,7 +414,7 @@ const renderEventContent = (eventInfo: any) => {
             ? `<div class="fc-event-time me-1.5 p-0 text-xs font-normal text-gray-500 dark:text-gray-400">${eventInfo.timeText}</div>`
             : ''
         }
-        <div class="fc-event-title truncate p-0 text-xs font-medium text-gray-700 dark:text-white">${eventInfo.event.title || ''}</div>
+        <div class="fc-event-title truncate p-0 text-xs font-medium text-gray-700 dark:text-white hidden md:block">${eventInfo.event.title || ''}</div>
       </div>
     `,
   }
