@@ -137,19 +137,20 @@ layer(base);
 
   --color-theme-purple-500: #7a5af8;
 
-  --shadow-theme-md: 0px 4px 8px -2px rgba(16, 24, 40, 0.1), 0px 2px 4px -2px rgba(16, 24, 40, 0.06);
-  --shadow-theme-lg: 0px 12px 16px -4px rgba(16, 24, 40, 0.08),
-    0px 4px 6px -2px rgba(16, 24, 40, 0.03);
+  --shadow-theme-md:
+    0px 4px 8px -2px rgba(16, 24, 40, 0.1), 0px 2px 4px -2px rgba(16, 24, 40, 0.06);
+  --shadow-theme-lg:
+    0px 12px 16px -4px rgba(16, 24, 40, 0.08), 0px 4px 6px -2px rgba(16, 24, 40, 0.03);
   --shadow-theme-sm: 0px 1px 3px 0px rgba(16, 24, 40, 0.1), 0px 1px 2px 0px rgba(16, 24, 40, 0.06);
   --shadow-theme-xs: 0px 1px 2px 0px rgba(16, 24, 40, 0.05);
-  --shadow-theme-xl: 0px 20px 24px -4px rgba(16, 24, 40, 0.08),
-    0px 8px 8px -4px rgba(16, 24, 40, 0.03);
+  --shadow-theme-xl:
+    0px 20px 24px -4px rgba(16, 24, 40, 0.08), 0px 8px 8px -4px rgba(16, 24, 40, 0.03);
   --shadow-datepicker: -5px 0 0 #262d3c, 5px 0 0 #262d3c;
   --shadow-focus-ring: 0px 0px 0px 4px rgba(70, 95, 255, 0.12);
-  --shadow-slider-navigation: 0px 1px 2px 0px rgba(16, 24, 40, 0.1),
-    0px 1px 3px 0px rgba(16, 24, 40, 0.1);
-  --shadow-tooltip: 0px 4px 6px -2px rgba(16, 24, 40, 0.05),
-    -8px 0px 20px 8px rgba(16, 24, 40, 0.05);
+  --shadow-slider-navigation:
+    0px 1px 2px 0px rgba(16, 24, 40, 0.1), 0px 1px 3px 0px rgba(16, 24, 40, 0.1);
+  --shadow-tooltip:
+    0px 4px 6px -2px rgba(16, 24, 40, 0.05), -8px 0px 20px 8px rgba(16, 24, 40, 0.05);
 
   --drop-shadow-4xl: 0 35px 35px rgba(0, 0, 0, 0.25), 0 45px 65px rgba(0, 0, 0, 0.15);
 
@@ -170,7 +171,6 @@ layer(base);
   If we ever want to remove these styles, we need to add an explicit border
   color utility to any element that depends on these defaults.
 */
-
 @layer base {
   *,
   ::after,
@@ -236,15 +236,39 @@ layer(base);
   @apply text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-white/5;
 }
 
+@utility menu-dropdown-item {
+  @apply text-theme-sm relative flex items-center gap-3 rounded-lg px-3 py-2.5 font-medium;
+}
+
+@utility menu-dropdown-item-active {
+  @apply bg-brand-50 text-brand-500 dark:bg-brand-500/[0.12] dark:text-brand-400;
+}
+
+@utility menu-dropdown-item-inactive {
+  @apply text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-white/5;
+}
+
 @utility menu-dropdown-badge {
-  @apply block rounded-full px-2.5 py-0.5 text-xs font-medium uppercase text-brand-500 dark:text-brand-400;
+  @apply text-success-600 dark:text-success-500 block rounded-full px-2.5 py-0.5 text-xs font-medium uppercase;
 }
 
 @utility menu-dropdown-badge-active {
-  @apply bg-brand-100 dark:bg-brand-500/20;
+  @apply bg-success-100 dark:bg-success-500/20;
 }
 
 @utility menu-dropdown-badge-inactive {
+  @apply bg-success-50 group-hover:bg-success-100 dark:bg-success-500/15 dark:group-hover:bg-success-500/20;
+}
+
+@utility menu-dropdown-badge-pro {
+  @apply text-brand-600 dark:text-brand-500 block rounded-full px-2.5 py-0.5 text-xs font-medium uppercase;
+}
+
+@utility menu-dropdown-badge-pro-active {
+  @apply bg-brand-100 dark:bg-brand-500/20;
+}
+
+@utility menu-dropdown-badge-pro-inactive {
   @apply bg-brand-50 group-hover:bg-brand-100 dark:bg-brand-500/15 dark:group-hover:bg-brand-500/20;
 }
 
@@ -270,20 +294,17 @@ layer(base);
     @apply bg-gray-200 rounded-full dark:bg-gray-700;
   }
 }
-
 .dark .custom-scrollbar::-webkit-scrollbar-thumb {
   background-color: #344054;
 }
-
-@layer utilities {
-  /* For Remove Date Icon */
-  input[type='date']::-webkit-inner-spin-button,
-  input[type='time']::-webkit-inner-spin-button,
-  input[type='date']::-webkit-calendar-picker-indicator,
-  input[type='time']::-webkit-calendar-picker-indicator {
-    display: none;
-    -webkit-appearance: none;
-  }
+/* For Remove Date Icon */
+input[type='date']::-webkit-inner-spin-button,
+input[type='time']::-webkit-inner-spin-button,
+input[type='date']::-webkit-calendar-picker-indicator,
+input[type='time']::-webkit-calendar-picker-indicator {
+  display: none !important;
+  opacity: 0 !important;
+  -webkit-appearance: none !important;
 }
 
 .sidebar:hover {
@@ -337,6 +358,9 @@ layer(base);
   @apply gap-1 !rounded-lg !border-gray-200 p-3 !shadow-theme-sm dark:!border-gray-800 dark:!bg-gray-900;
 }
 
+/* .apexcharts-tooltip-marker {
+  @apply !mr-1.5 !h-1.5 !w-1.5;
+} */
 .apexcharts-legend-text {
   @apply !pl-5 !text-gray-700 dark:!text-gray-400;
 }
@@ -362,7 +386,13 @@ layer(base);
 #chartTwo .apexcharts-datalabels-group {
   @apply !-translate-y-24;
 }
-#chartTwo .apexcharts-datalabels-group .apexcharts-text {
+
+#chartSeven .apexcharts-datalabels-group .apexcharts-text,
+#chartTwo .apexcharts-datalabels-group .apexcharts-text,
+#chartThirteen .apexcharts-datalabels-group .apexcharts-text,
+#chartTwelve .apexcharts-datalabels-group .apexcharts-text,
+#chartSixteen .apexcharts-datalabels-group .apexcharts-text,
+#chartToken .apexcharts-datalabels-group .apexcharts-text {
   @apply !fill-gray-800 !font-semibold dark:!fill-white/90;
 }
 
@@ -387,7 +417,7 @@ layer(base);
 
 .stocks-slider-outer .swiper-button-next,
 .stocks-slider-outer .swiper-button-prev {
-  @apply !static mt-0 h-8 w-9 rounded-full border border-gray-200 !text-gray-700 transition hover:bg-gray-100 dark:border-gray-800 dark:bg-gray-800 dark:!text-gray-400;
+  @apply static! mt-0 h-8 w-9 rounded-full border border-gray-200 !text-gray-700 transition hover:bg-gray-100 dark:border-gray-800 dark:bg-gray-800 dark:text-gray-400!;
 }
 
 .stocks-slider-outer .swiper-button-next.swiper-button-disabled,
@@ -404,7 +434,7 @@ layer(base);
   @apply w-full;
 }
 .flatpickr-calendar {
-  @apply mt-2  !rounded-xl bg-black !p-5 !border !border-transparent dark:!border-white/5 !text-gray-500 dark:!bg-gray-900 dark:!text-gray-400 dark:!shadow-theme-xl 2xsm:!w-auto;
+  @apply mt-2 !rounded-xl bg-black !p-5 !border !border-transparent dark:!border-white/5 !text-gray-500 dark:!bg-gray-dark dark:!text-gray-400 dark:!shadow-theme-xl 2xsm:!w-auto;
 }
 .flatpickr-time input {
   background-color: #f9fafb !important;
@@ -462,7 +492,7 @@ span.flatpickr-weekday,
   box-shadow:
     -5px 0 0 #f9fafb,
     5px 0 0 #f9fafb !important;
-  @apply dark:shadow-datepicker!;
+  @apply dark:!shadow-datepicker;
 }
 .flatpickr-day.inRange,
 .flatpickr-day.prevMonthDay.inRange,
@@ -515,7 +545,7 @@ span.flatpickr-weekday,
 .flatpickr-months .flatpickr-next-month svg,
 .flatpickr-months .flatpickr-prev-month,
 .flatpickr-months .flatpickr-next-month {
-  @apply hover:fill-none!;
+  @apply hover:!fill-none;
 }
 .flatpickr-months .flatpickr-prev-month:hover svg,
 .flatpickr-months .flatpickr-next-month:hover svg {
@@ -523,7 +553,13 @@ span.flatpickr-weekday,
 }
 
 .flatpickr-calendar.static {
-  @apply right-0;
+  @apply left-0 right-auto rtl:left-auto rtl:right-0;
+}
+.flatpickr-calendar.static.flatpickr-right {
+  @apply right-0 left-auto rtl:right-auto rtl:left-0;
+}
+.flatpickr-calendar.static.flatpickr-left {
+  @apply left-0 right-auto rtl:left-auto rtl:right-0;
 }
 .flatpickr-calendar.hasTime {
   width: 300px !important;
@@ -551,22 +587,22 @@ span.flatpickr-weekday,
   @apply gap-2;
 }
 .fc-button-group .fc-button {
-  @apply flex h-10 w-10 items-center justify-center !rounded-lg border border-gray-200 bg-transparent hover:border-gray-200 hover:bg-gray-50 focus:shadow-none active:!border-gray-200 active:!bg-transparent active:!shadow-none dark:border-gray-800 dark:hover:border-gray-800 dark:hover:bg-gray-900 dark:active:!border-gray-800;
+  @apply flex h-10 w-10 items-center justify-center !rounded-lg border border-gray-200 bg-transparent hover:border-gray-200 hover:bg-gray-50 focus:shadow-none active:!border-gray-200 active:!bg-transparent active:!shadow-none dark:border-gray-800 dark:hover:border-gray-800 dark:hover:bg-gray-900 dark:active:!border-gray-800 capitalize;
 }
 
 .fc-button-group .fc-button.fc-prev-button:before {
   @apply inline-block mt-1;
-  content: url("data:image/svg+xml,%3Csvg width='25' height='24' viewBox='0 0 25 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M16.0068 6L9.75684 12.25L16.0068 18.5' stroke='%23344054' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E%0A");
+  content: url("data:image/svg+xml,%3Csvg width='25' height='24' viewBox='0 0 25 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M16.0068 6L9.75684 12.25L16.0068 18.5' stroke='%23344054' strokeWidth='1.5' strokeLinecap='round' strokeLinejoin='round'/%3E%3C/svg%3E%0A");
 }
 .fc-button-group .fc-button.fc-next-button:before {
   @apply inline-block mt-1;
-  content: url("data:image/svg+xml,%3Csvg width='25' height='24' viewBox='0 0 25 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M9.50684 19L15.7568 12.75L9.50684 6.5' stroke='%23344054' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E%0A");
+  content: url("data:image/svg+xml,%3Csvg width='25' height='24' viewBox='0 0 25 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M9.50684 19L15.7568 12.75L9.50684 6.5' stroke='%23344054' strokeWidth='1.5' strokeLinecap='round' strokeLinejoin='round'/%3E%3C/svg%3E%0A");
 }
 .dark .fc-button-group .fc-button.fc-prev-button:before {
-  content: url("data:image/svg+xml,%3Csvg width='25' height='24' viewBox='0 0 25 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M16.0068 6L9.75684 12.25L16.0068 18.5' stroke='%2398A2B3' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E%0A");
+  content: url("data:image/svg+xml,%3Csvg width='25' height='24' viewBox='0 0 25 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M16.0068 6L9.75684 12.25L16.0068 18.5' stroke='%2398A2B3' strokeWidth='1.5' strokeLinecap='round' strokeLinejoin='round'/%3E%3C/svg%3E%0A");
 }
 .dark .fc-button-group .fc-button.fc-next-button:before {
-  content: url("data:image/svg+xml,%3Csvg width='25' height='24' viewBox='0 0 25 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M9.50684 19L15.7568 12.75L9.50684 6.5' stroke='%2398A2B3' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E%0A");
+  content: url("data:image/svg+xml,%3Csvg width='25' height='24' viewBox='0 0 25 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M9.50684 19L15.7568 12.75L9.50684 6.5' stroke='%2398A2B3' strokeWidth='1.5' strokeLinecap='round' strokeLinejoin='round'/%3E%3C/svg%3E%0A");
 }
 .fc-button-group .fc-button .fc-icon {
   @apply hidden;
@@ -577,13 +613,123 @@ span.flatpickr-weekday,
 .fc-toolbar-title {
   @apply !text-lg !font-medium text-gray-800 dark:text-white/90;
 }
+/* FullCalendar Dark Mode & Theming */
+html.dark .fc .fc-daygrid-day,
+html.dark .fc .fc-daygrid-day-frame,
+html.dark .fc td,
+html.dark td.fc-classic-Jk3,
+html.dark .fc-daygrid-day.fc-classic-Jk3 {
+  background-color: transparent !important;
+}
+
+html.dark [role="dialog"],
+html.dark [role="dialog"].fc-classic-Jk3,
+html.dark .fc-popover,
+html.dark .fc-popover.fc-classic-Jk3,
+html.dark .fc-more-popover {
+  background-color: var(--color-gray-900, #111827) !important;
+}
+
+html.dark .fc table,
+html.dark .fc td,
+html.dark .fc th,
+html.dark .fc .fc-scrollgrid,
+html.dark .fc-classic-C1x {
+  border-color: var(--color-gray-800, #1f2937) !important;
+}
+
+.dark .event-fc-color .fc-event-title,
+.dark .event-fc-color .fc-event-time,
+.dark .fc-event-title {
+  color: #ffffff !important;
+}
+
+:root[data-color-scheme="dark"],
+:root.dark,
+html.dark,
+html.dark body,
+html.dark #calendar,
+html.dark full-calendar,
+.dark {
+  --fc-classic-background: transparent !important;
+  --fc-classic-border: var(--color-gray-800, #1f2937) !important;
+  --fc-classic-strong-border: var(--color-gray-700, #374151) !important;
+  --fc-classic-foreground: #ffffff !important;
+  --fc-classic-faint: rgba(255, 255, 255, 0.04) !important;
+  --fc-classic-muted: rgba(255, 255, 255, 0.08) !important;
+  --fc-classic-strong: rgba(255, 255, 255, 0.14) !important;
+  --fc-classic-faint-foreground: #9ca3af !important;
+  --fc-classic-muted-foreground: #9ca3af !important;
+  --fc-classic-today: rgba(255, 255, 255, 0.05) !important;
+}
+
+.dark .fc,
+.dark .fc-theme-classic,
+.dark .fc-theme-standard {
+  --fc-classic-background: transparent !important;
+  --fc-classic-border: var(--color-gray-800, #1f2937) !important;
+}
+
+.dark .fc table,
+.dark .fc td,
+.dark .fc th,
+.dark .fc .fc-scrollgrid,
+.dark .fc .fc-theme-classic td,
+.dark .fc .fc-theme-classic th,
+.dark .fc .fc-theme-standard td,
+.dark .fc .fc-theme-standard th {
+  border-color: var(--color-gray-800, #1f2937) !important;
+}
+
+.dark .fc .fc-daygrid-day,
+.dark .fc .fc-daygrid-day-frame,
+.dark .fc .fc-timegrid-slot,
+.dark .fc .fc-timegrid-col {
+  background-color: transparent !important;
+}
+
+.dark .fc .fc-daygrid-day.fc-day-today {
+  background-color: transparent !important;
+}
+
+.dark .fc .fc-daygrid-day.fc-day-today .fc-scrollgrid-sync-inner,
+.dark .fc .fc-daygrid-day.fc-day-today .fc-daygrid-day-frame {
+  background-color: rgba(255, 255, 255, 0.03) !important;
+}
+
+.dark .fc .fc-col-header-cell,
+.dark .fc th {
+  background-color: var(--color-gray-900, #111827) !important;
+  border-color: var(--color-gray-800, #1f2937) !important;
+}
+
+.dark .fc .fc-daygrid-day-number {
+  color: var(--color-gray-400, #9ca3af) !important;
+}
+
+.dark .fc .fc-col-header-cell-cushion {
+  color: var(--color-gray-400, #9ca3af) !important;
+}
+
+.dark .fc-timegrid-slot-label-frame,
+.dark .fc .fc-timegrid-axis-cushion {
+  color: var(--color-gray-400, #9ca3af) !important;
+}
+
+.dark .fc .fc-timegrid-slot-minor {
+  border-top-style: dashed !important;
+  border-top-color: var(--color-gray-800, #1f2937) !important;
+}
+
 .fc-header-toolbar.fc-toolbar .fc-toolbar-chunk:last-child {
   @apply rounded-lg bg-gray-100 p-0.5 dark:bg-gray-900;
 }
 .fc-header-toolbar.fc-toolbar .fc-toolbar-chunk:last-child .fc-button {
   @apply !h-auto !w-auto rounded-md !border-0 bg-transparent !px-5 !py-2 text-sm font-medium text-gray-500 hover:text-gray-700 focus:!shadow-none dark:text-gray-400;
 }
-.fc-header-toolbar.fc-toolbar .fc-toolbar-chunk:last-child .fc-button.fc-button-active {
+.fc-header-toolbar.fc-toolbar
+  .fc-toolbar-chunk:last-child
+  .fc-button.fc-button-active {
   @apply text-gray-900 bg-white dark:bg-gray-800 dark:text-white;
 }
 .fc-theme-standard th {
@@ -619,9 +765,10 @@ span.flatpickr-weekday,
 }
 .event-fc-color {
   @apply rounded-lg py-2.5 pl-4 pr-3;
+  direction: ltr !important;
 }
 .event-fc-color .fc-event-title {
-  @apply p-0 text-sm font-normal text-gray-700;
+  @apply p-0 text-sm font-normal text-gray-700 dark:text-white!;
 }
 .fc-daygrid-event-dot {
   @apply w-1 h-5 ml-0 mr-3 border-none rounded-sm;
@@ -671,7 +818,8 @@ span.flatpickr-weekday,
 
 .swiper-button-prev svg,
 .swiper-button-next svg {
-  @apply !h-auto !w-auto;
+  @apply !h-auto w-auto!;
+  fill: none !important;
 }
 
 .carouselTwo .swiper-button-next:after,
@@ -695,12 +843,12 @@ span.flatpickr-weekday,
 
 .carouselTwo .swiper-button-prev,
 .carouselFour .swiper-button-prev {
-  @apply !left-3 sm:!left-4;
+  @apply !left-3 sm:!left-4 rtl:!left-auto rtl:!right-3 sm:rtl:!right-4;
 }
 
 .carouselTwo .swiper-button-next,
 .carouselFour .swiper-button-next {
-  @apply !right-3 sm:!right-4;
+  @apply !right-3 sm:!right-4 rtl:!right-auto rtl:!left-3 sm:rtl:!left-4;
 }
 
 .carouselThree .swiper-pagination,
@@ -719,7 +867,23 @@ span.flatpickr-weekday,
 }
 
 .form-check-input:checked ~ span {
-  @apply border-[6px] border-brand-500 dark:border-brand-500;
+  @apply border-[6px] border-brand-500 bg-white dark:bg-gray-900 dark:border-brand-500;
+}
+
+.form-check-danger .form-check-input:checked ~ span {
+  @apply border-error-500 dark:border-error-500;
+}
+
+.form-check-success .form-check-input:checked ~ span {
+  @apply border-success-500 dark:border-success-500;
+}
+
+.form-check-primary .form-check-input:checked ~ span {
+  @apply border-brand-500 dark:border-brand-500;
+}
+
+.form-check-warning .form-check-input:checked ~ span {
+  @apply border-orange-500 dark:border-orange-500;
 }
 
 .taskCheckbox:checked ~ .box span {
@@ -751,6 +915,187 @@ span.flatpickr-weekday,
   color: black;
 }
 
+/* FullCalendar Style Overrides */
+.custom-calendar .fc-scroller {
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+}
+
+.custom-calendar .fc-classic-yth {
+  @apply gap-0!;
+}
+
+.dark .event-fc-color .fc-event-title,
+.dark .fc-event-title {
+  @apply text-white!;
+}
+
+/* Update year view to show bookmark trigger */
+.custom-calendar.fc-multimonth [role="gridcell"] > .fc-g2,
+.custom-calendar .fc-multimonth [role="gridcell"] > .fc-g2,
+.custom-calendar.fc-multimonth [role="gridcell"] > .fc-GV,
+.custom-calendar .fc-multimonth [role="gridcell"] > .fc-GV,
+.custom-calendar.fc-multimonth [role="gridcell"] > div:nth-child(2),
+.custom-calendar .fc-multimonth [role="gridcell"] > div:nth-child(2) {
+  max-height: 0 !important;
+  min-height: 0 !important;
+  flex-grow: 0 !important;
+  flex-basis: 0 !important;
+}
+
+@media (max-width: 639px) {
+  .custom-calendar:has(.fc-multimonth) .fc-toolbar,
+  .custom-calendar.fc-multimonth .fc-toolbar {
+    position: relative !important;
+    top: auto !important;
+  }
+
+  /* Month Title sticks below the dashboard AppHeader (56px) */
+  .custom-calendar:has(.fc-multimonth) [role="grid"] [id*="month-"],
+  .custom-calendar .fc-multimonth [role="grid"] [id*="month-"],
+  .custom-calendar.fc-multimonth [role="grid"] [id*="month-"],
+  .custom-calendar [role="grid"].fc-multimonth [id*="month-"] {
+    position: sticky !important;
+    top: 56px !important;
+    z-index: 10 !important;
+    background-color: #ffffff !important;
+    margin-bottom: 0 !important;
+    padding-top: 8px !important;
+    padding-bottom: 8px !important;
+  }
+  .dark .custom-calendar:has(.fc-multimonth) [role="grid"] [id*="month-"],
+  .dark .custom-calendar .fc-multimonth [role="grid"] [id*="month-"],
+  .dark .custom-calendar.fc-multimonth [role="grid"] [id*="month-"],
+  .dark .custom-calendar [role="grid"].fc-multimonth [id*="month-"] {
+    background-color: #111827 !important;
+  }
+
+  /* Day Header (SUN MON TUE...) sticks directly below the Month Title */
+  .custom-calendar:has(.fc-multimonth)
+    [role="grid"]
+    [role="row"]:has([role="columnheader"]),
+  .custom-calendar:has(.fc-multimonth)
+    [role="grid"]
+    .fc-multimonth-day-header-row,
+  .custom-calendar:has(.fc-multimonth) [role="grid"] .fc-daygrid-header,
+  .custom-calendar
+    .fc-multimonth
+    [role="grid"]
+    [role="row"]:has([role="columnheader"]),
+  .custom-calendar .fc-multimonth [role="grid"] .fc-multimonth-day-header-row,
+  .custom-calendar .fc-multimonth [role="grid"] .fc-daygrid-header,
+  .custom-calendar.fc-multimonth
+    [role="grid"]
+    [role="row"]:has([role="columnheader"]),
+  .custom-calendar.fc-multimonth [role="grid"] .fc-multimonth-day-header-row,
+  .custom-calendar.fc-multimonth [role="grid"] .fc-daygrid-header,
+  .custom-calendar
+    [role="grid"].fc-multimonth
+    [role="row"]:has([role="columnheader"]),
+  .custom-calendar [role="grid"].fc-multimonth .fc-multimonth-day-header-row,
+  .custom-calendar [role="grid"].fc-multimonth .fc-daygrid-header {
+    position: sticky !important;
+    top: 92px !important;
+    z-index: 9 !important;
+    background-color: #f9fafb !important;
+  }
+  .dark
+    .custom-calendar:has(.fc-multimonth)
+    [role="grid"]
+    [role="row"]:has([role="columnheader"]),
+  .dark
+    .custom-calendar:has(.fc-multimonth)
+    [role="grid"]
+    .fc-multimonth-day-header-row,
+  .dark .custom-calendar:has(.fc-multimonth) [role="grid"] .fc-daygrid-header,
+  .dark
+    .custom-calendar
+    .fc-multimonth
+    [role="grid"]
+    [role="row"]:has([role="columnheader"]),
+  .dark
+    .custom-calendar
+    .fc-multimonth
+    [role="grid"]
+    .fc-multimonth-day-header-row,
+  .dark .custom-calendar .fc-multimonth [role="grid"] .fc-daygrid-header,
+  .dark
+    .custom-calendar.fc-multimonth
+    [role="grid"]
+    [role="row"]:has([role="columnheader"]),
+  .dark
+    .custom-calendar.fc-multimonth
+    [role="grid"]
+    .fc-multimonth-day-header-row,
+  .dark .custom-calendar.fc-multimonth [role="grid"] .fc-daygrid-header,
+  .dark
+    .custom-calendar
+    [role="grid"].fc-multimonth
+    [role="row"]:has([role="columnheader"]),
+  .dark
+    .custom-calendar
+    [role="grid"].fc-multimonth
+    .fc-multimonth-day-header-row,
+  .dark .custom-calendar [role="grid"].fc-multimonth .fc-daygrid-header {
+    background-color: #111827 !important;
+  }
+
+  /* Reset FullCalendar margin math to avoid whitespace gaps */
+  .custom-calendar:has(.fc-multimonth) [role="grid"] > div,
+  .custom-calendar .fc-multimonth [role="grid"] > div,
+  .custom-calendar.fc-multimonth [role="grid"] > div,
+  .custom-calendar [role="grid"].fc-multimonth > div {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+  }
+  .custom-calendar:has(.fc-multimonth) [role="grid"] > div > div,
+  .custom-calendar .fc-multimonth [role="grid"] > div > div,
+  .custom-calendar.fc-multimonth [role="grid"] > div > div,
+  .custom-calendar [role="grid"].fc-multimonth > div > div {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+  }
+
+  /* Remove inner month border and border radius on small devices */
+  .custom-calendar:has(.fc-multimonth) [role="grid"] > div:last-child,
+  .custom-calendar .fc-multimonth [role="grid"] > div:last-child,
+  .custom-calendar.fc-multimonth [role="grid"] > div:last-child,
+  .custom-calendar [role="grid"].fc-multimonth > div:last-child {
+    border: 0 !important;
+    border-radius: 0 !important;
+  }
+  .custom-calendar:has(.fc-multimonth) [role="grid"] [role="columnheader"],
+  .custom-calendar .fc-multimonth [role="grid"] [role="columnheader"],
+  .custom-calendar.fc-multimonth [role="grid"] [role="columnheader"],
+  .custom-calendar [role="grid"].fc-multimonth [role="columnheader"] {
+    border-radius: 0 !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .custom-calendar .fc-timegrid {
+    min-width: 580px;
+  }
+}
+
+.simplebar-scrollbar:before {
+  @apply !bg-gray-200 !rounded-full dark:!bg-gray-700 !opacity-100;
+}
+
+.dark .simplebar-scrollbar::before {
+  @apply !bg-gray-700;
+}
+
+.simplebar-scrollbar.simplebar-visible:before {
+  @apply opacity-100;
+}
+
+[dir='rtl'] .simplebar-track.simplebar-vertical {
+  right: auto;
+  left: 0;
+}
+
+
 .social-button {
   @apply flex h-11 w-11 items-center justify-center gap-2 rounded-full border border-gray-300 bg-white text-sm font-medium text-gray-700 shadow-theme-xs hover:bg-gray-50 hover:text-gray-800 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-white/[0.03] dark:hover:text-gray-200;
 }
@@ -759,282 +1104,225 @@ span.flatpickr-weekday,
   @apply flex w-full items-center justify-center gap-2 rounded-full border border-gray-300 bg-white px-4 py-3 text-sm font-medium text-gray-700 shadow-theme-xs hover:bg-gray-50 hover:text-gray-800 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-white/[0.03] dark:hover:text-gray-200 lg:inline-flex lg:w-auto;
 }
 
-/* FullCalendar Dark Mode & Theming */
-html.dark .fc .fc-daygrid-day,
-html.dark .fc .fc-daygrid-day-frame,
-html.dark .fc td {
-  background-color: transparent !important;
+/* Code Editor */
+code[class*='language-'],
+pre[class*='language-'] {
+  text-shadow: none;
+  color: #344054;
+  overflow: hidden !important;
+  font-size: 14px;
+  margin: 0;
+  padding: 0;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  text-align: justify;
 }
 
-html.dark [role="dialog"],
-html.dark .fc-popover,
-html.dark .fc-more-popover {
-  background-color: var(--color-gray-900, #111827) !important;
+.dark code[class*='language-'],
+.dark pre[class*='language-'] {
+  text-shadow: none;
+  color: #98a2b3;
+}
+.language-html {
+  background-color: #ffffff !important;
+}
+.dark .language-html {
+  background-color: #ffffff00 !important;
+}
+.token {
+  text-shadow: none;
+  font-size: 14px;
+}
+.token.doctype-tag,
+.token.name {
+  color: #018001;
+}
+.token.tag {
+  color: #267f99;
+}
+.token.selector {
+  color: #267f99;
+}
+.token.property {
+  color: #0070c1;
+}
+.token.language-css {
+  color: #1b00ff;
+}
+.token.attr-name {
+  color: #98a2b3;
+}
+.token.attr-value {
+  color: #a31615;
+}
+.token.punctuation {
+  color: #344054;
+}
+.dark .token.punctuation {
+  color: #98a2b3;
 }
 
-html.dark .fc table,
-html.dark .fc td,
-html.dark .fc th,
-html.dark .fc .fc-scrollgrid {
-  border-color: var(--color-gray-800, #1f2937) !important;
+/* Sidebar Three */
+@utility docs-menu-item {
+  @apply block rounded-lg px-3 py-1.5 text-sm transition-colors duration-150;
 }
 
-.dark .event-fc-color .fc-event-title,
-.dark .event-fc-color .fc-event-time,
-.dark .fc-event-title {
-  color: #ffffff !important;
+@utility docs-menu-item-active {
+  @apply bg-brand-50 text-brand-500 dark:bg-brand-500/[0.12] dark:text-brand-400;
 }
 
-:root[data-color-scheme="dark"],
-:root.dark,
-html.dark,
-.dark {
-  --fc-classic-background: transparent !important;
-  --fc-classic-border: var(--color-gray-800, #1f2937) !important;
-  --fc-classic-strong-border: var(--color-gray-700, #374151) !important;
-  --fc-classic-foreground: #ffffff !important;
-  --fc-classic-faint: rgba(255, 255, 255, 0.04) !important;
-  --fc-classic-muted: rgba(255, 255, 255, 0.08) !important;
-  --fc-classic-strong: rgba(255, 255, 255, 0.14) !important;
-  --fc-classic-faint-foreground: #9ca3af !important;
-  --fc-classic-muted-foreground: #9ca3af !important;
-  --fc-classic-today: rgba(255, 255, 255, 0.05) !important;
+@utility docs-menu-item-inactive {
+  @apply text-gray-500 hover:bg-gray-100 hover:text-gray-800 dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-white;
 }
 
-.dark .fc,
-.dark .fc-theme-classic,
-.dark .fc-theme-standard {
-  --fc-classic-background: transparent !important;
-  --fc-classic-border: var(--color-gray-800, #1f2937) !important;
+/* Sidebar Five */
+@utility docs-border-item {
+  @apply -ms-[1.5px] block border-s-[1.5px] ps-4 text-sm font-normal transition-colors duration-200;
 }
 
-/* FullCalendar Popover */
-.fc .fc-popover,
-.fc-theme-standard .fc-popover {
-  @apply z-99999! rounded-xl border border-gray-200 bg-white shadow-xl dark:border-gray-700 dark:bg-gray-900;
+@utility docs-border-item-active {
+  @apply border-brand-500 text-brand-500;
 }
 
-.fc .fc-popover-header,
-.fc-theme-standard .fc-popover-header {
-  @apply flex items-center justify-between border-b border-gray-200 bg-transparent px-3.5 py-2.5 dark:border-gray-800 dark:bg-transparent;
+@utility docs-border-item-inactive {
+  @apply border-transparent text-gray-500 hover:border-gray-800 hover:text-gray-800 dark:text-gray-400 dark:hover:border-gray-400 dark:hover:text-gray-200;
 }
 
-.fc .fc-popover-title {
-  @apply text-sm font-semibold text-gray-800 dark:text-white/90;
+/* Sidebar Six */
+@utility nav-icon-item {
+  @apply flex size-10 items-center justify-center rounded-full;
 }
 
-.fc .fc-popover-close {
-  @apply flex h-6 w-6 cursor-pointer items-center justify-center rounded-lg text-gray-400 opacity-100 transition-colors hover:bg-gray-100 hover:text-gray-600 dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-white;
+@utility nav-icon-item-active {
+  @apply text-brand-500 border border-gray-200 bg-white dark:border-gray-800 dark:bg-gray-900;
 }
 
-.fc .fc-popover-body {
-  @apply space-y-1.5 p-2.5;
+@utility nav-icon-item-inactive {
+  @apply hover:text-brand-500 dark:hover:text-brand-500 border border-transparent text-gray-500 hover:border-gray-200 hover:bg-white dark:text-gray-400 dark:hover:border-gray-800 dark:hover:bg-gray-900;
 }
 
-.fc.fc-media-screen {
-  @apply min-h-screen;
+/* Map two */
+#mapTwo .jvm-container {
+  @apply !bg-transparent;
+}
+#mapTwo .jvm-regions-group .jvm-region.jvm-element {
+  @apply hover:fill-brand-500! dark:hover:fill-brand-500! fill-gray-300! dark:fill-gray-700!;
+}
+#mapTwo .jvm-region.jvm-element {
+  fill: #9cb9ff !important;
+  stroke: transparent !important;
+}
+#mapTwo .jvm-region.jvm-element:hover {
+  fill: #8098f9 !important;
+}
+.dark #mapTwo .jvm-region.jvm-element {
+  fill: #9cb9ff !important;
+}
+#mapTwo .jvm-region[data-code='US'] {
+  fill: #465fff !important;
 }
 
-/* yearly calendar css start */
-.fc-multiMonth-view,
-.fc-multiMonthYear-view,
-.fc-multimonth {
-  background: transparent;
-  height: auto !important;
-  overflow: visible !important;
+/* Sidebar accordion animation using CSS Grid */
+.menu-accordion {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 300ms ease-in-out;
+}
+.menu-accordion.open {
+  grid-template-rows: 1fr;
+}
+.menu-accordion > div {
+  overflow: hidden;
+  min-height: 0;
 }
 
-.fc-multiMonth-view div[style*="aspect-ratio"],
-.fc-multiMonthYear-view div[style*="aspect-ratio"],
-.fc-multimonth div[style*="aspect-ratio"] {
-  aspect-ratio: auto !important;
-  height: auto !important;
-  min-height: auto !important;
+@utility no-scrollbar {
+  /* Chrome, Safari and Opera */
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }
+@utility custom-scrollbar {
+  &::-webkit-scrollbar {
+    @apply size-1.5;
+  }
 
-.fc-multiMonth-view .fc-TJ,
-.fc-multiMonthYear-view .fc-TJ,
-.fc-multimonth .fc-TJ {
-  position: static !important;
-  height: auto !important;
-}
+  &::-webkit-scrollbar-track {
+    @apply rounded-full;
+  }
 
-.fc-multiMonth-view [role="grid"],
-.fc-multiMonth-view [role="listitem"],
-.fc-multiMonth-view [role="list"],
-.fc-multiMonth-view .overflow-hidden,
-.fc-multiMonthYear-view [role="grid"],
-.fc-multiMonthYear-view [role="listitem"],
-.fc-multiMonthYear-view [role="list"],
-.fc-multiMonthYear-view .overflow-hidden,
-.fc-multimonth [role="grid"],
-.fc-multimonth [role="listitem"],
-.fc-multimonth [role="list"],
-.fc-multimonth .overflow-hidden {
-  overflow: visible !important;
-  height: auto !important;
-  min-height: auto !important;
-}
-
-/* Responsive month columns: sm = 1, md = 2, xl = 3 */
-.fc-multiMonth-view [role="list"],
-.fc-multiMonthYear-view [role="list"],
-.fc-multimonth {
-  display: flex !important;
-  flex-wrap: wrap !important;
-  gap: 1.5rem !important;
-  padding: 1.5rem !important;
-  padding-bottom: 3rem !important;
-  background: transparent;
-  height: auto !important;
-  border-left: 0 !important;
-  border-right: 0 !important;
-}
-
-.fc-multiMonth-view [role="listitem"],
-.fc-multiMonthYear-view [role="listitem"],
-.fc-multimonth .fc-multimonth-month {
-  width: 100% !important;
-  height: auto !important;
-  min-height: auto !important;
-  overflow: visible !important;
-}
-
-@media (min-width: 768px) {
-  .fc-multiMonth-view [role="listitem"],
-  .fc-multiMonthYear-view [role="listitem"],
-  .fc-multimonth .fc-multimonth-month {
-    width: calc(50% - 0.75rem) !important;
+  &::-webkit-scrollbar-thumb {
+    @apply bg-gray-200 rounded-full dark:bg-gray-700;
   }
 }
 
-@media (min-width: 1280px) {
-  .fc-multiMonth-view [role="listitem"],
-  .fc-multiMonthYear-view [role="listitem"],
-  .fc-multimonth .fc-multimonth-month {
-    width: calc(33.333% - 1rem) !important;
-  }
+.dark .custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #344054;
 }
 
-.fc-view-harness:has(.fc-multimonth),
-.fc-view-harness:has(.fc-multiMonth-view),
-.fc-view-harness:has(.fc-multiMonthYear-view),
-.fc-scroller:has(.fc-multimonth),
-.fc-scroller:has(.fc-multiMonth-view),
-.fc-scroller:has(.fc-multiMonthYear-view) {
-  overflow: visible !important;
-  height: auto !important;
+/* Customer Pin-Point Map */
+#mapCustomerPinPoint .jvm-region.jvm-element {
+  fill: #c5d8ff !important;
+  stroke: white !important;
+  stroke-width: 2 !important;
+}
+#mapCustomerPinPoint .jvm-region[data-code='US-CA'] {
+  fill: #465fff !important;
+}
+#mapCustomerPinPoint .jvm-region[data-code='US-NV'] {
+  fill: #465fff !important;
+}
+#mapCustomerPinPoint .jvm-region[data-code='US-NY'] {
+  fill: #3538cd !important;
+}
+#mapCustomerPinPoint .jvm-region[data-code='US-FL'] {
+  fill: #3538cd !important;
+}
+#mapCustomerPinPoint .jvm-region[data-code='US-MI'] {
+  fill: #3538cd !important;
+}
+#mapCustomerPinPoint .jvm-region[data-code='US-WA'] {
+  fill: #3538cd !important;
+}
+#mapCustomerPinPoint .jvm-region[data-code='US-TX'] {
+  fill: #8098f9 !important;
+}
+#mapCustomerPinPoint .jvm-region[data-code='US-IL'] {
+  fill: #8098f9 !important;
+}
+#mapCustomerPinPoint .jvm-region[data-code='US-PA'] {
+  fill: #8098f9 !important;
+}
+#mapCustomerPinPoint .jvm-region[data-code='US-OH'] {
+  fill: #8098f9 !important;
+}
+#mapCustomerPinPoint .jvm-region[data-code='US-GA'] {
+  fill: #8098f9 !important;
+}
+#mapCustomerPinPoint .jvm-region[data-code='US-NC'] {
+  fill: #8098f9 !important;
+}
+#mapCustomerPinPoint .jvm-region[data-code='US-CO'] {
+  fill: #9cb9ff !important;
+}
+#mapCustomerPinPoint .jvm-region[data-code='US-AZ'] {
+  fill: #9cb9ff !important;
+}
+#mapCustomerPinPoint .jvm-region.jvm-element:hover {
+  fill: #465fff !important;
+}
+.dark #mapCustomerPinPoint .jvm-region.jvm-element {
+  stroke: #1f2937 !important;
 }
 
-.fc-multimonth-month {
-  @apply w-full! rounded-xl border border-gray-200 bg-white p-3 dark:border-gray-800 dark:bg-gray-900/50;
-}
-
-.fc-multimonth-title {
-  @apply py-2! text-center! text-base! font-semibold! text-gray-800 dark:text-white/90;
-}
-
-.fc-multimonth-header {
-  @apply border-gray-200! dark:border-gray-800!;
-}
-
-.fc-multimonth-header th {
-  @apply border-0! bg-transparent! py-2! text-center!;
-}
-
-.fc-multimonth-header .fc-col-header-cell-cushion {
-  @apply p-0! text-xs! font-medium text-gray-400 dark:text-gray-500;
-}
-
-.fc-multimonth-daygrid,
-.fc-multimonth-daygrid-table,
-.fc-multimonth-daygrid-table tbody,
-.fc-multimonth-daygrid-table tr {
-  height: auto !important;
-  overflow: visible !important;
-}
-
-.fc-multimonth-daygrid-table {
-  @apply border-none! w-full!;
-}
-
-.fc-multimonth-daygrid-table td {
-  @apply border-none!;
-}
-
-.fc-multiMonth-view .fc-multimonth-day,
-.fc-multimonth-day {
-  @apply p-0.5!;
-}
-
-.fc-multiMonth-view .fc-daygrid-day-frame,
-.fc-multimonth .fc-daygrid-day-frame {
-  @apply min-h-6 sm:min-h-7 rounded-md p-0.5 transition-colors hover:bg-gray-50 dark:hover:bg-white/5 flex flex-col justify-start items-center;
-}
-
-.fc-multiMonth-view .fc-daygrid-day-number,
-.fc-multimonth .fc-daygrid-day-number {
-  @apply p-0.5! text-xs font-medium text-gray-700 dark:text-gray-400;
-}
-
-.fc-multiMonth-view .fc-daygrid-day.fc-day-today .fc-daygrid-day-frame,
-.fc-multimonth .fc-daygrid-day.fc-day-today .fc-daygrid-day-frame {
-  @apply rounded-md bg-brand-50/60 font-semibold text-brand-500 dark:bg-brand-500/10 dark:text-brand-400;
-}
-
-.fc-multiMonth-view .fc-daygrid-day.fc-day-today .fc-daygrid-day-number,
-.fc-multimonth .fc-daygrid-day.fc-day-today .fc-daygrid-day-number {
-  @apply font-semibold text-brand-500 dark:text-brand-400;
-}
-
-.fc .fc-cell-shaded,
-.fc .fc-day-disabled,
-.fc .fc-day-other,
-.fc-multimonth .fc-day-other .fc-daygrid-day-frame,
-.fc-multimonth .fc-day-disabled .fc-daygrid-day-frame {
-  @apply bg-transparent! hover:bg-transparent!;
-}
-
-.fc-daygrid-more-link {
-  @apply border-0! bg-transparent! p-0!;
-}
-
-.fc-o2,
-[inert].fc-more-link,
-[aria-hidden="true"].fc-more-link {
-  display: none !important;
-  visibility: hidden !important;
-  left: -99999px !important;
-  inset-inline-start: -99999px !important;
-  opacity: 0 !important;
-  pointer-events: none !important;
-}
-
-.fc-more-link-badge {
-  @apply inline-flex items-center rounded-sm bg-brand-50 px-1.5 py-0.5 text-xs font-medium text-brand-600 transition-colors hover:bg-brand-100 dark:bg-brand-500/15 dark:text-brand-400 dark:hover:bg-brand-500/25;
-}
-
-.fc-multimonth .event-fc-color {
-  @apply my-0.5 rounded py-0.5 ps-1.5 pe-1 text-xs;
-}
-
-.fc-multimonth .event-fc-color .fc-daygrid-event-dot {
-  @apply me-1 h-2 w-2 rounded-full;
-}
-
-.fc-multimonth .event-fc-color .fc-event-title {
-  @apply truncate text-xs;
-}
-/* yearly calendar css end */
-
-.flatpickr-calendar.static {
-  @apply left-0 right-auto rtl:left-auto rtl:right-0;
-}
-.flatpickr-calendar.static.flatpickr-right {
-  @apply right-0 left-auto rtl:right-auto rtl:left-0;
-}
-.flatpickr-calendar.static.flatpickr-left {
-  @apply left-0 right-auto rtl:left-auto rtl:right-0;
+/* Customer map markers: solid filled circles with white ring */
+#mapCustomerPinPoint .jvm-marker.jvm-element {
+  fill: #465fff !important;
+  stroke: white !important;
+  stroke-width: 2 !important;
+  fill-opacity: 1 !important;
 }
 
 /* ==========================================================================
@@ -1088,6 +1376,8 @@ html.dark,
   animation: fadeIn 0.15s ease-out forwards;
 }
 
+
+
 /* Force code blocks and syntax highlighting to always remain LTR */
 pre,
 code,
@@ -1099,4 +1389,5 @@ pre code,
   text-align: left !important;
   unicode-bidi: isolate;
 }
+
 
