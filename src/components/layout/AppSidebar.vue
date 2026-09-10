@@ -212,24 +212,24 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
+import { watch } from 'vue'
 import { useRoute } from 'vue-router'
 
-import {
-  GridIcon,
-  CalenderIcon,
-  UserCircleIcon,
-  ChevronDownIcon,
-  HorizontalDots,
-  PageIcon,
-  TableIcon,
-  ListIcon,
-  PlugInIcon,
-  PieChartIcon,
-} from '@/icons'
-import SidebarWidget from './SidebarWidget.vue'
-import BoxCubeIcon from '@/icons/BoxCubeIcon.vue'
 import { useSidebar } from '@/composables/useSidebar'
+import {
+  CalenderIcon,
+  ChevronDownIcon,
+  GridIcon,
+  HorizontalDots,
+  ListIcon,
+  PageIcon,
+  PieChartIcon,
+  PlugInIcon,
+  TableIcon,
+  UserCircleIcon,
+} from '@/icons'
+import BoxCubeIcon from '@/icons/BoxCubeIcon.vue'
+import SidebarWidget from './SidebarWidget.vue'
 
 const route = useRoute()
 
@@ -333,31 +333,36 @@ const menuGroups: MenuGroup[] = [
   },
 ]
 
-const isActive = (path?: string) => route.path === path
+const isActive = (path?: string) => (path ? route.path === path : false)
+
+
+
+const setActiveMenuFromRoute = () => {
+  menuGroups.forEach((group, groupIndex) => {
+    group.items.forEach((item, itemIndex) => {
+      if (item.subItems?.some((subItem) => isActive(subItem.path))) {
+        openSubmenu.value = `${groupIndex}-${itemIndex}`
+      }
+    })
+  })
+}
+
+watch(
+  () => route.path,
+  () => {
+    setActiveMenuFromRoute()
+  },
+  { immediate: true },
+)
 
 const toggleSubmenu = (groupIndex: number, itemIndex: number) => {
   const key = `${groupIndex}-${itemIndex}`
   openSubmenu.value = openSubmenu.value === key ? null : key
 }
 
-const isAnySubmenuRouteActive = computed(() => {
-  return menuGroups.some((group) =>
-    group.items.some(
-      (item) =>
-        item.subItems && item.subItems.some((subItem) => isActive(subItem.path)),
-    ),
-  )
-})
-
 const isSubmenuOpen = (groupIndex: number, itemIndex: number) => {
   const key = `${groupIndex}-${itemIndex}`
-  return (
-    openSubmenu.value === key ||
-    (isAnySubmenuRouteActive.value &&
-      menuGroups[groupIndex].items[itemIndex].subItems?.some((subItem) =>
-        isActive(subItem.path),
-      ))
-  )
+  return openSubmenu.value === key
 }
 
 const startTransition = (el: Element) => {
