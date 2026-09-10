@@ -9,6 +9,13 @@
   </div>
 </template>
 
-<script setup>
-// No additional setup needed
+<script setup lang="ts">
+defineEmits<{
+  (e: 'close'): void
+}>()
+
+defineSlots<{
+  default?: () => any
+  body?: () => any
+}>()
 </script>

@@ -6,19 +6,19 @@
       <table class="min-w-full">
         <thead>
           <tr class="border-b border-gray-200 dark:border-gray-700">
-            <th class="px-5 py-3 text-left w-3/11 sm:px-6">
+            <th class="px-5 py-3 text-start w-3/11 sm:px-6">
               <p class="font-medium text-gray-500 text-theme-xs dark:text-gray-400">User</p>
             </th>
-            <th class="px-5 py-3 text-left w-2/11 sm:px-6">
+            <th class="px-5 py-3 text-start w-2/11 sm:px-6">
               <p class="font-medium text-gray-500 text-theme-xs dark:text-gray-400">Project Name</p>
             </th>
-            <th class="px-5 py-3 text-left w-2/11 sm:px-6">
+            <th class="px-5 py-3 text-start w-2/11 sm:px-6">
               <p class="font-medium text-gray-500 text-theme-xs dark:text-gray-400">Team</p>
             </th>
-            <th class="px-5 py-3 text-left w-2/11 sm:px-6">
+            <th class="px-5 py-3 text-start w-2/11 sm:px-6">
               <p class="font-medium text-gray-500 text-theme-xs dark:text-gray-400">Status</p>
             </th>
-            <th class="px-5 py-3 text-left w-2/11 sm:px-6">
+            <th class="px-5 py-3 text-start w-2/11 sm:px-6">
               <p class="font-medium text-gray-500 text-theme-xs dark:text-gray-400">Budget</p>
             </th>
           </tr>
@@ -85,8 +85,8 @@
   </div>
 </template>
 
-<script setup>
-import { ref } from 'vue'
+<script setup lang="ts">
+import { ref } from 'vue';
 
 const users = ref([
   {

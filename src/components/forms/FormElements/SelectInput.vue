@@ -8,7 +8,7 @@
       <div class="relative z-20 bg-transparent">
         <select
           v-model="singleSelect"
-          class="dark:bg-dark-900 h-11 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-4 py-2.5 pr-11 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 focus:border-brand-300 focus:outline-hidden focus:ring-3 focus:ring-brand-500/10 dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30 dark:focus:border-brand-800"
+          class="dark:bg-dark-900 h-11 w-full appearance-none rounded-lg border border-gray-300 bg-transparent bg-none px-4 py-2.5 ltr:pr-11 rtl:pl-11 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 focus:border-brand-300 focus:outline-hidden focus:ring-3 focus:ring-brand-500/10 dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30 dark:focus:border-brand-800"
           :class="{ 'text-gray-800 dark:text-white/90': singleSelect }"
         >
           <option value="" disabled>Select Option</option>
@@ -23,7 +23,7 @@
           </option>
         </select>
         <span
-          class="absolute z-30 text-gray-700 -translate-y-1/2 pointer-events-none right-4 top-1/2 dark:text-gray-400"
+          class="absolute z-30 text-gray-700 -translate-y-1/2 pointer-events-none ltr:right-4 rtl:left-4 top-1/2 dark:text-gray-400"
         >
           <svg
             class="stroke-current"
@@ -47,34 +47,29 @@
 
     <!-- Multiple Select Input -->
     <div>
-      <MultipleSelect v-model="selectedItems" :options="optionss" class="w-full" />
+      <MultipleSelect
+        label="Multiple Select Options"
+        :options="optionsTwo"
+        v-model="selected"
+        name="selected_options"
+      />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref } from 'vue'
 import MultipleSelect from './MultipleSelect.vue'
 
-const optionss = [
-  { value: 'apple', label: 'Apple' },
-  { value: 'banana', label: 'Banana' },
-  { value: 'cherry', label: 'Cherry' },
-  { value: 'date', label: 'Date' },
-  { value: 'elderberry', label: 'Elderberry' },
-  { value: 'graphs', label: 'Graphs' },
+const selected = ref([1, 3])
+const optionsTwo = [
+  { id: 1, name: 'Option 1' },
+  { id: 2, name: 'Option 2' },
+  { id: 3, name: 'Option 3' },
+  { id: 4, name: 'Option 4' },
+  { id: 5, name: 'Option 5' },
 ]
-
-const selectedItems = ref([])
 
 const singleSelect = ref('')
 
-const options = ref([
-  { text: 'Option 1', selected: false },
-  { text: 'Option 2', selected: false },
-  { text: 'Option 3', selected: false },
-  { text: 'Option 4', selected: false },
-])
-
-const selected = computed(() => options.value.filter((option) => option.selected))
 </script>

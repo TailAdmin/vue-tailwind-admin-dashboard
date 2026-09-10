@@ -15,7 +15,7 @@
                   ? 'border-brand-500 bg-brand-500'
                   : 'bg-transparent border-gray-300 dark:border-gray-700'
               "
-              class="mr-3 flex h-5 w-5 items-center justify-center rounded-md border-[1.25px] hover:border-brand-500 dark:hover:border-brand-500"
+              class="ltr:mr-3 rtl:ml-3 flex h-5 w-5 items-center justify-center rounded-md border-[1.25px] hover:border-brand-500 dark:hover:border-brand-500"
             >
               <span :class="checkboxOne ? '' : 'opacity-0'">
                 <svg
@@ -54,7 +54,7 @@
                   ? 'border-brand-500 bg-brand-500'
                   : 'bg-transparent border-gray-300 dark:border-gray-700'
               "
-              class="mr-3 flex h-5 w-5 items-center justify-center rounded-md border-[1.25px] hover:border-brand-500 dark:hover:border-brand-500"
+              class="ltr:mr-3 rtl:ml-3 flex h-5 w-5 items-center justify-center rounded-md border-[1.25px] hover:border-brand-500 dark:hover:border-brand-500"
             >
               <span :class="checkboxTwo ? '' : 'opacity-0'">
                 <svg
@@ -99,7 +99,7 @@
                   ? 'bg-transparent border-gray-200 dark:border-gray-800'
                   : 'border-brand-500 bg-brand-500'
               "
-              class="mr-3 flex h-5 w-5 items-center justify-center rounded-md border-[1.25px]"
+              class="ltr:mr-3 rtl:ml-3 flex h-5 w-5 items-center justify-center rounded-md border-[1.25px]"
             >
               <span :class="checkboxThree ? '' : 'opacity-0'">
                 <svg

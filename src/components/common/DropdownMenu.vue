@@ -22,7 +22,11 @@
     </button>
 
     <!-- Dropdown Menu -->
-    <div v-if="open" :class="menuClass">
+    <div
+      v-if="open"
+      ref="menuRef"
+      :class="computedMenuClass"
+    >
       <slot name="menu">
         <!-- Default menu items -->
         <template v-for="(item, index) in menuItems">
@@ -30,7 +34,7 @@
             v-if="item.to"
             :key="`router-${index}`"
             :to="item.to"
-            @click.native="handleMenuItemClick(item.onClick)"
+            @click="handleMenuItemClick(item.onClick)"
             :class="itemClass"
           >
             {{ item.label }}
@@ -50,13 +54,20 @@
   </div>
 </template>
 
-<script setup>
-import { ref } from 'vue'
+<script setup lang="ts">
+import { computed, nextTick, ref, type PropType } from 'vue'
 import vClickOutside from './v-click-outside.vue'
+
+export interface DropdownMenuItem {
+  label?: string
+  to?: string | object
+  onClick?: () => void
+  [key: string]: any
+}
 
 const props = defineProps({
   menuItems: {
-    type: Array,
+    type: Array as PropType<DropdownMenuItem[]>,
     default: () => [],
   },
   buttonClass: {
@@ -66,37 +77,104 @@ const props = defineProps({
   menuClass: {
     type: String,
     default:
-      'absolute right-0 z-40 w-40 p-2 space-y-1 bg-white border border-gray-200 top-full rounded-2xl shadow-lg dark:border-gray-800 dark:bg-gray-dark',
+      'absolute end-0 z-40 w-40 p-2 space-y-1 bg-white border border-gray-200 rounded-2xl shadow-lg dark:border-gray-800 dark:bg-gray-dark',
   },
   itemClass: {
     type: String,
     default:
-      'flex w-full px-3 py-2 font-medium text-left text-gray-500 rounded-lg text-theme-xs hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-gray-300',
+      'flex w-full px-3 py-2 font-medium text-start text-gray-500 rounded-lg text-theme-xs hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-gray-300',
+  },
+  openUpward: {
+    type: Boolean,
+    default: false,
   },
 })
 
-const open = ref(false)
+defineSlots<{
+  default?: (props: Record<string, never>) => any
+  icon?: (props: Record<string, never>) => any
+  menu?: (props: Record<string, never>) => any
+}>()
 
-const toggleDropdown = () => {
+const open = ref(false)
+const dropdown = ref<HTMLElement | null>(null)
+const menuRef = ref<HTMLElement | null>(null)
+const isUpward = ref(false)
+
+const computedMenuClass = computed(() => {
+  const shouldOpenUp = props.openUpward || isUpward.value
+  let baseClass = props.menuClass
+  if (shouldOpenUp) {
+    baseClass = baseClass.replace(/\btop-full\b/g, '').replace(/\bmt-\d+\b/g, '').trim()
+    return `${baseClass} bottom-full mb-1 top-auto!`
+  }
+  return baseClass.includes('top-full') ? baseClass : `${baseClass} top-full mt-1`
+})
+
+const updateDropdownPosition = () => {
+  if (props.openUpward) {
+    isUpward.value = true
+    return
+  }
+
+  const dropdownEl = dropdown.value
+  if (!dropdownEl) return
+
+  const dropdownRect = dropdownEl.getBoundingClientRect()
+  const menuHeight = menuRef.value?.offsetHeight || 115
+
+  // Check space relative to viewport bottom
+  const spaceBelowViewport = window.innerHeight - dropdownRect.bottom
+
+  // Check space relative to closest scrollable parent (e.g. table overflow container)
+  const scrollParent = dropdownEl.closest('.overflow-x-auto, .overflow-y-auto, table, tbody')
+  let spaceBelowParent = Infinity
+  if (scrollParent) {
+    const parentRect = scrollParent.getBoundingClientRect()
+    spaceBelowParent = parentRect.bottom - dropdownRect.bottom
+  }
+
+  if (spaceBelowViewport < menuHeight + 10 || spaceBelowParent < menuHeight + 10) {
+    isUpward.value = true
+  } else {
+    isUpward.value = false
+  }
+}
+
+const toggleDropdown = async () => {
   open.value = !open.value
+  if (open.value) {
+    if (props.openUpward) {
+      isUpward.value = true
+    } else if (dropdown.value) {
+      const dropdownRect = dropdown.value.getBoundingClientRect()
+      const scrollParent = dropdown.value.closest('.overflow-x-auto, .overflow-y-auto, table, tbody')
+      let spaceBelowParent = Infinity
+      if (scrollParent) {
+        spaceBelowParent = scrollParent.getBoundingClientRect().bottom - dropdownRect.bottom
+      }
+      const spaceBelowViewport = window.innerHeight - dropdownRect.bottom
+      if (spaceBelowViewport < 130 || spaceBelowParent < 130) {
+        isUpward.value = true
+      } else {
+        isUpward.value = false
+      }
+    }
+    await nextTick()
+    updateDropdownPosition()
+  }
 }
 
 const closeDropdown = () => {
   open.value = false
+  isUpward.value = props.openUpward
 }
 
-const handleMenuItemClick = (callback) => {
+const handleMenuItemClick = (callback: any) => {
   if (typeof callback === 'function') {
-    callback() // Execute the provided callback function
+    callback()
   }
-  closeDropdown() // Close the dropdown after the item is clicked
+  closeDropdown()
 }
 </script>
 
-<script>
-export default {
-  directives: {
-    clickOutside: vClickOutside,
-  },
-}
-</script>
