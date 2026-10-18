@@ -1,78 +1,86 @@
-// import { ref } from 'vue'
-
-// export function useSidebar() {
-//   const isMobileOpen = ref(false)
-//   const isDesktopOpen = ref(true)
-
-//   const toggleSidebar = () => {
-//     isDesktopOpen.value = !isDesktopOpen.value
-//   }
-
-//   const toggleMobileSidebar = () => {
-//     isMobileOpen.value = !isMobileOpen.value
-//   }
-
-//   return {
-//     isMobileOpen,
-//     isDesktopOpen,
-//     toggleSidebar,
-//     toggleMobileSidebar,
-//   }
-// }
-
 import { ref, computed, onMounted, onUnmounted, provide, inject } from 'vue'
-import type { Ref } from 'vue' //
+import type { ComputedRef, Ref } from 'vue'
+import { useRouter } from 'vue-router'
 
-interface SidebarContextType {
-  isExpanded: Ref<boolean>
-  isMobileOpen: Ref<boolean>
+const SIDEBAR_COOKIE_NAME = 'sidebar_state'
+const SIDEBAR_COOKIE_MAX_AGE = 60 * 60 * 24 * 7
+const SIDEBAR_KEYBOARD_SHORTCUT = 'b'
+// xl breakpoint — matches TailAdmin sidebar's xl:translate-x-0
+const MOBILE_BREAKPOINT = 1280
+
+export interface SidebarContextType {
+  /** "expanded" | "collapsed" (desktop) */
+  state: ComputedRef<'expanded' | 'collapsed'>
+  open: Ref<boolean>
+  setOpen: (open: boolean) => void
+  openMobile: Ref<boolean>
+  setOpenMobile: (open: boolean) => void
+  /** viewport is below the xl breakpoint */
+  isMobile: Ref<boolean>
   isHovered: Ref<boolean>
+  setIsHovered: (isHovered: boolean) => void
+  toggleSidebar: () => void
+
+  // Used by the example layouts
+  isExpanded: ComputedRef<boolean>
+  isMobileOpen: Ref<boolean>
   activeItem: Ref<string | null>
   openSubmenu: Ref<string | null>
-  toggleSidebar: () => void
   toggleMobileSidebar: () => void
-  setIsHovered: (isHovered: boolean) => void
   setActiveItem: (item: string | null) => void
   toggleSubmenu: (item: string) => void
 }
 
-const SidebarSymbol = Symbol()
+const SidebarSymbol = Symbol('SidebarContext')
 
-export function useSidebarProvider() {
-  const isExpanded = ref(true)
-  const isMobileOpen = ref(false)
+const readSidebarCookie = (defaultOpen: boolean): boolean => {
+  if (typeof document === 'undefined') return defaultOpen
+  const match = document.cookie.match(new RegExp(`(?:^|; )${SIDEBAR_COOKIE_NAME}=([^;]*)`))
+  return match ? match[1] === 'true' : defaultOpen
+}
+
+export function useSidebarProvider(defaultOpen = true) {
+  const router = useRouter()
+
+  const open = ref(readSidebarCookie(defaultOpen))
+  const openMobile = ref(false)
   const isMobile = ref(false)
   const isHovered = ref(false)
+  const isCompact = ref(false)
   const activeItem = ref<string | null>(null)
   const openSubmenu = ref<string | null>(null)
 
+  const state = computed<'expanded' | 'collapsed'>(() => (open.value ? 'expanded' : 'collapsed'))
+
   const handleResize = () => {
-    const mobile = window.innerWidth < 768
-    isMobile.value = mobile
-    if (!mobile) {
-      isMobileOpen.value = false
+    isMobile.value = window.innerWidth < MOBILE_BREAKPOINT
+    isCompact.value = window.innerWidth < 768
+    if (!isMobile.value) {
+      openMobile.value = false
     }
   }
 
-  onMounted(() => {
-    handleResize()
-    window.addEventListener('resize', handleResize)
-  })
+  const setOpen = (value: boolean) => {
+    open.value = value
+    // This sets the cookie to keep the sidebar state.
+    document.cookie = `${SIDEBAR_COOKIE_NAME}=${value}; path=/; max-age=${SIDEBAR_COOKIE_MAX_AGE}`
+  }
 
-  onUnmounted(() => {
-    window.removeEventListener('resize', handleResize)
-  })
+  const setOpenMobile = (value: boolean) => {
+    openMobile.value = value
+  }
 
+  // Helper to toggle the sidebar.
   const toggleSidebar = () => {
     if (isMobile.value) {
-      isMobileOpen.value = !isMobileOpen.value
+      setOpenMobile(!openMobile.value)
     } else {
-      isExpanded.value = !isExpanded.value
+      setOpen(!open.value)
     }
   }
 
   const toggleMobileSidebar = () => {
-    isMobileOpen.value = !isMobileOpen.value
+    setOpenMobile(!openMobile.value)
   }
 
   const setIsHovered = (value: boolean) => {
@@ -87,15 +95,48 @@ export function useSidebarProvider() {
     openSubmenu.value = openSubmenu.value === item ? null : item
   }
 
+  // Adds a keyboard shortcut to toggle the sidebar.
+  const handleKeyDown = (event: KeyboardEvent) => {
+    if (event.key === SIDEBAR_KEYBOARD_SHORTCUT && (event.metaKey || event.ctrlKey)) {
+      event.preventDefault()
+      toggleSidebar()
+    }
+  }
+
+  let removeAfterEach: (() => void) | undefined
+
+  onMounted(() => {
+    handleResize()
+    window.addEventListener('resize', handleResize)
+    window.addEventListener('keydown', handleKeyDown)
+    // Close mobile sidebar on route change
+    removeAfterEach = router.afterEach(() => {
+      openMobile.value = false
+    })
+  })
+
+  onUnmounted(() => {
+    window.removeEventListener('resize', handleResize)
+    window.removeEventListener('keydown', handleKeyDown)
+    removeAfterEach?.()
+  })
+
   const context: SidebarContextType = {
-    isExpanded: computed(() => (isMobile.value ? false : isExpanded.value)),
-    isMobileOpen,
+    state,
+    open,
+    setOpen,
+    openMobile,
+    setOpenMobile,
+    isMobile,
     isHovered,
+    setIsHovered,
+    toggleSidebar,
+
+    isExpanded: computed(() => (isCompact.value ? false : open.value)),
+    isMobileOpen: openMobile,
     activeItem,
     openSubmenu,
-    toggleSidebar,
     toggleMobileSidebar,
-    setIsHovered,
     setActiveItem,
     toggleSubmenu,
   }

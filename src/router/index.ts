@@ -9,7 +9,7 @@ const router = createRouter({
     {
       path: '/',
       name: 'Ecommerce',
-      component: () => import('../views/Ecommerce.vue'),
+      component: () => import('../views/Dashboard/Ecommerce.vue'),
       meta: {
         title: 'eCommerce Dashboard',
       },
@@ -17,7 +17,7 @@ const router = createRouter({
     {
       path: '/calendar',
       name: 'Calendar',
-      component: () => import('../views/Others/Calendar.vue'),
+      component: () => import('../views/Calendar.vue'),
       meta: {
         title: 'Calendar',
       },
@@ -25,7 +25,7 @@ const router = createRouter({
     {
       path: '/profile',
       name: 'Profile',
-      component: () => import('../views/Others/UserProfile.vue'),
+      component: () => import('../views/Profile.vue'),
       meta: {
         title: 'Profile',
       },
@@ -49,12 +49,12 @@ const router = createRouter({
     {
       path: '/line-chart',
       name: 'Line Chart',
-      component: () => import('../views/Chart/LineChart/LineChart.vue'),
+      component: () => import('../views/Charts/LineChart.vue'),
     },
     {
       path: '/bar-chart',
       name: 'Bar Chart',
-      component: () => import('../views/Chart/BarChart/BarChart.vue'),
+      component: () => import('../views/Charts/BarChart.vue'),
     },
     {
       path: '/alerts',
@@ -75,7 +75,7 @@ const router = createRouter({
     {
       path: '/badge',
       name: 'Badge',
-      component: () => import('../views/UiElements/Badges.vue'),
+      component: () => import('../views/UiElements/Badge.vue'),
       meta: {
         title: 'Badge',
       },

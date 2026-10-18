@@ -1,23 +1,35 @@
-<template>
-  <div class="min-h-screen xl:flex">
-    <app-sidebar />
-    <Backdrop />
-    <div
-      class="flex-1 transition-all duration-300 ease-in-out"
-      :class="[isExpanded || isHovered ? 'xl:ms-[290px]' : 'xl:ms-[90px]']"
-    >
-      <app-header />
-      <div class="mx-auto max-w-(--breakpoint-2xl) p-4 pb-20 md:p-6 md:pb-6">
-        <slot></slot>
-      </div>
-    </div>
-  </div>
-</template>
-
 <script setup lang="ts">
-import AppSidebar from './AppSidebar.vue'
-import AppHeader from './AppHeader.vue'
-import { useSidebar } from '@/composables/useSidebar'
-import Backdrop from './Backdrop.vue'
-const { isExpanded, isHovered } = useSidebar()
+import { computed } from 'vue'
+import { useRoute } from 'vue-router'
+import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar'
+import { cn } from '@/utils/cn'
+import AppHeader from './app-layout/header/AppHeader.vue'
+import AppSidebar from './app-layout/sidebar/AppSidebar.vue'
+
+const route = useRoute()
+
+const isAiRoute = computed(
+  () => route.path.startsWith('/ai-chat') || route.path.startsWith('/ai-settings'),
+)
+
+// Route-specific styles for the main content container
+const routeSpecificStyles = computed(() =>
+  isAiRoute.value
+    ? 'flex-1 min-h-0 flex flex-col'
+    : 'p-4 mx-auto w-full max-w-(--breakpoint-2xl) md:p-6',
+)
 </script>
+
+<template>
+  <SidebarProvider :class="cn(isAiRoute && 'h-svh overflow-hidden')">
+    <AppSidebar />
+
+    <SidebarInset :class="cn(isAiRoute && 'h-svh overflow-hidden')">
+      <AppHeader />
+
+      <div :class="routeSpecificStyles">
+        <slot />
+      </div>
+    </SidebarInset>
+  </SidebarProvider>
+</template>

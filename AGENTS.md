@@ -9,28 +9,34 @@ src/
 ├── assets/
 │   └── main.css                  # Tailwind CSS v4 theme (@theme), global utility classes & 3rd party overrides
 ├── components/
-│   ├── charts/                   # ApexChart subcomponents (BarChart, LineChart)
-│   ├── common/                   # Shared wrappers (ComponentCard, PageBreadcrumb, ThemeToggler)
-│   ├── forms/                    # Form controls and layouts (FormElements)
-│   ├── layout/                   # Admin shell (AdminLayout, AppHeader, AppSidebar, Backdrop, FullScreenLayout, header/)
-│   ├── profile/                  # User profile widgets (ProfileCard, AddressCard, PersonalInfoCard, Security, DangerZone, Modal)
-│   ├── tables/                   # Table variations (BasicTableOne)
-│   └── ui/                       # UI primitives (Alert, Avatar, Badge, Button, Modal, etc.)
+│   ├── common/                   # Shared wrappers (ComponentCard, PageBreadcrumb, CommonGridShape)
+│   ├── full-width-pages/         # Auth (sign-in, sign-up) and 404 page components
+│   ├── layout/                   # Admin shell: AdminLayout, AuthLayout, providers,
+│   │   ├── app-layout/           #   sidebar/ (AppSidebar, nav data) and header/ (AppHeader)
+│   │   └── header/               #   notification-dropdown/, user-dropdown/, theme-toggler/
+│   ├── main/                     # Page content: calendar, dashboard/ecommerce, forms, pages, profile, tables
+│   ├── others/                   # charts/ (line, bar) and ui-elements/ (alerts, avatars, badge, buttons, images, videos)
+│   └── ui/                       # UI primitives built on reka-ui (button, badge, dropdown-menu, sidebar, select, ...)
 ├── composables/
 │   ├── useRTL.ts                 # RTL state management synced with localStorage and DOM dir attribute
-│   └── useSidebar.ts             # Sidebar expand/collapse, mobile drawer, hover state
-├── icons/                        # SVG icons as Vue SFCs (PascalCase, e.g. BellIcon.vue, BoxIcon.vue)
+│   ├── useSidebar.ts             # Sidebar expand/collapse, mobile drawer, hover state
+│   ├── useTheme.ts               # Light/dark theme
+│   └── useFormValidation.ts      # Lightweight form validation used by auth forms
+├── icons/                        # SVG icons as Vue SFCs (icons/layout is the set used by the components)
 ├── router/
 │   └── index.ts                  # Vue Router 4 route definitions
+├── utils/                        # cn (clsx + tailwind-merge), get-initials, useVModel, focusOnOpen
 └── views/
-    ├── Dashboard/                # Ecommerce dashboard page (Ecommerce.vue)
-    ├── Auth/                     # Sign in, Sign up pages
-    ├── Chart/                    # Chart preview pages (BarChart, LineChart)
-    ├── Forms/                    # Form elements page
-    ├── Others/                   # Other feature pages (Calendar.vue, UserProfile.vue)
-    ├── Pages/                    # Extra pages (BlankPage, Error404)
-    ├── Tables/                   # Basic table page
-    └── UiElements/               # UI showcase pages (Alerts, Avatars, Badges, Buttons, Images, Videos)
+    ├── Auth/                     # Sign in, Sign up
+    ├── Charts/                   # LineChart, BarChart
+    ├── Dashboard/                # Ecommerce dashboard
+    ├── Errors/                   # 404
+    ├── Forms/                    # Form elements
+    ├── Pages/                    # Blank page
+    ├── Tables/                   # Basic tables
+    ├── UiElements/               # Alerts, Avatars, Badge, Buttons, Images, Videos
+    ├── Calendar.vue
+    └── Profile.vue
 ```
 
 ## Stack
@@ -44,13 +50,11 @@ src/
   - `useSidebar`: Manages sidebar expand/collapse, mobile drawer visibility, and hover state.
   - `useRTL`: Manages RTL direction (`dir="rtl"` / `dir="ltr"`, `.rtl` class, synced with `localStorage`).
 - **Third-Party Libraries**:
+  - **reka-ui**: Headless primitives behind `src/components/ui` (dropdowns, select, sidebar, dialog, ...). `App.vue` passes the RTL direction to its `ConfigProvider`.
   - **vue3-apexcharts & apexcharts**: Interactive charts and data visualizations.
   - **@fullcalendar/vue3 & fullcalendar**: Event calendar with DayGrid, TimeGrid, MultiMonth, and Interaction plugins.
-  - **jsvectormap & vuevectormap**: Vector maps.
-  - **swiper**: Touch sliders and carousels.
-  - **vue-flatpickr-component & flatpickr**: Advanced date and time pickers.
-  - **vuedraggable**: Drag-and-drop interactions.
-  - **dropzone**: File upload dropzone.
+  - **jsvectormap**: Vector map (customer demographic card).
+  - **flatpickr**: Date and time pickers.
 - **Scripts**:
   - `npm run dev` — starts the development server.
   - `npm run build` — runs type-check then builds the production bundle into `dist/`.
@@ -63,18 +67,18 @@ src/
 - **New Page**:
   - Add the route to `src/router/index.ts` with a descriptive `meta.title`.
   - Create the view in `src/views/<Category>/<PageName>.vue`.
-  - Use `AdminLayout` wrapper for dashboard pages, `FullScreenLayout` for auth/error pages.
+  - Use `AdminLayout` wrapper for dashboard pages, `AuthLayout` for auth pages.
   - Wrap page sections in `<ComponentCard :title="'...'">` and add `<PageBreadcrumb :pageTitle="'...'" />` at the top.
 - **New Reusable Component**:
   - Domain-specific: `src/components/<feature>/<ComponentName>.vue`.
-  - UI primitives: `src/components/ui/<ComponentName>.vue`.
+  - UI primitives: `src/components/ui/<name>/<Component>.vue` with an `index.ts` barrel.
   - Shared wrappers: `src/components/common/<ComponentName>.vue`.
 - **Component Files**:
   - Use **PascalCase** filenames (`MonthlySalesChart.vue`) with a `<script setup lang="ts">` block.
   - Use `defineProps<{...}>()` and `defineEmits<{...}>()` with explicit TypeScript types.
 - **Icons**:
-  - Icons live in `src/icons/` as Vue SFCs (e.g., `BellIcon.vue`, `BoxIcon.vue`).
-  - Import directly: `import BellIcon from '@/icons/BellIcon.vue'` or `from '@/icons'`.
+  - Icons live in `src/icons/layout/` as Vue SFCs, exported from `@/icons/layout` (e.g., `BellIcon`, `BoxIcon`).
+  - Import from the barrel: `import { BellIcon } from '@/icons/layout'`.
   - Use `fill-current` / `stroke-current` and `w-*` / `h-*` tokens inside icon components for adaptive theming.
 - **Charts**:
   - Import `vue3-apexcharts` as a component; guard chart rendering with `v-if="isMounted"` (set via `onMounted`) to avoid SSR issues.
@@ -84,8 +88,8 @@ src/
 
 ## Layouts & Structure
 
-- **`AdminLayout`** (`src/components/layout/AdminLayout.vue`): Standard admin shell with `AppSidebar`, `AppHeader`, `Backdrop`, and `<RouterView>`.
-- **`FullScreenLayout`** (`src/components/layout/FullScreenLayout.vue`): Full-width layout without sidebar/header — used for auth and error pages.
+- **`AdminLayout`** (`src/components/layout/AdminLayout.vue`): Standard admin shell (`SidebarProvider`, `AppSidebar`, `SidebarInset`, `AppHeader`).
+- **`AuthLayout`** (`src/components/layout/AuthLayout.vue`): Split-screen layout without sidebar/header — used for sign in and sign up.
 
 ## Styling Rules & Dark Mode
 

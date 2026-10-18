@@ -154,6 +154,16 @@ Handle your app's state with Pinia for clean, organized code.
 
 ## Update Logs
 
+### Version 2.5.0 - [October 18, 2026]
+
+#### Major Updates & Enhancements
+
+- **Design System Refresh**: Refactored UI components using Reka UI headless primitives, including dropdown menus, selects, sidebars, dialogs, tooltips, and more. Updated components are organized in `src/components/ui`.
+- **Updated Pages**: Refreshed and updated all pages for improved consistency, usability, and design.
+- **Improve Project Structure**: Reorganized components by feature for better maintainability and scalability.
+- **RTL Improvements**: Enhanced right-to-left (RTL) layout support and fixed related styling and alignment issues.
+- **Dependencies**: Added `reka-ui`, `clsx`, `tailwind-merge` and `tw-animate-css` to support the updated UI system and styling workflow.
+
 ### Version 2.4.0 - [September 09, 2026]
 
 #### Major Updates & Enhancements

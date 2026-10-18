@@ -1,60 +1,38 @@
+<script setup lang="ts">
+import PageBreadcrumb from '@/components/common/PageBreadcrumb.vue'
+import AdminLayout from '@/components/layout/AdminLayout.vue'
+import { CheckboxInputs } from '@/components/main/forms/form-elements/checkbox-inputs'
+import { DefaultInputs } from '@/components/main/forms/form-elements/default-inputs'
+import { Dropzone } from '@/components/main/forms/form-elements/dropzone'
+import { FileInputSection } from '@/components/main/forms/form-elements/file-input'
+import { InputGroupSection } from '@/components/main/forms/form-elements/input-group'
+import { InputStates } from '@/components/main/forms/form-elements/input-states'
+import { RadioButtons } from '@/components/main/forms/form-elements/radio-buttons'
+import { SelectInputs } from '@/components/main/forms/form-elements/select-inputs'
+import { TextAreaInput } from '@/components/main/forms/form-elements/textarea-input'
+import { ToggleSwitch } from '@/components/main/forms/form-elements/toggle-switch'
+</script>
+
 <template>
   <AdminLayout>
-    <PageBreadcrumb :pageTitle="currentPageTitle" />
-    <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
-      <div class="space-y-6">
-        <ComponentCard title="Default Inputs">
+    <div>
+      <PageBreadcrumb page-title="Form Elements" />
+      <div class="grid grid-cols-1 gap-6 xl:grid-cols-2">
+        <div class="space-y-6">
           <DefaultInputs />
-        </ComponentCard>
-        <ComponentCard title="Select Inputs">
-          <SelectInput />
-        </ComponentCard>
-        <ComponentCard title="Inputs States">
-          <TextArea />
-        </ComponentCard>
-        <ComponentCard title="Inputs States">
-          <InputState />
-        </ComponentCard>
-      </div>
-      <div class="space-y-6">
-        <ComponentCard title="Inputs Group">
-          <InputGroup />
-        </ComponentCard>
-        <ComponentCard title="File Input">
-          <FileInput />
-        </ComponentCard>
-        <ComponentCard title="Checkboxes">
-          <CheckboxInput />
-        </ComponentCard>
-        <ComponentCard title="Radio Inputs">
-          <RadioInputs />
-        </ComponentCard>
-        <ComponentCard title="Toggle Switch">
+          <SelectInputs />
+          <TextAreaInput />
+          <InputStates />
+        </div>
+        <div class="space-y-6">
+          <InputGroupSection />
+          <FileInputSection />
+          <CheckboxInputs />
+          <RadioButtons />
           <ToggleSwitch />
-        </ComponentCard>
-        <ComponentCard title="Dropzone">
           <Dropzone />
-        </ComponentCard>
+        </div>
       </div>
     </div>
   </AdminLayout>
 </template>
-
-<script setup lang="ts">
-import { ref } from 'vue'
-import PageBreadcrumb from '@/components/common/PageBreadcrumb.vue'
-import AdminLayout from '@/components/layout/AdminLayout.vue'
-import DefaultInputs from '@/components/forms/FormElements/DefaultInputs.vue'
-import ComponentCard from '@/components/common/ComponentCard.vue'
-import SelectInput from '@/components/forms/FormElements/SelectInput.vue'
-import InputState from '@/components/forms/FormElements/InputState.vue'
-import TextArea from '@/components/forms/FormElements/TextArea.vue'
-import InputGroup from '@/components/forms/FormElements/InputGroup.vue'
-import Dropzone from '@/components/forms/FormElements/Dropzone.vue'
-import FileInput from '@/components/forms/FormElements/FileInput.vue'
-import CheckboxInput from '@/components/forms/FormElements/CheckboxInput.vue'
-import RadioInputs from '@/components/forms/FormElements/RadioInputs.vue'
-import ToggleSwitch from '@/components/forms/FormElements/ToggleSwitch.vue'
-
-const currentPageTitle = ref('Form Elements')
-</script>

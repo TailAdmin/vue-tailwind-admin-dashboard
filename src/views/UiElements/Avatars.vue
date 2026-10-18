@@ -1,45 +1,35 @@
+<script setup lang="ts">
+import AdminLayout from '@/components/layout/AdminLayout.vue'
+import AvatarGroupPreview from '@/components/others/ui-elements/avatars/AvatarGroup.vue'
+import BusyIndicator from '@/components/others/ui-elements/avatars/BusyIndicator.vue'
+import ComponentCard from '@/components/common/ComponentCard.vue'
+import DefaultAvatar from '@/components/others/ui-elements/avatars/DefaultAvatar.vue'
+import OfflineIndicator from '@/components/others/ui-elements/avatars/OfflineIndicator.vue'
+import OnlineIndicator from '@/components/others/ui-elements/avatars/OnlineIndicator.vue'
+import PageBreadcrumb from '@/components/common/PageBreadcrumb.vue'
+</script>
+
 <template>
   <AdminLayout>
-    <PageBreadcrumb :pageTitle="currentPageTitle" />
-    <div className="space-y-5 sm:space-y-6">
-      <ComponentCard title="Default Avatar">
-        <div className="flex flex-col items-center justify-center gap-5 sm:flex-row">
-          <Avatar :src="avatarSrc" :size="size" v-for="size in sizes" :key="size" />
-        </div>
-      </ComponentCard>
-      <ComponentCard title="Avatar with online indicator">
-        <div className="flex flex-col items-center justify-center gap-5 sm:flex-row">
-          <Avatar :src="avatarSrc" status="online" :size="size" v-for="size in sizes" :key="size" />
-        </div>
-      </ComponentCard>
-      <ComponentCard title="Avatar with Offline indicator">
-        <div className="flex flex-col items-center justify-center gap-5 sm:flex-row">
-          <Avatar
-            :src="avatarSrc"
-            status="offline"
-            :size="size"
-            v-for="size in sizes"
-            :key="size"
-          />
-        </div>
-      </ComponentCard>
-      <ComponentCard title="Avatar with busy indicator">
-        <div className="flex flex-col items-center justify-center gap-5 sm:flex-row">
-          <Avatar :src="avatarSrc" status="busy" :size="size" v-for="size in sizes" :key="size" />
-        </div>
-      </ComponentCard>
+    <div>
+      <PageBreadcrumb pageTitle="Avatar" />
+      <div class="space-y-5 sm:space-y-6">
+        <ComponentCard title="Default Avatar">
+          <DefaultAvatar />
+        </ComponentCard>
+        <ComponentCard title="Avatar Group">
+          <AvatarGroupPreview />
+        </ComponentCard>
+        <ComponentCard title="Avatar with Online Indicator">
+          <OnlineIndicator />
+        </ComponentCard>
+        <ComponentCard title="Avatar with Offline Indicator">
+          <OfflineIndicator />
+        </ComponentCard>
+        <ComponentCard title="Avatar with Busy Indicator">
+          <BusyIndicator />
+        </ComponentCard>
+      </div>
     </div>
   </AdminLayout>
 </template>
-
-<script setup lang="ts">
-import { ref } from 'vue'
-import PageBreadcrumb from '@/components/common/PageBreadcrumb.vue'
-import AdminLayout from '@/components/layout/AdminLayout.vue'
-import ComponentCard from '@/components/common/ComponentCard.vue'
-import Avatar from '@/components/ui/Avatar.vue'
-const currentPageTitle = ref('Avatars')
-
-const avatarSrc = '/images/user/user-01.jpg'
-const sizes = ['xsmall', 'small', 'medium', 'large', 'xlarge', 'xxlarge'] as const
-</script>

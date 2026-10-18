@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-wrap items-center justify-between gap-3 mb-6">
-    <h2 class="text-xl font-semibold text-gray-800 dark:text-white/90" x-text="pageTitle">
+    <h2 class="text-xl font-semibold text-gray-800 dark:text-white/90">
       {{ pageTitle }}
     </h2>
     <nav>
@@ -12,7 +12,7 @@
           >
             Home
             <svg
-              class="stroke-current"
+              class="stroke-current rtl:rotate-180"
               width="17"
               height="16"
               viewBox="0 0 17 16"
@@ -38,8 +38,6 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps } from 'vue'
-
 interface BreadcrumbProps {
   pageTitle: string
 }
