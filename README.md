@@ -154,7 +154,7 @@ Handle your app's state with Pinia for clean, organized code.
 
 ## Update Logs
 
-### Version 2.5.0 - [October 18, 2026]
+### Version 2.5.0 - [October 28, 2026]
 
 #### Major Updates & Enhancements
 
@@ -163,6 +163,10 @@ Handle your app's state with Pinia for clean, organized code.
 - **Improve Project Structure**: Reorganized components by feature for better maintainability and scalability.
 - **RTL Improvements**: Enhanced right-to-left (RTL) layout support and fixed related styling and alignment issues.
 - **Dependencies**: Added `reka-ui`, `clsx`, `tailwind-merge` and `tw-animate-css` to support the updated UI system and styling workflow.
+- **Page Metadata**: Added unique page titles and meta descriptions for every route in `src/router/metadata.ts`.
+- **Sidebar & Dark Mode Fixes**: Fixed collapsed sidebar logo and menu alignment, restored the section dots, and corrected dark mode backgrounds on verification code inputs.
+- **Cleanup**: Removed unused images, simplified global styles and refreshed `AGENTS.md` with common agent workflows and verification commands.
+- **Code Quality**: ESLint and Prettier workflows available through `npm run lint` and `npm run format`.
 
 ### Version 2.4.0 - [September 09, 2026]
 
