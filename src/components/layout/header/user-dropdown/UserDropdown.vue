@@ -108,7 +108,7 @@ const handleSelectLanguage = (id: string) => {
       </DropdownMenuItem>
 
       <DropdownMenuSub>
-        <DropdownMenuSubTrigger show-icon>
+        <DropdownMenuSubTrigger>
           <GlobeIcon class="size-6" />
           <span>Language</span>
           <Badge
