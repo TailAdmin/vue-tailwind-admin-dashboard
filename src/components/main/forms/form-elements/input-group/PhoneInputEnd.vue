@@ -16,7 +16,7 @@ import { ChevronDownIcon } from '@/icons/layout'
         <div class="relative flex h-full items-center">
           <select
             value="US"
-            class="h-full cursor-pointer appearance-none border-0 border-none bg-transparent py-0 ps-3.5 pe-8 text-sm font-medium text-gray-700 shadow-none outline-hidden focus:border-0 focus:border-none focus:outline-hidden focus:ring-0 dark:text-gray-300 dark:hover:text-white dark:focus:text-white"
+            class="h-full cursor-pointer appearance-none border-0 border-none bg-transparent bg-none py-0 ps-3.5 pe-8 text-sm font-medium text-gray-700 shadow-none outline-hidden focus:border-0 focus:border-none focus:outline-hidden focus:ring-0 dark:text-gray-300 dark:hover:text-white dark:focus:text-white"
             @click.stop
           >
             <option value="US" class="text-gray-700 dark:bg-gray-900 dark:text-gray-300">US</option>
