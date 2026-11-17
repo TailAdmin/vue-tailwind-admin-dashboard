@@ -154,6 +154,13 @@ Handle your app's state with Pinia for clean, organized code.
 
 ## Update Logs
 
+### Version 2.5.1 - [November 17, 2026]
+
+- Improved RTL support for alerts, buttons, dropdown menus, and charts.
+- Added smooth hash-link scrolling to the router.
+- Hid the native dropdown arrow on phone number country selects.
+- Fixed noted style and responsiveness issues across pages.
+
 ### Version 2.5.0 - [October 28, 2026]
 
 #### Major Updates & Enhancements
