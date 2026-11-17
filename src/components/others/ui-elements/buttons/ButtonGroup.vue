@@ -9,7 +9,7 @@ import { ButtonGroup } from '@/components/ui/button-group'
     <ButtonGroup>
       <ButtonGroup>
         <Button variant="outline" size="icon" aria-label="Go Back">
-          <ArrowLeftIcon />
+          <ArrowLeftIcon class="rtl:rotate-180" />
         </Button>
       </ButtonGroup>
       <ButtonGroup>
